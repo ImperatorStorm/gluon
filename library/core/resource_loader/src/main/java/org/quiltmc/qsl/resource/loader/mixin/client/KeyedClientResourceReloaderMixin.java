@@ -110,7 +110,7 @@ public abstract class KeyedClientResourceReloaderMixin implements IdentifiableRe
 			} else if (self instanceof SpriteAtlasHolder) {
 				this.quilt$id = ResourceReloaderKeys.Client.SPRITE_ATLASES;
 			} else {
-				this.quilt$id = new Identifier("private/" + self.getClass().getSimpleName().toLowerCase(Locale.ROOT));
+				this.quilt$id = Identifier.of("private/" + self.getClass().getSimpleName().toLowerCase(Locale.ROOT));
 			}
 		}
 

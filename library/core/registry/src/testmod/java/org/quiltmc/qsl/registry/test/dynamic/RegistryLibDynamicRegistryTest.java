@@ -48,7 +48,7 @@ public class RegistryLibDynamicRegistryTest implements QuiltGameTest, ModInitial
 	private static final TagKey<Greetings> GREETING_TEST_TAG = TagKey.of(Greetings.REGISTRY_KEY, id("test_tag"));
 
 	public static Identifier id(String path) {
-		return new Identifier(NAMESPACE, path);
+		return Identifier.of(NAMESPACE, path);
 	}
 
 	@Override

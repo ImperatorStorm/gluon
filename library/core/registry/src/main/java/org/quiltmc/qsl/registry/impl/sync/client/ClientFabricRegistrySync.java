@@ -119,14 +119,14 @@ public class ClientFabricRegistrySync {
 						for (int m = 0; m < bulkSize; m++) {
 							currentRawId++;
 							String idPath = combinedBuf.readString();
-							idMap.put(new Identifier(idNamespace, idPath), currentRawId);
+							idMap.put(Identifier.of(idNamespace, idPath), currentRawId);
 						}
 
 						lastBulkLastRawId = currentRawId;
 					}
 				}
 
-				syncedRegistryMap.put(new Identifier(regNamespace, regPath), idMap);
+				syncedRegistryMap.put(Identifier.of(regNamespace, regPath), idMap);
 			}
 		}
 

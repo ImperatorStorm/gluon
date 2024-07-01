@@ -46,10 +46,10 @@ import org.quiltmc.qsl.resource.loader.api.PackRegistrationContext;
 public class VirtualResourcePackTestMod implements ModInitializer, PackRegistrationContext.Callback, ServerLifecycleEvents.Ready {
 	private static final TagKey<Block> TEST_TAG = TagKey.of(RegistryKeys.BLOCK, ResourceLoaderTestMod.id("test_virtual_tag"));
 	private static final TagKey<Block> TEST_TAG2 = TagKey.of(RegistryKeys.BLOCK, ResourceLoaderTestMod.id("test_stackable_tag"));
-	private static final Identifier TAG_FILE = new Identifier(
+	private static final Identifier TAG_FILE = Identifier.of(
 			TEST_TAG.id().getNamespace(), "tags/blocks/" + TEST_TAG.id().getPath() + ".json"
 	);
-	private static final Identifier TAG_FILE2 = new Identifier(
+	private static final Identifier TAG_FILE2 = Identifier.of(
 			TEST_TAG2.id().getNamespace(), "tags/blocks/" + TEST_TAG2.id().getPath() + ".json"
 	);
 

@@ -46,7 +46,7 @@ import org.quiltmc.qsl.resource.loader.impl.ResourceLoaderImpl;
 @ClientOnly
 @ApiStatus.Internal
 final class ClientDefaultTagManagerReloader extends ClientOnlyTagManagerReloader {
-	private static final Identifier ID = new Identifier(ClientQuiltTagsMod.NAMESPACE, "client_default_tags");
+	private static final Identifier ID = Identifier.of(ClientQuiltTagsMod.NAMESPACE, "client_default_tags");
 	private final PackManager resourcePackManager;
 
 	ClientDefaultTagManagerReloader() {
