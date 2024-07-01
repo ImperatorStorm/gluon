@@ -74,7 +74,7 @@ public class S2CPayloadTest implements ClientModInitializer {
 	}
 
 	public record TestS2CPayload(List<String> strings, int a, double b) implements CustomPayload {
-		public static final Identifier ID = new Identifier("quilt_networking_testmod", "test_s2c_payload");
+		public static final Identifier ID = Identifier.of("quilt_networking_testmod", "test_s2c_payload");
 
 		TestS2CPayload(PacketByteBuf buf) {
 			this(buf.readList(PacketByteBuf::readString), buf.readInt(), buf.readDouble());

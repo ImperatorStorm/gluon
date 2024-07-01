@@ -27,7 +27,7 @@ import java.nio.file.FileSystems
 
 def generateAccessWidener = tasks.register("generateAccessWidener", GenerateAccessWidenerTask) {
 	generator = this::generateBlockConstructors
-	templatePath.set(file("template.accesswidener"))
+	templatePath.set(file("block_extensions.accesswidener"))
 	outputPath.set(file('src/main/resources/quilt_block_extensions.accesswidener'))
 }
 

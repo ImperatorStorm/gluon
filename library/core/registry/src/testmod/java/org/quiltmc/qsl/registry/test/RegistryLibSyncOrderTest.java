@@ -46,10 +46,10 @@ import org.quiltmc.qsl.networking.api.client.ClientConfigurationNetworking;
  * Makes sure that the registry sync is done soon enough in the configuration system.
  */
 public class RegistryLibSyncOrderTest implements ModInitializer, DedicatedServerModInitializer, ClientModInitializer {
-	private static final Identifier PACKET_ID = new Identifier("quilt", "reg_sync_order_packet");
+	private static final Identifier PACKET_ID = Identifier.of("quilt", "reg_sync_order_packet");
 	public static Item ITEM_A = new Item(new Item.Settings());
 	public static Item ITEM_B = new Item(new Item.Settings());
-	private static final Identifier EARLY_PHASE = new Identifier("quilt", "reg_sync_order_early");
+	private static final Identifier EARLY_PHASE = Identifier.of("quilt", "reg_sync_order_early");
 
 	record TestPayload(boolean early, int a, int b) implements CustomPayload {
 		TestPayload(PacketByteBuf buf) {
@@ -72,11 +72,11 @@ public class RegistryLibSyncOrderTest implements ModInitializer, DedicatedServer
 	@Override
 	public void onInitialize(ModContainer mod) {
 		if (MinecraftQuiltLoader.getEnvironmentType() == EnvType.CLIENT) {
-			Registry.register(Registries.ITEM, new Identifier("quilt", "reg_sync_order_a"), ITEM_A);
-			Registry.register(Registries.ITEM, new Identifier("quilt", "reg_sync_order_b"), ITEM_B);
+			Registry.register(Registries.ITEM, Identifier.of("quilt", "reg_sync_order_a"), ITEM_A);
+			Registry.register(Registries.ITEM, Identifier.of("quilt", "reg_sync_order_b"), ITEM_B);
 		} else {
-			Registry.register(Registries.ITEM, new Identifier("quilt", "reg_sync_order_b"), ITEM_B);
-			Registry.register(Registries.ITEM, new Identifier("quilt", "reg_sync_order_a"), ITEM_A);
+			Registry.register(Registries.ITEM, Identifier.of("quilt", "reg_sync_order_b"), ITEM_B);
+			Registry.register(Registries.ITEM, Identifier.of("quilt", "reg_sync_order_a"), ITEM_A);
 		}
 
 		CustomPayloads.registerS2CPayload(PACKET_ID, TestPayload::new);

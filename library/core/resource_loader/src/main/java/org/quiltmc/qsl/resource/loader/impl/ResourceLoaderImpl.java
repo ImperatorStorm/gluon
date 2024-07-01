@@ -258,7 +258,7 @@ public final class ResourceLoaderImpl implements ResourceLoader {
 			if (currentReloader instanceof IdentifiableResourceReloader identifiable) {
 				id = identifiable.getQuiltId();
 			} else {
-				id = new Identifier("unknown",
+				id = Identifier.of("unknown",
 						"private/"
 								+ currentReloader.getClass().getName()
 								.replace(".", "/")

@@ -74,7 +74,7 @@ public class C2SPayloadTest implements ClientModInitializer {
 	}
 
 	public record TestC2SPayload(List<String> strings, int a, double b) implements CustomPayload {
-		public static final Identifier ID = new Identifier("quilt_networking_testmod", "test_c2s_payload");
+		public static final Identifier ID = Identifier.of("quilt_networking_testmod", "test_c2s_payload");
 
 		TestC2SPayload(PacketByteBuf buf) {
 			this(buf.readList(PacketByteBuf::readString), buf.readInt(), buf.readDouble());

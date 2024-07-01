@@ -22,7 +22,7 @@ import net.minecraft.network.packet.payload.CustomPayload;
 import net.minecraft.util.Identifier;
 
 public record CommonVersionPayload(int[] versions) implements CustomPayload {
-	public static final Identifier PACKET_ID = new Identifier("c", "version");
+	public static final Identifier PACKET_ID = Identifier.of("c", "version");
 
 	public CommonVersionPayload(PacketByteBuf buf) {
 		this(buf.readIntArray());

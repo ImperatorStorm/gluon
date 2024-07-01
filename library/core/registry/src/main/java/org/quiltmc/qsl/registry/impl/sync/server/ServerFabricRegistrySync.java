@@ -49,8 +49,8 @@ import org.quiltmc.qsl.registry.impl.sync.registry.SynchronizedRegistry;
 @ApiStatus.Internal
 public class ServerFabricRegistrySync {
 	private static final int MAX_PAYLOAD_SIZE = 1048576;
-	public static final Identifier SYNC_COMPLETE_ID = new Identifier("fabric", "registry/sync/complete");
-	public static final Identifier ID = new Identifier("fabric", "registry/sync/direct");
+	public static final Identifier SYNC_COMPLETE_ID = Identifier.of("fabric", "registry/sync/complete");
+	public static final Identifier ID = Identifier.of("fabric", "registry/sync/direct");
 
 	public static void sendSyncPackets(Consumer<Packet<?>> sender) {
 		var registryMap = createRegistryMap();
@@ -154,7 +154,7 @@ public class ServerFabricRegistrySync {
 				for (var entry : syncMap.entrySet()) {
 					for (var entry2 : entry.getValue()) {
 						if (!RegistryFlag.isOptional(entry2.flags()) && !RegistryFlag.isSkipped(entry2.flags())) {
-							idMap.put(new Identifier(entry.getKey(), entry2.path()), entry2.rawId());
+							idMap.put(Identifier.of(entry.getKey(), entry2.path()), entry2.rawId());
 						}
 					}
 				}

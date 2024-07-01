@@ -48,23 +48,23 @@ public final class NetworkingImpl {
 	/**
 	 * Identifier of packet used to register supported channels.
 	 */
-	public static final Identifier REGISTER_CHANNEL = new Identifier("minecraft", "register");
+	public static final Identifier REGISTER_CHANNEL = Identifier.of("minecraft", "register");
 	/**
 	 * Identifier of packet used to unregister supported channels.
 	 */
-	public static final Identifier UNREGISTER_CHANNEL = new Identifier("minecraft", "unregister");
+	public static final Identifier UNREGISTER_CHANNEL = Identifier.of("minecraft", "unregister");
 	/**
 	 * Identifier of the packet used to declare all currently supported channels.
 	 * Dynamic registration of supported channels is still allowed using {@link NetworkingImpl#REGISTER_CHANNEL} and {@link NetworkingImpl#UNREGISTER_CHANNEL}.
 	 */
-	public static final Identifier EARLY_REGISTRATION_CHANNEL = new Identifier(MOD_ID, "early_registration");
+	public static final Identifier EARLY_REGISTRATION_CHANNEL = Identifier.of(MOD_ID, "early_registration");
 	/**
 	 * Identifier of the packet used to declare all currently supported channels.
 	 * Dynamic registration of supported channels is still allowed using {@link NetworkingImpl#REGISTER_CHANNEL} and {@link NetworkingImpl#UNREGISTER_CHANNEL}.
 	 *
 	 * <p>Since our early registration packet does not differ from fabric's, we can support both.
 	 */
-	public static final Identifier EARLY_REGISTRATION_CHANNEL_FABRIC = new Identifier("fabric-networking-api-v1", "early_registration");
+	public static final Identifier EARLY_REGISTRATION_CHANNEL_FABRIC = Identifier.of("fabric-networking-api-v1", "early_registration");
 
 	/**
 	 * Forces reserialization of packets.

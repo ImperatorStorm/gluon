@@ -66,9 +66,9 @@ public class CommonPacketTests {
 	private ServerConfigurationPacketHandler serverNetworkHandler;
 	private ServerConfigurationNetworkAddon serverAddon;
 
-	private static final Identifier CLIENT_RECEIVE = new Identifier("quilt", "global_client");
-	private static final Identifier CLIENT_RECEIVE_CONFIGURATION = new Identifier("quilt", "global_configuration_client");
-	private static final Identifier SERVER_RECEIVE = new Identifier("quilt", "test");
+	private static final Identifier CLIENT_RECEIVE = Identifier.of("quilt", "global_client");
+	private static final Identifier CLIENT_RECEIVE_CONFIGURATION = Identifier.of("quilt", "global_configuration_client");
+	private static final Identifier SERVER_RECEIVE = Identifier.of("quilt", "test");
 
 	@BeforeAll
 	static void beforeAll() {

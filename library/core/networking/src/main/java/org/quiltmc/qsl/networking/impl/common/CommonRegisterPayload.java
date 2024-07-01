@@ -25,7 +25,7 @@ import net.minecraft.network.packet.payload.CustomPayload;
 import net.minecraft.util.Identifier;
 
 public record CommonRegisterPayload(int version, String phase, Set<Identifier> channels) implements CustomPayload {
-	public static final Identifier PACKET_ID = new Identifier("c", "register");
+	public static final Identifier PACKET_ID = Identifier.of("c", "register");
 
 	public static final String PLAY_PHASE = "play";
 	public static final String CONFIGURATION_PHASE = "configuration";

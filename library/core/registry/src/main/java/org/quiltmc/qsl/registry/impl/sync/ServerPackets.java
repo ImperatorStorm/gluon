@@ -387,6 +387,6 @@ public final class ServerPackets {
 	}
 
 	private static Identifier id(String path) {
-		return new Identifier("qsl", path);
+		return Identifier.of("qsl", path);
 	}
 }

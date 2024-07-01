@@ -267,8 +267,8 @@ public class QuiltBlockSettings extends AbstractBlock.Settings {
 	}
 
 	@Override
-	public QuiltBlockSettings requiresTool() {
-		super.requiresTool();
+	public QuiltBlockSettings toolRequired() {
+		super.toolRequired();
 		return this;
 	}
 
@@ -412,7 +412,7 @@ public class QuiltBlockSettings extends AbstractBlock.Settings {
 	 * @param dropTableId the new loot table identifier
 	 * @return {@code this} builder
 	 */
-	public QuiltBlockSettings drops(Identifier dropTableId) {
+	public QuiltBlockSettings drops(net.minecraft.registry.RegistryKey<net.minecraft.loot.LootTable> dropTableId) {
 		((AbstractBlockSettingsAccessor) this).setLootTableId(dropTableId);
 		return this;
 	}

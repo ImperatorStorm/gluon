@@ -68,7 +68,7 @@ public interface ChannelPayload extends CustomPayload {
 		String literal = sb.toString();
 
 		try {
-			ids.add(new Identifier(literal));
+			ids.add(Identifier.of(literal));
 		} catch (InvalidIdentifierException ex) {
 			NetworkingImpl.LOGGER.warn("Received invalid channel identifier \"{}\"", literal);
 		}

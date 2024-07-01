@@ -61,7 +61,7 @@ public class ResourcePackProfileProviderTestMod implements ClientModInitializer 
 	}
 
 	static class TestPack extends InMemoryPack {
-		private static final Identifier DIRT_IDENTIFIER = new Identifier("textures/block/dirt.png");
+		private static final Identifier DIRT_IDENTIFIER = Identifier.of("textures/block/dirt.png");
 		private final Random random = new Random();
 
 		public TestPack() {
