@@ -29,12 +29,14 @@ import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.listener.ServerCommonPacketListener;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.payload.CustomPayload;
+import net.minecraft.util.Identifier;
 
 import org.quiltmc.loader.api.minecraft.ClientOnly;
 import org.quiltmc.qsl.networking.api.PacketSender;
 import org.quiltmc.qsl.networking.api.ServerConfigurationNetworking;
 import org.quiltmc.qsl.networking.impl.client.ClientConfigurationNetworkAddon;
 import org.quiltmc.qsl.networking.impl.client.ClientNetworkingImpl;
+import org.quiltmc.qsl.networking.impl.payload.PacketByteBufPayload;
 
 /**
  * Offers access to configuration stage client-side networking functionalities.
@@ -55,15 +57,36 @@ public final class ClientConfigurationNetworking {
 	 * A global receiver is registered to all connections, in the present and future.
 	 * <p>
 	 * If a handler is already registered to the {@code channel}, this method will return {@code false}, and no change will be made.
-	 * Use {@link #unregisterGlobalReceiver(CustomPayload.Id)} to unregister the existing handler.
+	 * Use {@link #unregisterGlobalReceiver(Identifier)} to unregister the existing handler.
 	 *
 	 * @param channelName    the identifier of the channel
 	 * @param channelHandler the handler
 	 * @return {@code false} if a handler is already registered to the channel, otherwise {@code true}
-	 * @see ClientConfigurationNetworking#unregisterGlobalReceiver(CustomPayload.Id)
-	 * @see ClientConfigurationNetworking#registerReceiver(CustomPayload.Id, CustomChannelReceiver)
+	 * @see ClientConfigurationNetworking#registerGlobalReceiver(Identifier, ChannelReceiver)
+	 * @see ClientConfigurationNetworking#unregisterGlobalReceiver(Identifier)
+	 * @see ClientConfigurationNetworking#registerReceiver(Identifier, CustomChannelReceiver)
 	 */
-	public static <T extends CustomPayload> boolean registerGlobalReceiver(CustomPayload.Id<T> channelName, CustomChannelReceiver<T> channelHandler) {
+	public static <T extends CustomPayload> boolean registerGlobalReceiver(Identifier channelName, CustomChannelReceiver<T> channelHandler) {
+		return ClientNetworkingImpl.CONFIGURATION.registerGlobalReceiver(channelName, channelHandler);
+	}
+
+	/**
+	 * Registers a handler to a channel.
+	 * A global receiver is registered to all connections, in the present and future.
+	 * <p>
+	 * If a handler is already registered to the {@code channel}, this method will return {@code false}, and no change will be made.
+	 * Use {@link #unregisterGlobalReceiver(Identifier)} to unregister the existing handler.
+	 *
+	 * @param channelName    the identifier of the channel
+	 * @param channelHandler the handler
+	 * @return {@code false} if a handler is already registered to the channel, otherwise {@code true}
+	 * @see ClientConfigurationNetworking#registerGlobalReceiver(Identifier, CustomChannelReceiver)
+	 * @see ClientConfigurationNetworking#unregisterGlobalReceiver(Identifier)
+	 * @see ClientConfigurationNetworking#registerReceiver(Identifier, ChannelReceiver)
+	 * @deprecated use {@link ClientConfigurationNetworking#registerGlobalReceiver(Identifier, CustomChannelReceiver)}
+	 */
+	@Deprecated
+	public static boolean registerGlobalReceiver(Identifier channelName, ChannelReceiver channelHandler) {
 		return ClientNetworkingImpl.CONFIGURATION.registerGlobalReceiver(channelName, channelHandler);
 	}
 
@@ -75,10 +98,10 @@ public final class ClientConfigurationNetworking {
 	 *
 	 * @param channelName the identifier of the channel
 	 * @return the previous handler, or {@code null} if no handler was bound to the channel
-	 * @see ClientConfigurationNetworking#registerGlobalReceiver(CustomPayload.Id, CustomChannelReceiver)
-	 * @see ClientConfigurationNetworking#unregisterReceiver(CustomPayload.Id)
+	 * @see ClientConfigurationNetworking#registerGlobalReceiver(Identifier, CustomChannelReceiver)
+	 * @see ClientConfigurationNetworking#unregisterReceiver(Identifier)
 	 */
-	public static @Nullable ClientConfigurationNetworking.CustomChannelReceiver<?> unregisterGlobalReceiver(CustomPayload.Id<?> channelName) {
+	public static @Nullable ClientConfigurationNetworking.CustomChannelReceiver<?> unregisterGlobalReceiver(Identifier channelName) {
 		return ClientNetworkingImpl.CONFIGURATION.unregisterGlobalReceiver(channelName);
 	}
 
@@ -88,7 +111,7 @@ public final class ClientConfigurationNetworking {
 	 *
 	 * @return all channel names which global receivers are registered for
 	 */
-	public static Set<CustomPayload.Id<?>> getGlobalReceivers() {
+	public static Set<Identifier> getGlobalReceivers() {
 		return ClientNetworkingImpl.CONFIGURATION.getChannels();
 	}
 
@@ -96,9 +119,9 @@ public final class ClientConfigurationNetworking {
 	 * Registers a handler to a channel.
 	 * <p>
 	 * If a handler is already registered to the {@code channel}, this method will return {@code false}, and no change will be made.
-	 * Use {@link #unregisterReceiver(CustomPayload.Id)} to unregister the existing handler.
+	 * Use {@link #unregisterReceiver(Identifier)} to unregister the existing handler.
 	 * <p>
-	 * For example, if you only register a receiver using this method when a {@linkplain ClientLoginNetworking#registerGlobalReceiver(CustomPayload.Id, ClientLoginNetworking.QueryRequestReceiver)}
+	 * For example, if you only register a receiver using this method when a {@linkplain ClientLoginNetworking#registerGlobalReceiver(Identifier, ClientLoginNetworking.QueryRequestReceiver)}
 	 * login query has been received, you should use {@link ClientConfigurationConnectionEvents#INIT} to register the channel handler.
 	 *
 	 * @param channelName the identifier of the channel
@@ -106,7 +129,33 @@ public final class ClientConfigurationNetworking {
 	 * @throws IllegalStateException if the client is not connected to a server
 	 * @see ClientConfigurationConnectionEvents#INIT
 	 */
-	public static boolean registerReceiver(CustomPayload.Id<?> channelName, CustomChannelReceiver<?> channelHandler) {
+	public static boolean registerReceiver(Identifier channelName, CustomChannelReceiver<?> channelHandler) {
+		final ClientConfigurationNetworkAddon addon = ClientNetworkingImpl.getClientConfigurationAddon();
+
+		if (addon != null) {
+			return addon.registerChannel(channelName, channelHandler);
+		}
+
+		throw new IllegalStateException("Cannot register receiver while not configuring!");
+	}
+
+	/**
+	 * Registers a handler to a channel.
+	 * <p>
+	 * If a handler is already registered to the {@code channel}, this method will return {@code false}, and no change will be made.
+	 * Use {@link #unregisterReceiver(Identifier)} to unregister the existing handler.
+	 * <p>
+	 * For example, if you only register a receiver using this method when a {@linkplain ClientLoginNetworking#registerGlobalReceiver(Identifier, ClientLoginNetworking.QueryRequestReceiver)}
+	 * login query has been received, you should use {@link ClientConfigurationConnectionEvents#INIT} to register the channel handler.
+	 *
+	 * @param channelName the identifier of the channel
+	 * @return {@code false} if a handler is already registered to the channel, otherwise {@code true}
+	 * @throws IllegalStateException if the client is not connected to a server
+	 * @see ClientConfigurationConnectionEvents#INIT
+	 * @deprecated use {@link ClientConfigurationNetworking#registerReceiver(Identifier, CustomChannelReceiver)}
+	 */
+	@Deprecated
+	public static boolean registerReceiver(Identifier channelName, ChannelReceiver channelHandler) {
 		final ClientConfigurationNetworkAddon addon = ClientNetworkingImpl.getClientConfigurationAddon();
 
 		if (addon != null) {
@@ -125,7 +174,7 @@ public final class ClientConfigurationNetworking {
 	 * @return the previous handler, or {@code null} if no handler was bound to the channel
 	 * @throws IllegalStateException if the client is not connected to a server
 	 */
-	public static @Nullable ClientConfigurationNetworking.CustomChannelReceiver<?> unregisterReceiver(CustomPayload.Id<?> channelName) throws IllegalStateException {
+	public static @Nullable ClientConfigurationNetworking.CustomChannelReceiver<?> unregisterReceiver(Identifier channelName) throws IllegalStateException {
 		final ClientConfigurationNetworkAddon addon = ClientNetworkingImpl.getClientConfigurationAddon();
 
 		if (addon != null) {
@@ -141,7 +190,7 @@ public final class ClientConfigurationNetworking {
 	 * @return all the channel names that the client can receive packets on
 	 * @throws IllegalStateException if the client is not connected to a server
 	 */
-	public static Set<CustomPayload.Id<?>> getReceived() throws IllegalStateException {
+	public static Set<Identifier> getReceived() throws IllegalStateException {
 		final ClientConfigurationNetworkAddon addon = ClientNetworkingImpl.getClientConfigurationAddon();
 
 		if (addon != null) {
@@ -157,7 +206,7 @@ public final class ClientConfigurationNetworking {
 	 * @return all the channel names the connected server declared the ability to receive a packets on
 	 * @throws IllegalStateException if the client is not connected to a server
 	 */
-	public static Set<CustomPayload.Id<?>> getSendable() throws IllegalStateException {
+	public static Set<Identifier> getSendable() throws IllegalStateException {
 		final ClientConfigurationNetworkAddon addon = ClientNetworkingImpl.getClientConfigurationAddon();
 
 		if (addon != null) {
@@ -173,7 +222,7 @@ public final class ClientConfigurationNetworking {
 	 * @param channelName the channel name
 	 * @return {@code true} if the connected server has declared the ability to receive a packet on the specified channel, otherwise {@code false}
 	 */
-	public static boolean canSend(CustomPayload.Id<?> channelName) throws IllegalArgumentException {
+	public static boolean canSend(Identifier channelName) throws IllegalArgumentException {
 		final ClientConfigurationNetworkAddon addon = ClientNetworkingImpl.getClientConfigurationAddon();
 
 		if (addon != null) {
@@ -181,6 +230,21 @@ public final class ClientConfigurationNetworking {
 		}
 
 		throw new IllegalStateException("Cannot get a list of channels the server can receive packets on while not configuring!");
+	}
+
+	/**
+	 * Creates a packet which may be sent to the connected server.
+	 *
+	 * @param channelName the channel name
+	 * @param buf         the packet byte data which represents the payload of the packet
+	 * @return a new packet
+	 */
+	@Contract(value = "_, _ -> new", pure = true)
+	public static Packet<ServerCommonPacketListener> createC2SPacket(@NotNull Identifier channelName, @NotNull PacketByteBuf buf) {
+		Objects.requireNonNull(channelName, "Channel name cannot be null");
+		Objects.requireNonNull(buf, "Buf cannot be null");
+
+		return ClientNetworkingImpl.createC2SPacket(channelName, buf);
 	}
 
 	/**
@@ -215,14 +279,15 @@ public final class ClientConfigurationNetworking {
 	/**
 	 * Sends a packet to the connected server.
 	 *
-	 * @param payload the packet to send
+	 * @param channelName the channel of the packet
+	 * @param buf         the payload of the packet
 	 * @throws IllegalStateException if the client is not connected to a server
 	 */
-	public static void send(CustomPayload payload) throws IllegalStateException {
+	public static void send(Identifier channelName, PacketByteBuf buf) throws IllegalStateException {
 		final ClientConfigurationNetworkAddon addon = ClientNetworkingImpl.getClientConfigurationAddon();
 
 		if (addon != null) {
-			addon.sendPacket(createC2SPacket(payload));
+			addon.sendPacket(createC2SPacket(channelName, buf));
 			return;
 		}
 
@@ -243,7 +308,7 @@ public final class ClientConfigurationNetworking {
 		 * <p>
 		 * An example usage of this is to display an overlay message:
 		 * <pre>{@code
-		 * ClientConfigurationNetworking.registerReceiver(new Identifier("mymod", "overlay"), (client, handler, data, responseSender) -&rt; {
+		 * ClientConfigurationNetworking.registerReceiver(Identifier.of("mymod", "overlay"), (client, handler, data, responseSender) -&rt; {
 		 * 	String message = data.readString(32767);
 		 *
 		 * 	// All operations on the server or world must be executed on the server thread
@@ -259,5 +324,44 @@ public final class ClientConfigurationNetworking {
 		 * @param responseSender the packet sender
 		 */
 		void receive(MinecraftClient client, ClientConfigurationNetworkHandler handler, T payload, PacketSender<CustomPayload> responseSender);
+	}
+
+	/**
+	 * This functional interface should only be used when sending a raw {@link PacketByteBuf} is necessary.
+	 * @deprecated use {@link CustomChannelReceiver}
+	 */
+	@Deprecated
+	@ClientOnly
+	@FunctionalInterface
+	public interface ChannelReceiver extends CustomChannelReceiver<PacketByteBufPayload> {
+		@Override
+		default void receive(MinecraftClient client, ClientConfigurationNetworkHandler handler, PacketByteBufPayload payload, PacketSender<CustomPayload> responseSender) {
+			this.receive(client, handler, payload.data(), responseSender);
+		}
+
+		/**
+		 * Receives an incoming packet.
+		 * <p>
+		 * This method is executed on {@linkplain io.netty.channel.EventLoop netty's event loops}.
+		 * Modification to the game should be {@linkplain net.minecraft.util.thread.ThreadExecutor#submit(Runnable) scheduled} using the provided Minecraft client instance.
+		 * <p>
+		 * An example usage of this is to display an overlay message:
+		 * <pre>{@code
+		 * ClientConfigurationNetworking.registerReceiver(Identifier.of("mymod", "overlay"), (client, handler, data, responseSender) -&rt; {
+		 * 	String message = data.readString(32767);
+		 *
+		 * 	// All operations on the server or world must be executed on the server thread
+		 * 	client.execute(() -> {
+		 * 		client.inGameHud.setOverlayMessage(message, true);
+		 *    });
+		 * });
+		 * }</pre>
+		 *
+		 * @param client         the client
+		 * @param handler        the network handler that received this packet
+		 * @param buf            the payload of the packet
+		 * @param responseSender the packet sender
+		 */
+		void receive(MinecraftClient client, ClientConfigurationNetworkHandler handler, PacketByteBuf buf, PacketSender<CustomPayload> responseSender);
 	}
 }

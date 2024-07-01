@@ -23,8 +23,7 @@ public final class Versions {
 	/**
 	 * The QSL version
 	 */
-	// Note: Make sure this matches QFAPI's gradle.properties entry for qsl_version
-	public static final String QSL_VERSION = "10.0.0-alpha.1";
+	public static final String QSL_VERSION = "9.0.0-alpha.0";
 
 	/**
 	 * The target Minecraft version.
@@ -34,7 +33,7 @@ public final class Versions {
 	/**
 	 * The Minecraft versions this version of QSL is compatible with.
 	 */
-	public static final List<MinecraftVersion> COMPATIBLE_VERSIONS = versions();
+	public static final List<MinecraftVersion> COMPATIBLE_VERSIONS = versions("1.21.0");
 
 	/**
 	 * The target Quilt Mappings build.
@@ -44,7 +43,7 @@ public final class Versions {
 	/**
 	 * The version of Quilt Loader to use.
 	 */
-	public static final String LOADER_VERSION = "0.25.0";
+	public static final String LOADER_VERSION = "0.26.0";
 
 	/**
 	 * The target Java version.

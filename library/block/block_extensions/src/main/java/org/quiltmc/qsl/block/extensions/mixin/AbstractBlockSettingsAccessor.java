@@ -31,8 +31,6 @@ import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.entity.EntityType;
 import net.minecraft.feature_flags.FeatureFlagBitSet;
-import net.minecraft.loot.LootTable;
-import net.minecraft.registry.RegistryKey;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 
@@ -73,7 +71,7 @@ public interface AbstractBlockSettingsAccessor {
 	boolean getDynamicBounds();
 
 	@Accessor
-	RegistryKey<LootTable> getLootTableId();
+	net.minecraft.registry.RegistryKey<net.minecraft.loot.LootTable> getLootTableId();
 
 	@Accessor
 	boolean getOpaque();
@@ -100,7 +98,7 @@ public interface AbstractBlockSettingsAccessor {
 	boolean getToolRequired();
 
 	@Accessor
-	Optional<AbstractBlock.OffsetFunction> getOffsetFunction();
+	AbstractBlock.OffsetFunction getOffsetFunction();
 
 	@Accessor
 	boolean getSpawnsDustParticles();
@@ -142,7 +140,7 @@ public interface AbstractBlockSettingsAccessor {
 	void setRandomTicks(boolean ticksRandomly);
 
 	@Accessor
-	void setLootTableId(RegistryKey<LootTable> lootTableId);
+	void setLootTableId(net.minecraft.registry.RegistryKey<net.minecraft.loot.LootTable> lootTableId);
 
 	@Accessor
 	void setOpaque(boolean opaque);
@@ -166,7 +164,7 @@ public interface AbstractBlockSettingsAccessor {
 	void setToolRequired(boolean toolRequired);
 
 	@Accessor
-	void setOffsetFunction(Optional<AbstractBlock.OffsetFunction> offsetFunction);
+	void setOffsetFunction(AbstractBlock.OffsetFunction offsetFunction);
 
 	@Accessor
 	void setDynamicBounds(boolean dynamicBounds);

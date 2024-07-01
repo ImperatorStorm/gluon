@@ -26,9 +26,7 @@ import it.unimi.dsi.fastutil.ints.IntList;
 import org.jetbrains.annotations.ApiStatus;
 
 import net.minecraft.network.PacketByteBuf;
-import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.network.packet.payload.CustomPayload;
-import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.text.Text;
@@ -53,19 +51,19 @@ public final class ServerPackets {
 	 * </code></pre>
 	 */
 	public record Handshake(IntList supportedVersions) implements CustomPayload {
-		public static final CustomPayload.Id<Handshake> ID = ServerPackets.id("registry_sync/handshake");
-		public static final PacketCodec<PacketByteBuf, Handshake> CODEC = CustomPayload.create(Handshake::write, Handshake::new);
+		public static final Identifier ID = ServerPackets.id("registry_sync/handshake");
 
 		public Handshake(PacketByteBuf buf) {
 			this(buf.readIntList());
 		}
 
-		private void write(PacketByteBuf buf) {
+		@Override
+		public void write(PacketByteBuf buf) {
 			buf.writeIntList(this.supportedVersions);
 		}
 
 		@Override
-		public CustomPayload.Id<Handshake> getId() {
+		public Identifier id() {
 			return ID;
 		}
 	}
@@ -74,18 +72,18 @@ public final class ServerPackets {
 	 * Ends registry sync. No data
 	 */
 	public record End() implements CustomPayload {
-		public static final CustomPayload.Id<End> ID = ServerPackets.id("registry_sync/end");
-		public static final PacketCodec<PacketByteBuf, End> CODEC = CustomPayload.create(End::write, End::new);
+		public static final Identifier ID = ServerPackets.id("registry_sync/end");
 
 		public End(PacketByteBuf buf) {
 			this();
 		}
 
-		private void write(PacketByteBuf buf) {
+		@Override
+		public void write(PacketByteBuf buf) {
 		}
 
 		@Override
-		public CustomPayload.Id<End> getId() {
+		public Identifier id() {
 			return ID;
 		}
 	}
@@ -102,12 +100,11 @@ public final class ServerPackets {
 	 * </code></pre>
 	 */
 	public record RegistryStart<T extends Registry<?>>(Identifier registry, int size, byte flags) implements CustomPayload {
-		public static final CustomPayload.Id<RegistryStart<?>> ID = ServerPackets.id("registry_sync/registry_start");
-		public static final PacketCodec<PacketByteBuf, RegistryStart<?>> CODEC = CustomPayload.create(RegistryStart::write, RegistryStart::new);
+		public static final Identifier ID = ServerPackets.id("registry_sync/registry_start");
 
 		@SuppressWarnings("unchecked")
 		public RegistryStart(T registry) {
-			this((((Registry<T>) Registries.ROOT).getId(registry)), registry.size(), getFlags((SynchronizedRegistry<T>) registry));
+			this((((Registry<T>) Registries.REGISTRY).getId(registry)), registry.size(), getFlags((SynchronizedRegistry<T>) registry));
 		}
 
 		public RegistryStart(PacketByteBuf buf) {
@@ -123,14 +120,15 @@ public final class ServerPackets {
 			return flags;
 		}
 
-		private void write(PacketByteBuf buf) {
+		@Override
+		public void write(PacketByteBuf buf) {
 			buf.writeIdentifier(this.registry);
 			buf.writeVarInt(this.size);
 			buf.writeByte(this.flags);
 		}
 
 		@Override
-		public CustomPayload.Id<RegistryStart<?>> getId() {
+		public Identifier id() {
 			return ID;
 		}
 	}
@@ -154,8 +152,7 @@ public final class ServerPackets {
 	 * </code></pre>
 	 */
 	public record RegistryData(Map<String, ArrayList<SynchronizedRegistry.SyncEntry>> packetData) implements CustomPayload {
-		public static final CustomPayload.Id<RegistryData> ID = ServerPackets.id("registry_sync/registry_data");
-		public static final PacketCodec<PacketByteBuf, RegistryData> CODEC = CustomPayload.create(RegistryData::write, RegistryData::new);
+		public static final Identifier ID = ServerPackets.id("registry_sync/registry_data");
 
 		public RegistryData(PacketByteBuf buf) {
 			this(read(buf));
@@ -180,7 +177,8 @@ public final class ServerPackets {
 			return data;
 		}
 
-		private void write(PacketByteBuf buf) {
+		@Override
+		public void write(PacketByteBuf buf) {
 			buf.writeVarInt(this.packetData.size());
 			for (var key : this.packetData.keySet()) {
 				var list = this.packetData.get(key);
@@ -203,7 +201,7 @@ public final class ServerPackets {
 		}
 
 		@Override
-		public CustomPayload.Id<RegistryData> getId() {
+		public Identifier id() {
 			return ID;
 		}
 	}
@@ -212,18 +210,18 @@ public final class ServerPackets {
 	 * Applies changes to current registry, doesn't have any data.
 	 */
 	public record RegistryApply() implements CustomPayload {
-		public static final CustomPayload.Id<RegistryApply> ID = ServerPackets.id("registry_sync/registry_apply");
-		public static final PacketCodec<PacketByteBuf, RegistryApply> CODEC = CustomPayload.create(RegistryApply::write, RegistryApply::new);
+		public static final Identifier ID = ServerPackets.id("registry_sync/registry_apply");
 
 		public RegistryApply(PacketByteBuf buf) {
 			this();
 		}
 
-		private void write(PacketByteBuf buf) {
+		@Override
+		public void write(PacketByteBuf buf) {
 		}
 
 		@Override
-		public CustomPayload.Id<RegistryApply> getId() {
+		public Identifier id() {
 			return ID;
 		}
 	}
@@ -246,8 +244,6 @@ public final class ServerPackets {
 	 * </code></pre>
 	 */
 	public record ValidateStates(StateType type, Int2ObjectArrayMap<IntList> packetData) implements CustomPayload {
-		public static final PacketCodec<PacketByteBuf, ValidateStates> CODEC_BLOCK = CustomPayload.create(ValidateStates::write, ValidateStates::newBlock);
-		public static final PacketCodec<PacketByteBuf, ValidateStates> CODEC_FLUID = CustomPayload.create(ValidateStates::write, ValidateStates::newFluid);
 		public ValidateStates(StateType type, PacketByteBuf buf) {
 			this(type, read(buf));
 		}
@@ -265,7 +261,8 @@ public final class ServerPackets {
 			return data;
 		}
 
-		private void write(PacketByteBuf buf) {
+		@Override
+		public void write(PacketByteBuf buf) {
 			buf.writeVarInt(this.packetData.size());
 			for (var entry : this.packetData.int2ObjectEntrySet()) {
 				buf.writeVarInt(entry.getIntKey());
@@ -274,7 +271,7 @@ public final class ServerPackets {
 		}
 
 		@Override
-		public CustomPayload.Id<ValidateStates> getId() {
+		public Identifier id() {
 			return this.type.packetId;
 		}
 
@@ -289,13 +286,13 @@ public final class ServerPackets {
 		public enum StateType {
 			BLOCK(ServerPackets.id("registry_sync/validate/block_states")), FLUID(ServerPackets.id("registry_sync/validate/fluid_states"));
 
-			private final CustomPayload.Id<ValidateStates> packetId;
+			private final Identifier packetId;
 
-			StateType(CustomPayload.Id<ValidateStates> packetId) {
+			StateType(Identifier packetId) {
 				this.packetId = packetId;
 			}
 
-			public CustomPayload.Id<ValidateStates> packetId() {
+			public Identifier packetId() {
 				return this.packetId;
 			}
 		}
@@ -305,18 +302,18 @@ public final class ServerPackets {
 	 * Applies changes to current registry, doesn't have any data.
 	 */
 	public record RegistryRestore() implements CustomPayload {
-		public static final CustomPayload.Id<RegistryRestore> ID = ServerPackets.id("registry_sync/registry_restore");
-		public static final PacketCodec<PacketByteBuf, RegistryRestore> CODEC = CustomPayload.create(RegistryRestore::write, RegistryRestore::new);
+		public static final Identifier ID = ServerPackets.id("registry_sync/registry_restore");
 
 		public RegistryRestore(PacketByteBuf buf) {
 			this();
 		}
 
-		private void write(PacketByteBuf buf) {
+		@Override
+		public void write(PacketByteBuf buf) {
 		}
 
 		@Override
-		public CustomPayload.Id<RegistryRestore> getId() {
+		public Identifier id() {
 			return ID;
 		}
 	}
@@ -335,23 +332,21 @@ public final class ServerPackets {
 	 * </code></pre>
 	 */
 	public record ErrorStyle(Text errorHeader, Text errorFooter, boolean showError) implements CustomPayload {
-		public static final CustomPayload.Id<ErrorStyle> ID = ServerPackets.id("registry_sync/error_style");
-		public static final PacketCodec<PacketByteBuf, ErrorStyle> CODEC = CustomPayload.create(ErrorStyle::write, ErrorStyle::new);
+		public static final Identifier ID = ServerPackets.id("registry_sync/error_style");
 
 		public ErrorStyle(PacketByteBuf buf) {
-			this(Text.SerializationUtil.fromLenientJson(buf.readString(PacketByteBuf.MAX_TEXT_LENGTH), DynamicRegistryManager.EMPTY),
-				Text.SerializationUtil.fromLenientJson(buf.readString(PacketByteBuf.MAX_TEXT_LENGTH), DynamicRegistryManager.EMPTY),
-				buf.readBoolean());
+			this(buf.readText(), buf.readText(), buf.readBoolean());
 		}
 
-		private void write(PacketByteBuf buf) {
-			buf.writeString(Text.SerializationUtil.toJson(this.errorHeader, DynamicRegistryManager.EMPTY));
-			buf.writeString(Text.SerializationUtil.toJson(this.errorFooter, DynamicRegistryManager.EMPTY));
+		@Override
+		public void write(PacketByteBuf buf) {
+			buf.writeText(this.errorHeader);
+			buf.writeText(this.errorFooter);
 			buf.writeBoolean(this.showError);
 		}
 
 		@Override
-		public CustomPayload.Id<ErrorStyle> getId() {
+		public Identifier id() {
 			return ID;
 		}
 	}
@@ -373,25 +368,25 @@ public final class ServerPackets {
 	 * </code></pre>
 	 */
 	public record ModProtocol(String prioritizedId, Collection<ModProtocolDef> protocols) implements CustomPayload {
-		public static final CustomPayload.Id<ModProtocol> ID = ServerPackets.id("registry_sync/mod_protocol");
-		public static final PacketCodec<PacketByteBuf, ModProtocol> CODEC = CustomPayload.create(ModProtocol::write, ModProtocol::new);
+		public static final Identifier ID = ServerPackets.id("registry_sync/mod_protocol");
 
 		public ModProtocol(PacketByteBuf buf) {
 			this(buf.readString(), buf.readList(ModProtocolDef::read));
 		}
 
-		private void write(PacketByteBuf buf) {
+		@Override
+		public void write(PacketByteBuf buf) {
 			buf.writeString(this.prioritizedId);
 			buf.writeCollection(this.protocols, ModProtocolDef::write);
 		}
 
 		@Override
-		public CustomPayload.Id<ModProtocol> getId() {
+		public Identifier id() {
 			return ID;
 		}
 	}
 
-	private static <T extends CustomPayload> CustomPayload.Id<T> id(String path) {
-		return new CustomPayload.Id<>(new Identifier("qsl", path));
+	private static Identifier id(String path) {
+		return Identifier.of("qsl", path);
 	}
 }

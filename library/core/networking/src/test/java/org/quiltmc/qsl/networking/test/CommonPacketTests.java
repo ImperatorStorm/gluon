@@ -36,7 +36,7 @@ import org.mockito.ArgumentCaptor;
 import net.minecraft.client.network.ClientConfigurationNetworkHandler;
 import net.minecraft.network.NetworkState;
 import net.minecraft.network.PacketByteBuf;
-import net.minecraft.server.network.ServerConfigurationNetworkHandler;
+import net.minecraft.network.ServerConfigurationPacketHandler;
 import net.minecraft.network.packet.payload.CustomPayload;
 import net.minecraft.util.Identifier;
 
@@ -63,12 +63,12 @@ public class CommonPacketTests {
 	private ClientConfigurationNetworkHandler clientNetworkHandler;
 	private ClientConfigurationNetworkAddon clientAddon;
 
-	private ServerConfigurationNetworkHandler serverNetworkHandler;
+	private ServerConfigurationPacketHandler serverNetworkHandler;
 	private ServerConfigurationNetworkAddon serverAddon;
 
-	private static final CustomPayload.Id<?> CLIENT_RECEIVE = new CustomPayload.Id<>(new Identifier("quilt", "global_client"));
-	private static final CustomPayload.Id<?> CLIENT_RECEIVE_CONFIGURATION = new CustomPayload.Id<>(new Identifier("quilt", "global_configuration_client"));
-	private static final CustomPayload.Id<?> SERVER_RECEIVE = new CustomPayload.Id<>(new Identifier("quilt", "test"));
+	private static final Identifier CLIENT_RECEIVE = Identifier.of("quilt", "global_client");
+	private static final Identifier CLIENT_RECEIVE_CONFIGURATION = Identifier.of("quilt", "global_configuration_client");
+	private static final Identifier SERVER_RECEIVE = Identifier.of("quilt", "test");
 
 	@BeforeAll
 	static void beforeAll() {
@@ -76,7 +76,7 @@ public class CommonPacketTests {
 		ClientNetworkingImpl.clientInit(null);
 
 		// Register a receiver to send in the play registry response
-		ClientPlayNetworking.registerGlobalReciever(CLIENT_RECEIVE, (client, handler, buf, responseSender) -> {
+		ClientPlayNetworking.registerGlobalReceiver(CLIENT_RECEIVE, (client, handler, buf, responseSender) -> {
 		});
 	}
 
@@ -90,7 +90,7 @@ public class CommonPacketTests {
 		when(ClientNetworkingImpl.getAddon(clientNetworkHandler)).thenReturn(clientAddon);
 		when(clientAddon.getChannelInfoHolder()).thenReturn(channelInfoHolder);
 
-		serverNetworkHandler = mock(ServerConfigurationNetworkHandler.class);
+		serverNetworkHandler = mock(ServerConfigurationPacketHandler.class);
 		serverAddon = mock(ServerConfigurationNetworkAddon.class);
 		when(ServerNetworkingImpl.getAddon(serverNetworkHandler)).thenReturn(serverAddon);
 		when(serverAddon.getChannelInfoHolder()).thenReturn(channelInfoHolder);
@@ -306,10 +306,10 @@ public class CommonPacketTests {
 	}
 
 	private static class MockChannelInfoHolder implements ChannelInfoHolder {
-		private final Map<NetworkState, Collection<CustomPayload.Id<?>>> playChannels = new ConcurrentHashMap<>();
+		private final Map<NetworkState, Collection<Identifier>> playChannels = new ConcurrentHashMap<>();
 
 		@Override
-		public Collection<CustomPayload.Id<?>> getPendingChannelsNames(NetworkState state) {
+		public Collection<Identifier> getPendingChannelsNames(NetworkState state) {
 			return this.playChannels.computeIfAbsent(state, (key) -> Collections.newSetFromMap(new ConcurrentHashMap<>()));
 		}
 	}

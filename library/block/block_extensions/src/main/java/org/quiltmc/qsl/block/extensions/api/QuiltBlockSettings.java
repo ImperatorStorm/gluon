@@ -32,10 +32,9 @@ import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.entity.EntityType;
 import net.minecraft.feature_flags.FeatureFlag;
 import net.minecraft.feature_flags.FeatureFlagBitSet;
-import net.minecraft.loot.LootTable;
-import net.minecraft.registry.RegistryKey;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.DyeColor;
+import net.minecraft.util.Identifier;
 
 import org.quiltmc.qsl.block.extensions.mixin.AbstractBlockAccessor;
 import org.quiltmc.qsl.block.extensions.mixin.AbstractBlockSettingsAccessor;
@@ -268,8 +267,8 @@ public class QuiltBlockSettings extends AbstractBlock.Settings {
 	}
 
 	@Override
-	public QuiltBlockSettings requiresTool() {
-		super.requiresTool();
+	public QuiltBlockSettings toolRequired() {
+		super.toolRequired();
 		return this;
 	}
 
@@ -413,7 +412,7 @@ public class QuiltBlockSettings extends AbstractBlock.Settings {
 	 * @param dropTableId the new loot table identifier
 	 * @return {@code this} builder
 	 */
-	public QuiltBlockSettings drops(RegistryKey<LootTable> dropTableId) {
+	public QuiltBlockSettings drops(net.minecraft.registry.RegistryKey<net.minecraft.loot.LootTable> dropTableId) {
 		((AbstractBlockSettingsAccessor) this).setLootTableId(dropTableId);
 		return this;
 	}

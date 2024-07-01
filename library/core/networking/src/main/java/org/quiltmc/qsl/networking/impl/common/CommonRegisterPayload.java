@@ -19,16 +19,13 @@ package org.quiltmc.qsl.networking.impl.common;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import net.minecraft.network.PacketByteBuf;
-import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.network.packet.payload.CustomPayload;
 import net.minecraft.util.Identifier;
 
-public record CommonRegisterPayload(int version, String phase, Set<Id<?>> channels) implements CustomPayload {
-	public static final PacketCodec<PacketByteBuf, CommonRegisterPayload> CODEC = CustomPayload.create(CommonRegisterPayload::write, CommonRegisterPayload::new);
-	public static final Id<CommonRegisterPayload> PACKET_ID = new Id<>(new Identifier("c", "register"));
+public record CommonRegisterPayload(int version, String phase, Set<Identifier> channels) implements CustomPayload {
+	public static final Identifier PACKET_ID = Identifier.of("c", "register");
 
 	public static final String PLAY_PHASE = "play";
 	public static final String CONFIGURATION_PHASE = "configuration";
@@ -37,18 +34,19 @@ public record CommonRegisterPayload(int version, String phase, Set<Id<?>> channe
 		this(
 				buf.readVarInt(),
 				buf.readString(),
-				buf.readCollection(HashSet::new, PacketByteBuf::readIdentifier).stream().map(Id::new).collect(Collectors.toSet())
+				buf.readCollection(HashSet::new, PacketByteBuf::readIdentifier)
 		);
 	}
 
-	private void write(PacketByteBuf buf) {
+	@Override
+	public void write(PacketByteBuf buf) {
 		buf.writeVarInt(this.version);
 		buf.writeString(this.phase);
-		buf.writeCollection(this.channels.stream().map(Id::id).collect(Collectors.toSet()), PacketByteBuf::writeIdentifier);
+		buf.writeCollection(this.channels, PacketByteBuf::writeIdentifier);
 	}
 
 	@Override
-	public Id<CommonRegisterPayload> getId() {
+	public Identifier id() {
 		return PACKET_ID;
 	}
 }

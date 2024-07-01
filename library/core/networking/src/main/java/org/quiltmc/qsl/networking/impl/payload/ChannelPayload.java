@@ -23,29 +23,29 @@ import java.util.List;
 import io.netty.util.AsciiString;
 
 import net.minecraft.network.PacketByteBuf;
-import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.network.packet.payload.CustomPayload;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.InvalidIdentifierException;
 
 import org.quiltmc.qsl.networking.impl.NetworkingImpl;
 
 public interface ChannelPayload extends CustomPayload {
-	private static void write(List<CustomPayload.Id<?>> channels, PacketByteBuf buf) {
+	private static void write(List<Identifier> channels, PacketByteBuf buf) {
 		boolean first = true;
 
-		for (Id<?> channel : channels) {
+		for (Identifier channel : channels) {
 			if (first) {
 				first = false;
 			} else {
 				buf.writeByte(0);
 			}
 
-			buf.writeBytes(channel.id().toString().getBytes(StandardCharsets.US_ASCII));
+			buf.writeBytes(channel.toString().getBytes(StandardCharsets.US_ASCII));
 		}
 	}
 
-	private static List<CustomPayload.Id<?>> readIds(PacketByteBuf buf) {
-		List<Id<?>> ids = new ArrayList<>();
+	private static List<Identifier> readIds(PacketByteBuf buf) {
+		List<Identifier> ids = new ArrayList<>();
 		StringBuilder active = new StringBuilder();
 
 		while (buf.isReadable()) {
@@ -64,50 +64,46 @@ public interface ChannelPayload extends CustomPayload {
 		return ids;
 	}
 
-	private static void addId(List<CustomPayload.Id<?>> ids, StringBuilder sb) {
+	private static void addId(List<Identifier> ids, StringBuilder sb) {
 		String literal = sb.toString();
 
 		try {
-			ids.add(CustomPayload.create(literal));
+			ids.add(Identifier.of(literal));
 		} catch (InvalidIdentifierException ex) {
 			NetworkingImpl.LOGGER.warn("Received invalid channel identifier \"{}\"", literal);
 		}
 	}
 
-	List<CustomPayload.Id<?>> channels();
+	List<Identifier> channels();
 
-	record RegisterChannelPayload(List<CustomPayload.Id<?>> channels) implements ChannelPayload {
-		public static final PacketCodec<PacketByteBuf, RegisterChannelPayload> CODEC =
-			CustomPayload.create(RegisterChannelPayload::write, RegisterChannelPayload::new);
-
+	record RegisterChannelPayload(List<Identifier> channels) implements ChannelPayload {
 		public RegisterChannelPayload(PacketByteBuf buf) {
 			this(ChannelPayload.readIds(buf));
 		}
 
-		private void write(PacketByteBuf buf) {
+		@Override
+		public void write(PacketByteBuf buf) {
 			ChannelPayload.write(this.channels, buf);
 		}
 
 		@Override
-		public CustomPayload.Id<RegisterChannelPayload> getId() {
+		public Identifier id() {
 			return NetworkingImpl.REGISTER_CHANNEL;
 		}
 	}
 
-	record UnregisterChannelPayload(List<CustomPayload.Id<?>> channels) implements ChannelPayload {
-		public static final PacketCodec<PacketByteBuf, UnregisterChannelPayload> CODEC =
-			CustomPayload.create(UnregisterChannelPayload::write, UnregisterChannelPayload::new);
-
+	record UnregisterChannelPayload(List<Identifier> channels) implements ChannelPayload {
 		public UnregisterChannelPayload(PacketByteBuf buf) {
 			this(ChannelPayload.readIds(buf));
 		}
 
-		private void write(PacketByteBuf buf) {
+		@Override
+		public void write(PacketByteBuf buf) {
 			ChannelPayload.write(this.channels, buf);
 		}
 
 		@Override
-		public CustomPayload.Id<UnregisterChannelPayload> getId() {
+		public Identifier id() {
 			return NetworkingImpl.UNREGISTER_CHANNEL;
 		}
 	}

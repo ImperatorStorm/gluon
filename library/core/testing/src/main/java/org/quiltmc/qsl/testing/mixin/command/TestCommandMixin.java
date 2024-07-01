@@ -66,7 +66,7 @@ public class TestCommandMixin {
 			method = "register",
 			slice = @Slice(
 					from = @At(value = "CONSTANT", args = "stringValue=export"),
-					to = @At(value = "CONSTANT", args = "stringValue=exportthese")
+					to = @At(value = "CONSTANT", args = "stringValue=exportthis")
 			),
 			at = @At(
 					value = "INVOKE",
@@ -81,7 +81,7 @@ public class TestCommandMixin {
 	@ModifyArg(
 			method = "register",
 			slice = @Slice(
-					from = @At(value = "CONSTANT", args = "stringValue=exportthese"),
+					from = @At(value = "CONSTANT", args = "stringValue=exportthis"),
 					to = @At(value = "CONSTANT", args = "stringValue=import")
 			),
 			at = @At(
@@ -110,8 +110,7 @@ public class TestCommandMixin {
 		return new TestNameArgumentType();
 	}
 
-	// TODO find a solution... there's a possibility this isn't needed anymore.
-	/*@Redirect(
+	@Redirect(
 			method = "executeRun",
 			at = @At(
 					value = "INVOKE",
@@ -149,15 +148,15 @@ public class TestCommandMixin {
 			e.printStackTrace();
 			throw e;
 		}
-	}*/
+	}
 
 	@Redirect(
 			method = {"executeImport"},
-			at = @At(value = "NEW", target = "(Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/util/Identifier;"),
+			at = @At(value = "NEW", target = "(Ljava/lang/String;)Lnet/minecraft/util/Identifier;"),
 			expect = 2
 	)
-	private static Identifier quiltGameTest$fixStructureIdentifierImport(String namespace, String structure) {
-		return new Identifier(structure);
+	private static Identifier quiltGameTest$fixStructureIdentifierImport(String structure) {
+		return Identifier.of(structure);
 	}
 
 	@ModifyArg(
@@ -168,5 +167,17 @@ public class TestCommandMixin {
 	private static String[] quiltGameTest$fixImportPath(String[] more) {
 		more[0] = more[0].replace(':', '/');
 		return more;
+	}
+
+	@ModifyConstant(
+			method = "onCompletion",
+			constant = @Constant(stringValue = "All required tests passed :)")
+	)
+	private static String quiltGameTest$replaceSuccessMessage(String original) {
+		// You may ask why, it's simple.
+		// The original emoticon is a bit... weird.
+		// And QSL members expressed some kind of interest into replacing it.
+		// So here it is. I assure you this is a really necessary injection.
+		return "All required tests passed :3c";
 	}
 }

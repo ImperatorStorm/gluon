@@ -16,7 +16,6 @@
 
 package org.quiltmc.qsl.networking.test;
 
-import net.minecraft.network.packet.payload.CustomPayload;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,8 +25,8 @@ public final class NetworkingTestMods {
 	public static final String ID = "quilt_networking_testmod";
 	public static final Logger LOGGER = LoggerFactory.getLogger(ID);
 
-	public static <T extends CustomPayload> CustomPayload.Id<T> id(String name) {
-		return new CustomPayload.Id<>(new Identifier(ID, name));
+	public static Identifier id(String name) {
+		return Identifier.of(ID, name);
 	}
 
 	private NetworkingTestMods() {

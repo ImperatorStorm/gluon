@@ -21,7 +21,6 @@ import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import org.jetbrains.annotations.ApiStatus;
 
 import net.minecraft.network.PacketByteBuf;
-import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.network.packet.payload.CustomPayload;
 import net.minecraft.util.Identifier;
 
@@ -40,21 +39,21 @@ public final class ClientPackets {
 	 * </code></pre>
 	 */
 	public record Handshake(int version) implements CustomPayload {
-		public static final CustomPayload.Id<Handshake> ID = ClientPackets.id("registry_sync/handshake");
-		public static final PacketCodec<PacketByteBuf, Handshake> CODEC = CustomPayload.create(Handshake::write, Handshake::new);
+		public static final Identifier ID = ClientPackets.id("registry_sync/handshake");
 
 		public Handshake(PacketByteBuf buf) {
 			this(
-				buf.readVarInt()
+					buf.readVarInt()
 			);
 		}
 
-		private void write(PacketByteBuf buf) {
+		@Override
+		public void write(PacketByteBuf buf) {
 			buf.writeVarInt(this.version);
 		}
 
 		@Override
-		public CustomPayload.Id<Handshake> getId() {
+		public Identifier id() {
 			return ID;
 		}
 	}
@@ -69,19 +68,19 @@ public final class ClientPackets {
 	 * </code></pre>
 	 */
 	public record SyncFailed(Identifier registry) implements CustomPayload {
-		public static final CustomPayload.Id<SyncFailed> ID = ClientPackets.id("registry_sync/sync_failed");
-		public static final PacketCodec<PacketByteBuf, SyncFailed> CODEC = CustomPayload.create(SyncFailed::write, SyncFailed::new);
+		public static final Identifier ID = ClientPackets.id("registry_sync/sync_failed");
 
 		public SyncFailed(PacketByteBuf buf) {
 			this(buf.readIdentifier());
 		}
 
-		private void write(PacketByteBuf buf) {
+		@Override
+		public void write(PacketByteBuf buf) {
 			buf.writeIdentifier(this.registry);
 		}
 
 		@Override
-		public CustomPayload.Id<SyncFailed> getId() {
+		public Identifier id() {
 			return ID;
 		}
 	}
@@ -100,20 +99,20 @@ public final class ClientPackets {
 	 * </code></pre>
 	 */
 	public record UnknownEntry(Identifier registry, IntList rawIds) implements CustomPayload {
-		public static final CustomPayload.Id<UnknownEntry> ID = ClientPackets.id("registry_sync/unknown_entry");
-		public static final PacketCodec<PacketByteBuf, UnknownEntry> CODEC = CustomPayload.create(UnknownEntry::write, UnknownEntry::new);
+		public static final Identifier ID = ClientPackets.id("registry_sync/unknown_entry");
 
 		public UnknownEntry(PacketByteBuf buf) {
 			this(buf.readIdentifier(), buf.readIntList());
 		}
 
-		private void write(PacketByteBuf buf) {
+		@Override
+		public void write(PacketByteBuf buf) {
 			buf.writeIdentifier(this.registry);
 			buf.writeIntList(this.rawIds);
 		}
 
 		@Override
-		public CustomPayload.Id<UnknownEntry> getId() {
+		public Identifier id() {
 			return ID;
 		}
 	}
@@ -133,8 +132,7 @@ public final class ClientPackets {
 	 * </code></pre>
 	 */
 	public record ModProtocol(Object2IntOpenHashMap<String> protocols) implements CustomPayload {
-		public static final CustomPayload.Id<ModProtocol> ID = ClientPackets.id("registry_sync/mod_protocol");
-		public static final PacketCodec<PacketByteBuf, ModProtocol> CODEC = CustomPayload.create(ModProtocol::write, ModProtocol::new);
+		public static final Identifier ID = ClientPackets.id("registry_sync/mod_protocol");
 
 		public ModProtocol(PacketByteBuf buf) {
 			this(read(buf));
@@ -152,7 +150,8 @@ public final class ClientPackets {
 			return protocols;
 		}
 
-		private void write(PacketByteBuf buf) {
+		@Override
+		public void write(PacketByteBuf buf) {
 			buf.writeVarInt(this.protocols.size());
 			for (var entry : this.protocols.object2IntEntrySet()) {
 				buf.writeString(entry.getKey());
@@ -161,7 +160,7 @@ public final class ClientPackets {
 		}
 
 		@Override
-		public CustomPayload.Id<ModProtocol> getId() {
+		public Identifier id() {
 			return ID;
 		}
 	}
@@ -170,23 +169,23 @@ public final class ClientPackets {
 	 * Ends registry sync. No data
 	 */
 	public record End() implements CustomPayload {
-		public static final CustomPayload.Id<End> ID = ClientPackets.id("registry_sync/end");
-		public static final PacketCodec<PacketByteBuf, End> CODEC = CustomPayload.create(End::write, End::new);
+		public static final Identifier ID = ClientPackets.id("registry_sync/end");
 
 		public End(PacketByteBuf buf) {
 			this();
 		}
 
-		private void write(PacketByteBuf buf) {
+		@Override
+		public void write(PacketByteBuf buf) {
 		}
 
 		@Override
-		public CustomPayload.Id<End> getId() {
+		public Identifier id() {
 			return ID;
 		}
 	}
 
-	private static <T extends CustomPayload> CustomPayload.Id<T> id(String path) {
-		return new CustomPayload.Id<>(new Identifier("qsl", path));
+	private static Identifier id(String path) {
+		return Identifier.of("qsl", path);
 	}
 }
