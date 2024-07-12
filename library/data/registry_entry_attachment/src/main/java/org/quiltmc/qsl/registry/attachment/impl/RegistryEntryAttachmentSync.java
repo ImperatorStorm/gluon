@@ -230,7 +230,7 @@ public final class RegistryEntryAttachmentSync {
 	private static void receiveSyncPacket(MinecraftClient client, ClientPlayNetworkHandler handler, PacketByteBuf buf, PacketSender<CustomPayload> responseSender) {
 		var packetVersion = buf.readByte();
 		if (packetVersion != PACKET_VERSION) {
-			throw new UnsupportedOperationException("Unable to read RegistryEntryAttachmentSync packet. Please install the same version of QSL as the server you play on");
+			throw new UnsupportedOperationException("Unable to read RegistryEntryAttachmentSync packet. Please install the same version of Gluon as the server you play on");
 		}
 
 		var registryId = buf.readIdentifier();

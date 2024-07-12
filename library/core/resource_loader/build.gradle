@@ -1,15 +1,15 @@
 plugins {
-	id("qsl.module")
+	id("gluon.module")
 }
 
-qslModule {
+gluonModule {
 	name = "Quilt Resource Loader"
 	moduleName = "resource_loader"
 	id = "quilt_resource_loader"
 	description = "Asset and data resource loading for Quilt mods."
 	moduleDependencies {
 		core {
-			api("qsl_base")
+			api("gluon_base")
 			testmodOnly("lifecycle_events")
 		}
 		gui {

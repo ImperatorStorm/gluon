@@ -1,0 +1,19 @@
+{
+  "required": true,
+  "package": "org.muonmc.gluon.base.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "BootstrapAccessor",
+    "MinecraftServerMixin",
+    "BuiltInRegistriesMixin"
+  ],
+  "client": [
+    "client.MinecraftMixin"
+  ],
+  "server": [
+    "server.MainMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

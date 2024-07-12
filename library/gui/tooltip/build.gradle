@@ -1,15 +1,15 @@
 plugins {
-	id("qsl.module")
+	id("gluon.module")
 }
 
-qslModule {
+gluonModule {
 	name = "Quilt Tooltip API"
 	moduleName = "tooltip"
 	id = "quilt_tooltip"
 	description = "Hooks and APIs for manipulating tooltips."
 	moduleDependencies {
 		core {
-			api("qsl_base")
+			api("gluon_base")
 			testmodOnly("resource_loader")
 		}
 	}

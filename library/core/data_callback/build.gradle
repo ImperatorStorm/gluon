@@ -1,8 +1,8 @@
 plugins {
-	id("qsl.module")
+	id("gluon.module")
 }
 
-qslModule {
+gluonModule {
 	name = "Quilt Data Callback API"
 	moduleName = "data_callback"
 	hasMixins = false
@@ -10,7 +10,7 @@ qslModule {
 	description = "APIs for making events or APIs data-driven"
 	moduleDependencies {
 		core {
-			api("qsl_base")
+			api("gluon_base")
 			api("resource_loader")
 			testmodOnly("networking")
 		}

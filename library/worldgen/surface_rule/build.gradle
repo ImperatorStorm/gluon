@@ -1,15 +1,15 @@
 plugins {
-	id("qsl.module")
+	id("gluon.module")
 }
 
-qslModule {
+gluonModule {
 	name = "Quilt Surface Rule API"
 	moduleName = "surface_rule"
 	id = "quilt_surface_rule"
 	description = "An API for managing custom Surface Rules."
 	moduleDependencies {
 		core {
-			api("qsl_base")
+			api("gluon_base")
 			api("registry")
 			api("resource_loader")
 			api("data_callback")

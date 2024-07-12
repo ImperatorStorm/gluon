@@ -1,15 +1,15 @@
 plugins {
-	id("qsl.module")
+	id("gluon.module")
 }
 
-qslModule {
+gluonModule {
 	name = "Quilt Biome API"
 	moduleName = "biome"
 	id = "quilt_biome"
 	description = "An API for managing custom biomes."
 	moduleDependencies {
 		core {
-			api("qsl_base")
+			api("gluon_base")
 			api("registry")
 			api("lifecycle_events")
 			api("data_callback")

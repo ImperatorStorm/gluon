@@ -142,7 +142,7 @@ public class TrackedDataHandlerRegistryMixin {
 
 			id = "unknown_handler/" + (quilt$currentUnknownId++);
 			if (quilt$PRINT_WARNING) {
-				quilt$LOGGER.warn("Detected registration of unknown TrackedDataHandler through vanilla method! If using QSL, please call QuiltTrackedDataHandlerRegistry.register. Object: {}, Class: {}", handler.toString(), handler.getClass().getName());
+				quilt$LOGGER.warn("Detected registration of unknown TrackedDataHandler through vanilla method! If using Gluon, please call QuiltTrackedDataHandlerRegistry.register. Object: {}, Class: {}", handler.toString(), handler.getClass().getName());
 				for (StackTraceElement traceElement : Thread.currentThread().getStackTrace()) {
 					quilt$LOGGER.warn("\tat " + traceElement);
 				}

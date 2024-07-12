@@ -1,8 +1,8 @@
 plugins {
-	id("qsl.module")
+	id("gluon.module")
 }
 
-qslModule {
+gluonModule {
 	name = "Quilt Tags API"
 	moduleName = "tags"
 	id = "quilt_tags"
@@ -10,7 +10,7 @@ qslModule {
 	moduleDependencies {
 		core {
 			api("resource_loader")
-			impl("qsl_base")
+			impl("gluon_base")
 			impl("lifecycle_events")
 		}
 		management {

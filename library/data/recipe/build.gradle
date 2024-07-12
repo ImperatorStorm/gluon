@@ -1,15 +1,15 @@
 plugins {
-	id("qsl.module")
+	id("gluon.module")
 }
 
-qslModule {
+gluonModule {
 	name = "Quilt Recipe API"
 	moduleName = "recipe"
 	id = "quilt_recipe"
 	description = "Recipe manipulation APIs."
 	moduleDependencies {
 		core {
-			api("qsl_base")
+			api("gluon_base")
 			api("registry")
 			api("resource_loader")
 			testmodOnly("lifecycle_events")

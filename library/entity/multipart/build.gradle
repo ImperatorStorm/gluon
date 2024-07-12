@@ -1,15 +1,15 @@
 plugins {
-	id("qsl.module")
+	id("gluon.module")
 }
 
-qslModule {
+gluonModule {
 	name = "Quilt Multipart Entity API"
 	moduleName = "multipart"
 	id = "quilt_entity_multipart"
 	description = "An API to support custom multipart entities."
 	moduleDependencies {
 		core {
-			api("qsl_base")
+			api("gluon_base")
 		}
 	}
 	injectedInterface("net/minecraft/class_1510") {

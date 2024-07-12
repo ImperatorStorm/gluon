@@ -1,15 +1,15 @@
 plugins {
-	id("qsl.module")
+	id("gluon.module")
 }
 
-qslModule {
+gluonModule {
 	name = "Quilt Block Extensions API"
 	moduleName = "block_extensions"
 	id = "quilt_block_extensions"
 	description = "Extensions for creating and working with blocks."
 	moduleDependencies {
 		core {
-			api("qsl_base")
+			api("gluon_base")
 			testmodOnly("resource_loader")
 		}
 	}
@@ -19,8 +19,8 @@ qslModule {
 
 import org.objectweb.asm.Opcodes
 import org.objectweb.asm.Type
-import qsl.internal.analysis.ClassAnalysisUtils
-import qsl.internal.task.GenerateAccessWidenerTask
+import gluon.internal.analysis.ClassAnalysisUtils
+import gluon.internal.task.GenerateAccessWidenerTask
 
 import java.nio.file.FileSystem
 import java.nio.file.FileSystems
@@ -63,7 +63,7 @@ def checkBlockSettings = tasks.register('checkBlockSettings') {
 	dependsOn jar
 
 	doLast {
-		def moduleJar = project.buildDir.toPath().resolve("devlibs/${qslModule.moduleName.get()}-${version}-dev.jar")
+		def moduleJar = project.buildDir.toPath().resolve("devlibs/${gluonModule.moduleName.get()}-${version}-dev.jar")
 
 		try (def moduleFs = FileSystems.newFileSystem(URI.create("jar:${moduleJar.toUri()}"), [create: false])) {
 			def mcFs = ClassAnalysisUtils.loadMinecraftJar(project)

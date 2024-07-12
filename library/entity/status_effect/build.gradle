@@ -1,15 +1,15 @@
 plugins {
-	id("qsl.module")
+	id("gluon.module")
 }
 
-qslModule {
+gluonModule {
 	name = "Quilt Status Effect API"
 	moduleName = "status_effect"
 	id = "quilt_status_effect"
 	description = "Provides extensions for dealing with status effects."
 	moduleDependencies {
 		core {
-			api("qsl_base")
+			api("gluon_base")
 		}
 	}
 	injectedInterface("net/minecraft/class_1309") {

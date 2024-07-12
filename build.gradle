@@ -1,13 +1,13 @@
-import qsl.internal.Versions
+import gluon.internal.Versions
 
 plugins {
 	id("maven-publish")
 	id("org.jetbrains.gradle.plugin.idea-ext") version("1.1.6")
-	id("qsl.common")
+	id("gluon.common")
 }
 def ENV = System.getenv()
-group = "org.quiltmc"
-version = Versions.QSL_VERSION
+group = "org.muonmc"
+version = Versions.GLUON_VERSION
 
 // Takes "1.0.0-beta.1" and changes it to "1.0.0-beta.2", unless we are releasing.
 // TODO: there is no way to semantically identify if a release is a snapshot or not right now
@@ -22,8 +22,8 @@ if (version.contains("alpha") && !ENV.MAVEN_URL) {
 	version = version.replace(version.substring(version.indexOf("alpha.")), "alpha." + (alpha + 1))
 }
 
-version = version + "+" + Versions.MINECRAFT_VERSION.version() + ".muon" + (System.getenv("SNAPSHOTS_URL") ? "-SNAPSHOT" : "")
-println("QSL: " + version)
+version = version + "+" + Versions.MINECRAFT_VERSION.version() + (System.getenv("SNAPSHOTS_URL") ? "-SNAPSHOT" : "")
+println("Gluon: " + version)
 
 sourceSets {
 	testmod {

@@ -20,7 +20,7 @@ pluginManagement {
 	}
 }
 
-rootProject.name = "qsl"
+rootProject.name = "gluon"
 
 // Build logic is an included build for holding the convention plugins for generating libraries and modules.
 includeBuild("build-logic")

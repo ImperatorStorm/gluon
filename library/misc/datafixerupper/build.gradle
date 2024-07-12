@@ -1,10 +1,10 @@
-import qsl.internal.Versions
+import gluon.internal.Versions
 
 plugins {
-	id("qsl.module")
+	id("gluon.module")
 }
 
-qslModule {
+gluonModule {
 	name = "Quilt DataFixerUpper API"
 	moduleName = "datafixerupper"
 	id = "quilt_datafixerupper"

@@ -1,15 +1,15 @@
 plugins {
-	id("qsl.module")
+	id("gluon.module")
 }
 
-qslModule {
+gluonModule {
 	name = "Quilt Item Content Registry API"
 	moduleName = "item_content_registry"
 	id = "quilt_item_content_registry"
 	description = "An API for adding to different content registries in Minecraft"
 	moduleDependencies {
 		core {
-			api("qsl_base")
+			api("gluon_base")
 			impl("resource_loader")
 		}
 		data {

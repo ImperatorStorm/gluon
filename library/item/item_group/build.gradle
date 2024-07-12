@@ -1,8 +1,8 @@
 plugins {
-	id("qsl.module")
+	id("gluon.module")
 }
 
-qslModule {
+gluonModule {
 	name = "Quilt Item Group API"
 	moduleName = "item_group"
 	id = "quilt_item_group"
@@ -11,7 +11,7 @@ qslModule {
 			"This API also adds the GUI elements that allow for the multiple pages of item groups that can occur."
 	moduleDependencies {
 		core {
-			api("qsl_base")
+			api("gluon_base")
 			api("resource_loader")
 		}
 	}

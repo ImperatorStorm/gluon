@@ -1,0 +1,15 @@
+plugins {
+	id("gluon.module")
+}
+
+gluonModule {
+	name = "Gluon Base API"
+	moduleName = "gluon_base"
+	id = "gluon_base"
+	description = "Basic APIs for Muon mods, such as events and entrypoints."
+	entrypoints {
+		init {
+			values = ["org.muonmc.gluon.base.impl.event.EventRegistry"]
+		}
+	}
+}

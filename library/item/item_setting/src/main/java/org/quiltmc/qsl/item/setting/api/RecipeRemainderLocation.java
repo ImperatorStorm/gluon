@@ -26,7 +26,7 @@ import net.minecraft.util.Identifier;
 import org.quiltmc.qsl.item.setting.impl.RecipeRemainderLogicHandlerImpl;
 
 /**
- * Contains the different recipe remainder locations that QSL supports.
+ * Contains the different recipe remainder locations that Gluon supports.
  * Calling {@link #getOrCreate(Identifier)} allows mods to create their own remainder locations or get remainder locations without needing to compile against the other mod.
  * The hierarchy of recipe remainder locations is: {@link #DEFAULT_LOCATIONS} &lt; any location &lt; {@link #ALL_LOCATIONS}.
  *

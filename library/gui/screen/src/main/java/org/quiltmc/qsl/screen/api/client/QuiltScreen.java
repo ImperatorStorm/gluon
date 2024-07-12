@@ -28,7 +28,7 @@ import org.quiltmc.loader.api.minecraft.ClientOnly;
 import org.quiltmc.qsl.base.api.util.InjectedInterface;
 
 /**
- * An interface implemented by {@link Screen} through a mixin in order to expose QSL extensions and also provide utility methods.
+ * An interface implemented by {@link Screen} through a mixin in order to expose Gluon extensions and also provide utility methods.
  *
  * @see ScreenEvents
  */

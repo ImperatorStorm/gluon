@@ -1,4 +1,4 @@
-# Quilt Standard Libraries (QSL)
+# Gluon (Gluon)
 
 ![Java 17](https://img.shields.io/badge/language-Java%2017-9B599A.svg?style=flat-square)
 [![GitHub license](https://img.shields.io/github/license/QuiltMC/quilt-standard-libraries?style=flat-square)](https://raw.githubusercontent.com/QuiltMC/quilt-standard-libraries/1.19/LICENSE)
@@ -7,26 +7,26 @@
 
 Essential standard libraries for [the Quilt ecosystem](https://quiltmc.org/).
 
-The Quilt Standard Libraries gives modders Quilt-exclusive tools to add new and exciting features to their mods.
+The Gluon gives modders Muon-exclusive tools to add new and exciting features to their mods.
 
-**Note: At the moment, the Quilt Standard Libraries are in beta, meaning issues may arise and should still be treated as experimental.
-Please make an issue or talk to the QSL team on [discord](https://discord.quiltmc.org/toolchain) or on [the forum](https://forum.quiltmc.org) before
+**Note: At the moment, Gluon is in beta, meaning issues may arise and should still be treated as experimental.
+Please make an issue or talk to the Gluon team on [discord](https://discord.quiltmc.org/toolchain) or on [the forum](https://forum.quiltmc.org) before
 writing any PRs.**
 
 ## Repository structure
 
 The repository has 2 main parts:
 
-- The `library` folder. This contains all the libraries that are part of the Quilt Standard Libraries.
+- The `library` folder. This contains all the libraries that are part of Gluon.
 - The `build-logic` folder. This is an included build in Gradle and contains most of the buildscript used inside the
   libraries. This keeps the buildscripts inside the `library` folder as minimal as possible; definitions of data rather
   than logic.
 
 ## Features
 
-Here are multiple charts of features available in QSL which also serves as a comparison chart with Fabric API.
+Here are multiple charts of features available in Gluon which also serves as a comparison chart with Fabric API.
 
-The charts are organized by QSL libraries.
+The charts are organized by Gluon libraries.
 
 Quick legend:
 
@@ -37,7 +37,7 @@ Quick legend:
 
 ### Core Library
 
-| Feature                           | QSL |  Fabric API   |
+| Feature                           | Gluon |  Fabric API   |
 |:----------------------------------|:---:|:-------------:|
 | Auto Test Server argument         |  ✔  |       ❌       |
 | Event API                         |  ✔  |       ✔       |
@@ -49,14 +49,14 @@ Quick legend:
 
 #### Crash Report
 
-| Feature                        | QSL | Fabric API |
+| Feature                        | Gluon | Fabric API |
 |:-------------------------------|:---:|:----------:|
 | Crash report extra context     |  ✔  |     ✔      |
 | Crash report extra context API |  ✔  |     ❌      |
 
 ### Core - Lifecycle Events
 
-| Feature                    | QSL | Fabric API |
+| Feature                    | Gluon | Fabric API |
 |:---------------------------|:---:|:----------:|
 | Client Lifecycle Events    |  ✔  |     ✔      |
 | Client Tick Events         |  ✔  |     ✔      |
@@ -73,7 +73,7 @@ Quick legend:
 
 ### Core - Registry
 
-| Feature                                     | QSL | Fabric API |
+| Feature                                     | Gluon | Fabric API |
 |:--------------------------------------------|:---:|:----------:|
 | Addition Events                             |  ✔  |     ✔      |
 | Addition Events Helper                      |  ✔  |     ❌      |
@@ -82,7 +82,7 @@ Quick legend:
 
 ### Core - Resource Loader
 
-| Feature                               | QSL |            Fabric API            |
+| Feature                               | Gluon |            Fabric API            |
 |:--------------------------------------|:---:|:--------------------------------:|
 | Load mod resources.                   |  ✔  |                ✔                 |
 | Resource Loader Events                |  ✔  | ✔ (in lifecycle, non equivalent) |
@@ -96,7 +96,7 @@ Quick legend:
 
 ### Block Library
 
-| Feature                                                 | QSL | Fabric API |
+| Feature                                                 | Gluon | Fabric API |
 |:--------------------------------------------------------|:---:|:----------:|
 | Extended Block Settings                                 |  ✔  |     ✔      |
 | Extended Material Builder                               |  ✔  |     ✔      |
@@ -122,7 +122,7 @@ Quick legend:
 
 ### Data Library
 
-| Feature                                                               |                                      QSL                                       |    Fabric API     |
+| Feature                                                               |                                      Gluon                                       |    Fabric API     |
 |:----------------------------------------------------------------------|:------------------------------------------------------------------------------:|:-----------------:|
 | Advancement Criterion Registration Helper                             |                                       ✔                                        |         ✔         |
 | Recipe API                                                            |                                       ✔                                        |        🙅         |
@@ -137,7 +137,7 @@ Quick legend:
 
 ### Entity Library
 
-| Feature                         | QSL | Fabric API |
+| Feature                         | Gluon | Fabric API |
 |:--------------------------------|:---:|:----------:|
 | EntityType registration helpers |  ✔  |     ✔      |
 | Entity Events                   |  ✔  |     ✔      |
@@ -149,7 +149,7 @@ Quick legend:
 
 ### GUI Library
 
-| Feature                   |      QSL       | Fabric API |
+| Feature                   |      Gluon       | Fabric API |
 |:--------------------------|:--------------:|:----------:|
 | Screen API                |       ✔        |     ✔      |
 | Item Tooltip Event        |       ✔        |     ✔      |
@@ -159,7 +159,7 @@ Quick legend:
 
 ### Item Library
 
-| Feature                                         | QSL | Fabric API |
+| Feature                                         | Gluon | Fabric API |
 |:------------------------------------------------|:---:|:----------:|
 | Item Extension - Bow                            |  ✔  |     ❌      |
 | Item Extension - Crossbow                       |  ✔  |     ❌      |
@@ -173,7 +173,7 @@ Quick legend:
 
 ### Management Library
 
-| Feature                 | QSL | Fabric API |
+| Feature                 | Gluon | Fabric API |
 |:------------------------|:---:|:----------:|
 | Commands                |  ✔  |     ✔      |
 | Client Commands         |  ✔  |     ✔      |
@@ -183,7 +183,7 @@ Quick legend:
 
 ### Rendering Library
 
-| Feature                                           |      QSL       |    Fabric API     |
+| Feature                                           |      Gluon       |    Fabric API     |
 |:--------------------------------------------------|:--------------:|:-----------------:|
 | Renderer API                                      |       ❌        |         ✔         |
 | Data Attachment                                   |       ❌        |         ✔         |
@@ -202,13 +202,13 @@ Quick legend:
 
 ### Transfer Library
 
-| Feature      |      QSL       |    Fabric API     |
+| Feature      |      Gluon       |    Fabric API     |
 |:-------------|:--------------:|:-----------------:|
 | Transfer API |       ❌        |         ✔         |
 
 ### Worldgen Library
 
-| Feature                 | QSL | Fabric API |
+| Feature                 | Gluon | Fabric API |
 |:------------------------|:---:|:----------:|
 | Biome Modifications API |  ✔  |     ✔      |
 | Add Nether Biomes       |  ✔  |     ✔      |
@@ -218,7 +218,7 @@ Quick legend:
 
 ### Miscellaneous Library
 
-| Feature        |                                                  QSL                                                   | Fabric API |
+| Feature        |                                                  Gluon                                                   | Fabric API |
 |:---------------|:------------------------------------------------------------------------------------------------------:|:----------:|
 | Modded DFU API |                                                   ❌                                                    |     ❌      |
 | API Lookup API | :construction: [(through Component API)](https://github.com/QuiltMC/quilt-standard-libraries/pull/146) |     ✔      |

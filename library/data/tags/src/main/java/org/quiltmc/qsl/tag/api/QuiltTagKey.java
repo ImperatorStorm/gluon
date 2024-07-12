@@ -26,7 +26,7 @@ import org.quiltmc.qsl.tag.impl.QuiltTagKeyHooks;
 import org.quiltmc.qsl.tag.mixin.TagKeyAccessor;
 
 /**
- * Interface implemented by {@link net.minecraft.registry.tag.TagKey} instances when QSL is present.
+ * Interface implemented by {@link net.minecraft.registry.tag.TagKey} instances when Gluon is present.
  *
  * @param <T> the type of the values held by the tag
  * @see #of(RegistryKey, Identifier, TagType)

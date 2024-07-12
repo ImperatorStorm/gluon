@@ -1,15 +1,15 @@
 plugins {
-	id("qsl.module")
+	id("gluon.module")
 }
 
-qslModule {
+gluonModule {
 	name = "Quilt Entity Rendering API"
 	moduleName = "entity_rendering"
 	id = "quilt_entity_rendering"
 	description = "Quilt APIs relating to the rendering of entities."
 	moduleDependencies {
 		core {
-			api("qsl_base")
+			api("gluon_base")
 			api("resource_loader")
 		}
 		item {

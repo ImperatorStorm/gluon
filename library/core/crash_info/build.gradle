@@ -1,8 +1,8 @@
 plugins {
-	id("qsl.module")
+	id("gluon.module")
 }
 
-qslModule {
+gluonModule {
 	name = "Quilt Crash Info"
 	moduleName = "crash_info"
 	id = "quilt_crash_info"
@@ -10,7 +10,7 @@ qslModule {
 			" and allows other mods to do the same."
 	moduleDependencies {
 		core {
-			api("qsl_base")
+			api("gluon_base")
 		}
 	}
 	entrypoints {

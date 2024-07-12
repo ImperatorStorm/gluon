@@ -53,7 +53,7 @@ import org.quiltmc.qsl.item.setting.impl.CustomItemSettingImpl;
  * <p>
  * You should not implement this interface.
  * <p>
- * Use {@link CustomItemSetting#create(Supplier)} to retrieve an instance of QSL's implementation.
+ * Use {@link CustomItemSetting#create(Supplier)} to retrieve an instance of Gluon's implementation.
  *
  * @param <T> the type of the setting to be attached
  */

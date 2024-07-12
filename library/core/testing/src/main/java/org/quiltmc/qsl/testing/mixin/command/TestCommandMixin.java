@@ -176,7 +176,7 @@ public class TestCommandMixin {
 	private static String quiltGameTest$replaceSuccessMessage(String original) {
 		// You may ask why, it's simple.
 		// The original emoticon is a bit... weird.
-		// And QSL members expressed some kind of interest into replacing it.
+		// And Gluon members expressed some kind of interest into replacing it.
 		// So here it is. I assure you this is a really necessary injection.
 		return "All required tests passed :3c";
 	}

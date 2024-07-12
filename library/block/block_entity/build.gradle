@@ -1,15 +1,15 @@
 plugins {
-	id("qsl.module")
+	id("gluon.module")
 }
 
-qslModule {
+gluonModule {
 	name = "Quilt Block Entity API"
 	moduleName = "block_entity"
 	id = "quilt_block_entity"
 	description = "Extensions for creating and working with block entities."
 	moduleDependencies {
 		core {
-			api("qsl_base")
+			api("gluon_base")
 			impl("registry") // For registry-sync.
 			impl("lifecycle_events")
 			testmodOnly("resource_loader")

@@ -43,7 +43,7 @@ import net.minecraft.world.World;
 
 /**
  * In actual mods, do not add tracked data to existing entities, and do not replace spawn packets.
- * This is purely for testing QSL easily.
+ * This is purely for testing Gluon easily.
  */
 @Mixin(CreeperEntity.class)
 public class CreeperEntityMixin extends HostileEntity implements QuiltExtendedSpawnDataEntity, CreeperWithItem {

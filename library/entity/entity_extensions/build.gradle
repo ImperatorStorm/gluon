@@ -1,8 +1,8 @@
 plugins {
-	id("qsl.module")
+	id("gluon.module")
 }
 
-qslModule {
+gluonModule {
 	name = "Quilt Entity Extensions"
 	moduleName = "entity_extensions"
 	id = "quilt_entity_extensions"
@@ -12,7 +12,7 @@ qslModule {
 			api("resource_loader")
 			api("registry")
 			api("networking")
-			testmodOnly("qsl_base")
+			testmodOnly("gluon_base")
 		}
 	}
 	entrypoints {

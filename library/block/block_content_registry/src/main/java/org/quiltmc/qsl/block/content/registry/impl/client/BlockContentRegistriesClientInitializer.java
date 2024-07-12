@@ -52,7 +52,7 @@ public class BlockContentRegistriesClientInitializer implements ClientModInitial
 					BlockContentRegistries.ENCHANTING_BOOSTERS.get(block).ifPresent(value -> lines.add(Text.literal("Enchanting booster: " + value)));
 				});
 			} else {
-				LOGGER.warn("Tooltip debug was enabled, but the QSL module `quilt_tooltip` was missing.");
+				LOGGER.warn("Tooltip debug was enabled, but the Gluon module `quilt_tooltip` was missing.");
 			}
 		}
 	}

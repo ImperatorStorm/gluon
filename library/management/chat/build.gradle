@@ -1,15 +1,15 @@
 plugins {
-	id("qsl.module")
+	id("gluon.module")
 }
 
-qslModule {
+gluonModule {
 	name = "Quilt Chat API"
 	moduleName = "chat"
 	id = "quilt_chat"
 	description = "Quilt APIs for modifying chat."
 	moduleDependencies {
 		core {
-			api("qsl_base")
+			api("gluon_base")
 		}
 	}
 }

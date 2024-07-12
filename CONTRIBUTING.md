@@ -1,33 +1,33 @@
 # Contributing
 
-This document outlines best-practices and contributing guidelines to the Quilt Standard Libraries.
+This document outlines best-practices and contributing guidelines to the Gluon.
 
-By contributing to the Quilt Standard Libraries you agree with the [Developer Certificate of Origin (DCO)][DCO].
+By contributing to the Gluon you agree with the [Developer Certificate of Origin (DCO)][DCO].
 
 ## Guide: Pull Requests
 
 1. ### Discuss your feature
     Be sure to talk to us (either through an issue or on [Discord](https://discord.quiltmc.org/toolchain)) before working on your feature! We can help you with any questions you may have, and save some time during the review process.
 2. ### Open your PR and wait for reviews
-    Once you have forked QSL and opened a pull request, you need to wait for people to review it. When you get reviews, try to thoughtfully address any concerns other people have. If you get confused, be sure to ask questions!
+    Once you have forked Gluon and opened a pull request, you need to wait for people to review it. When you get reviews, try to thoughtfully address any concerns other people have. If you get confused, be sure to ask questions!
 3. ### Entering a Final Comment Period
     Once your PR has no "changes requested" reviews, the minimum number of approvals for its [triage category](#guide-triage-categories), and nobody has their review requested, it is eligible to enter a Final Comment Period (FCP). A FCP is a last call for any reviewers to look at your PR before it is merged. The minimum length of your PR's FCP is determined by its triage category, but if any further changes are requested, the FCP might be lengthened, or if the concerns are significant, the FCP cancelled until the concerns are resolved.
 4. ### Request a merge!
-    Once the minimum time on the Final Comment Period has passed, and you have resolved any concerns reviewers have raised during that time, leave a comment on your PR requesting for it to be merged. A QSL Core Team member will take a final look over your PR, and if everything looks good, merge it!
+    Once the minimum time on the Final Comment Period has passed, and you have resolved any concerns reviewers have raised during that time, leave a comment on your PR requesting for it to be merged. A Gluon Core Team member will take a final look over your PR, and if everything looks good, merge it!
 
 
 ## Guide: Triage Categories
 
 Triage categories ensure that important, but small PRs--like bugfixes--are merged quickly, while large changes--like new stable APIs--are thoroughly reviewed before they are merged.
 
-A "required approval" comes from any member of the QSL Triage team, except for `T: urgent` PRs.
+A "required approval" comes from any member of the Gluon Triage team, except for `T: urgent` PRs.
 
 ## PR Policy Definitions
-Everything within this section is the definitions for the actual PR policy followed by the QSL team, in accordance with [RFC 39](https://github.com/QuiltMC/rfcs/blob/master/structure/0039-pr-policy.md)
+Everything within this section is the definitions for the actual PR policy followed by the Gluon team, in accordance with [RFC 39](https://github.com/QuiltMC/rfcs/blob/master/structure/0039-pr-policy.md)
 
 ### `T: new API`
 
-**Description**: Used for pull requests that add new APIs to QSL, defined as anything in a `$modulename.api` package or subfolders.
+**Description**: Used for pull requests that add new APIs to Gluon, defined as anything in a `$modulename.api` package or subfolders.
 
 **Required Approvals**: 2
 
@@ -54,19 +54,19 @@ Everything within this section is the definitions for the actual PR policy follo
 **Description**: For pull requests that must be merged quickly, like ports of critical core modules and game- or build-breaking bugs.
 
 **Required Approvals**: 2
-- Only members of the QSL Core Team count for approvals in urgent PRs to prevent abuse.
+- Only members of the Gluon Core Team count for approvals in urgent PRs to prevent abuse.
 
 **Final Comment Period**: N/A
 
 ### Other
 
-If the determined FCP length is judged to be inadequate for one or more PRs, at least two members of the QSL Core team may agree to either shorten, extend, or skip them, provided that all QSL Core team members had a reasonable chance to respond. This applies to both PRs that are yet to begin its FCP and to PRs whose FCP is already in motion.
+If the determined FCP length is judged to be inadequate for one or more PRs, at least two members of the Gluon Core team may agree to either shorten, extend, or skip them, provided that all Gluon Core team members had a reasonable chance to respond. This applies to both PRs that are yet to begin its FCP and to PRs whose FCP is already in motion.
 
-Trivial fixes that do not require review (e.g. typos) are exempt from this policy. QSL Core team members should double check with other members of the team on Discord before pushing a commit or merging a PR without going through this process.
+Trivial fixes that do not require review (e.g. typos) are exempt from this policy. Gluon Core team members should double check with other members of the team on Discord before pushing a commit or merging a PR without going through this process.
 
-PRs that do not fit under any of these categories but are not "trivial fixes" are merged at the consensus of the QSL Core team, using whatever criteria they determine to be appropriate. (For example, amending the PR policy may require every core member to approve, and have a 1-week FCP).
+PRs that do not fit under any of these categories but are not "trivial fixes" are merged at the consensus of the Gluon Core team, using whatever criteria they determine to be appropriate. (For example, amending the PR policy may require every core member to approve, and have a 1-week FCP).
 
-*This is only a summary of QSL's PR process and an explanation of QSL-specific exceptions to it. For exact definitions and more information, see [RFC 39](https://github.com/QuiltMC/rfcs/blob/master/structure/0039-pr-policy.md).*
+*This is only a summary of Gluon's PR process and an explanation of Gluon-specific exceptions to it. For exact definitions and more information, see [RFC 39](https://github.com/QuiltMC/rfcs/blob/master/structure/0039-pr-policy.md).*
 
 ## Conventions
 
@@ -88,9 +88,9 @@ browsing files.
 
 ### Spelling
 
-Use American English for consistency throughout QSL.
+Use American English for consistency throughout Gluon.
 
-If there are two acceptable spellings of the same word, first check if one is already being used in QSL, Quilt Mappings
+If there are two acceptable spellings of the same word, first check if one is already being used in Gluon, Quilt Mappings
 or by Mojang, and if not, use the most common spelling.
 
 ### Conciseness
@@ -155,7 +155,7 @@ This is a general structure, sub-packages can be made if needed.
 ### Consistency
 
 Consistency is important as it makes code more readable and names easier to memorize. When possible, use terms that are
-present in QSL, in other Quilt Mappings names, in libraries used by Minecraft, or in vanilla strings. The rest of this
+present in Gluon, in other Quilt Mappings names, in libraries used by Minecraft, or in vanilla strings. The rest of this
 section lists common names and name patterns you should use.
 
 #### Ticks and updates
@@ -245,13 +245,13 @@ and finally the name of the local (`quilt$injectedMethod$localName`).
 
 ### Declaring dependencies between modules
 
-In the `qslModule` extension, there is a `moduleDependencies` field. Dependencies are declared in a tree like structure reflecting how QSL libraries and modules are laid out.
+In the `gluonModule` extension, there is a `moduleDependencies` field. Dependencies are declared in a tree like structure reflecting how Gluon libraries and modules are laid out.
 This field can be configured like:
 ```groovy
-qslModule {
+gluonModule {
     // ...
     moduleDependencies {
-        // The QSL Library to depend on
+        // The Gluon Library to depend on
         library_name {
             // API dependencies are put on the classpath of mods that depend on this module.
             // Use an API dependency when you expose a class from this dependency in this module's
@@ -280,14 +280,14 @@ qslModule {
 
 ## Licensing & DCO
 
-QSL is licensed under [Apache 2.0][LICENSE], and have a [Developer Certificate of Origin (DCO)][DCO]
+Gluon is licensed under [Apache 2.0][LICENSE], and have a [Developer Certificate of Origin (DCO)][DCO]
 which you need to agree with to contribute. Commit author may be sufficient,
 but [a sign-off can be added too](https://git-scm.com/docs/git-commit#Documentation/git-commit.txt--s), and legal names
 are not required for privacy reasons.
 
 ### License Headers
 
-Every Java source file in QSL has a license header with a copyright notice that keeps track of its creation date and
+Every Java source file in Gluon has a license header with a copyright notice that keeps track of its creation date and
 last modification date.
 
 Two gradle tasks are dedicated to them:
@@ -311,6 +311,6 @@ Make sure to execute the `:applyLicenses` task as it will apply a special licens
 mentioning Fabric's copyright notice.
 **Files derived from Fabric must use this license header!**
 
-[LICENSE]: ./LICENSE "Quilt Standard Libraries license file"
+[LICENSE]: ./LICENSE "Gluon license file"
 
 [DCO]: ./DEVELOPER_CERTIFICATE_OF_ORIGIN.md "Developer Certificate of Origin file"

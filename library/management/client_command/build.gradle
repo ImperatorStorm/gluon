@@ -1,15 +1,15 @@
 plugins {
-	id("qsl.module")
+	id("gluon.module")
 }
 
-qslModule {
+gluonModule {
 	name = "Quilt Client Command API"
 	moduleName = "client_command"
 	id = "quilt_client_command"
 	description = "Quilt APIs for creating and managing client-side commands."
 	moduleDependencies {
 		core {
-			api("qsl_base")
+			api("gluon_base")
 		}
 	}
 	clientOnly()

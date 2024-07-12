@@ -1,7 +1,7 @@
 plugins {
-	id("qsl.library")
+	id("gluon.library")
 }
 
-qslLibrary {
+gluonLibrary {
 	libraryName = "block"
 }

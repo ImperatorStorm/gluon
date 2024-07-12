@@ -46,7 +46,7 @@ public class ItemContentRegistriesClientInitializer implements ClientModInitiali
 					ItemContentRegistries.COMPOST_CHANCES.get(item).ifPresent(chance -> lines.add(Text.literal("Compost chance: " + (chance * 100) + "%")));
 				});
 			} else {
-				LOGGER.warn("Tooltip debug was enabled, but the QSL module `quilt_tooltip` was missing.");
+				LOGGER.warn("Tooltip debug was enabled, but the Gluon module `quilt_tooltip` was missing.");
 			}
 		}
 	}
