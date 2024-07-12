@@ -135,7 +135,7 @@ Please avoid the use of abbreviations in javadocs, except if those describe the 
 Package names should always be singular to respect Java conventions. The package structure is as follows:
 
 ```
-org.quiltmc.qsl.<module_name (separate spaces with dots)>.
+org.muonmc.gluon.<module_name (separate spaces with dots)>.
  |- api - API package
  |   |- client - Client-related package
  |   |- server - Dedicated-related package
@@ -155,7 +155,7 @@ This is a general structure, sub-packages can be made if needed.
 ### Consistency
 
 Consistency is important as it makes code more readable and names easier to memorize. When possible, use terms that are
-present in Gluon, in other Quilt Mappings names, in libraries used by Minecraft, or in vanilla strings. The rest of this
+present in Gluon, in other Mojang Mappings names, in libraries used by Minecraft, or in vanilla strings. The rest of this
 section lists common names and name patterns you should use.
 
 #### Ticks and updates
