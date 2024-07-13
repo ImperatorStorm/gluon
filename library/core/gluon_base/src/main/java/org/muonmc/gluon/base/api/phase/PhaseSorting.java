@@ -26,7 +26,7 @@ import java.util.PriorityQueue;
 
 import com.google.common.annotations.VisibleForTesting;
 
-import org.muonmc.gluon.base.impl.QuiltBaseImpl;
+import org.muonmc.gluon.base.impl.GluonBaseImpl;
 
 /**
  * Provides the phase-sorting logic of {@link PhaseData}.
@@ -135,7 +135,7 @@ public final class PhaseSorting {
 			phase.visitStatus = PhaseData.VisitStatus.VISITED;
 		} else if (phase.visitStatus == PhaseData.VisitStatus.VISITING && ENABLE_CYCLE_WARNING) {
 			// Already visiting, so we have found a cycle.
-			QuiltBaseImpl.LOGGER.warn(String.format(
+			GluonBaseImpl.LOGGER.warn(String.format(
 					"Phase ordering conflict detected.%nPhase %s is ordered both before and after phase %s.",
 					phase.id,
 					parent.id

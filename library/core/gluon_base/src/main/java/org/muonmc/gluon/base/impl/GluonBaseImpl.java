@@ -27,7 +27,7 @@ import org.quiltmc.loader.api.ModInternal;
 
 @ModInternal
 @ApiStatus.Internal
-public final class QuiltBaseImpl {
+public final class GluonBaseImpl {
 	public static final Logger LOGGER = LoggerFactory.getLogger("gluon_base");
 	/**
 	 * Represents the number of ticks before an auto test server audits mixins and shutdowns.
@@ -36,7 +36,7 @@ public final class QuiltBaseImpl {
 	 */
 	public static final Integer AUTO_TEST_SERVER_TICK_TIME;
 
-	private QuiltBaseImpl() {
+	private GluonBaseImpl() {
 		throw new UnsupportedOperationException("QuiltBaseImpl only contains static definitions.");
 	}
 

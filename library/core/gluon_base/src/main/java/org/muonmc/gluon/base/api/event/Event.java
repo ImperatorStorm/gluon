@@ -36,7 +36,7 @@ import net.minecraft.resources.ResourceLocation;
 import org.muonmc.gluon.base.api.phase.PhaseData;
 import org.muonmc.gluon.base.api.phase.PhaseSorting;
 import org.muonmc.gluon.base.api.util.QuiltAssertions;
-import org.muonmc.gluon.base.impl.QuiltBaseImpl;
+import org.muonmc.gluon.base.impl.GluonBaseImpl;
 import org.muonmc.gluon.base.impl.event.EventPhaseData;
 import org.muonmc.gluon.base.impl.event.EventRegistry;
 
@@ -181,7 +181,7 @@ public final class Event<T> {
 	 */
 	public static <T> @NotNull Event<T> createWithPhases(@NotNull Class<? super T> type, @NotNull Function<T[], T> implementation,
 			@NotNull ResourceLocation... defaultPhases) {
-		QuiltBaseImpl.ensureContainsDefaultPhase(defaultPhases);
+		GluonBaseImpl.ensureContainsDefaultPhase(defaultPhases);
 		QuiltAssertions.ensureNoDuplicates(defaultPhases, id -> new IllegalArgumentException("Duplicate event phase: " + id));
 
 		var event = create(type, implementation);

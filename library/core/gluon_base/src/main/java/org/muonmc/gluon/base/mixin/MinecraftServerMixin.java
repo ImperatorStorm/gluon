@@ -28,7 +28,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import net.minecraft.server.MinecraftServer;
 
-import org.muonmc.gluon.base.impl.QuiltBaseImpl;
+import org.muonmc.gluon.base.impl.GluonBaseImpl;
 
 @Mixin(MinecraftServer.class)
 public abstract class MinecraftServerMixin {
@@ -41,10 +41,10 @@ public abstract class MinecraftServerMixin {
 	@Inject(method = "tickServer", at = @At("TAIL"))
 	private void onEndTick(BooleanSupplier shouldKeepTicking, CallbackInfo ci) {
 		// Check whether we are in auto test mode, after the designated tick times we do an audit of Mixins then shutdown.
-		if (QuiltBaseImpl.AUTO_TEST_SERVER_TICK_TIME != null) {
+		if (GluonBaseImpl.AUTO_TEST_SERVER_TICK_TIME != null) {
 			this.muon$autoTestTicks++;
 
-			if (this.muon$autoTestTicks == QuiltBaseImpl.AUTO_TEST_SERVER_TICK_TIME) {
+			if (this.muon$autoTestTicks == GluonBaseImpl.AUTO_TEST_SERVER_TICK_TIME) {
 				MixinEnvironment.getCurrentEnvironment().audit();
 				this.halt(false);
 			}
