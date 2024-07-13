@@ -28,7 +28,7 @@ import org.quiltmc.loader.api.ModInternal;
 @ModInternal
 @ApiStatus.Internal
 public final class QuiltBaseImpl {
-	public static final Logger LOGGER = LoggerFactory.getLogger("quilt_base");
+	public static final Logger LOGGER = LoggerFactory.getLogger("gluon_base");
 	/**
 	 * Represents the number of ticks before an auto test server audits mixins and shutdowns.
 	 * <p>

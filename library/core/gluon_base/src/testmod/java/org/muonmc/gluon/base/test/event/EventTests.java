@@ -83,8 +83,8 @@ public final class EventTests implements Runnable {
 	}
 
 	private static void testMultipleDefaultPhases() {
-		var first = ResourceLocation.fromNamespaceAndPath("quilt", "first");
-		var second = ResourceLocation.fromNamespaceAndPath("quilt", "second");
+		var first = ResourceLocation.fromNamespaceAndPath("gluon", "first");
+		var second = ResourceLocation.fromNamespaceAndPath("gluon", "second");
 		var event = Event.createWithPhases(TestCallback.class, INVOKER_FACTORY, first, second, Event.DEFAULT_PHASE);
 
 		event.register(second, ensureOrder(1));
@@ -101,10 +101,10 @@ public final class EventTests implements Runnable {
 	private static void testAddedPhases() {
 		var event = createEvent();
 
-		var veryEarly = ResourceLocation.fromNamespaceAndPath("quilt", "very_early");
-		var early = ResourceLocation.fromNamespaceAndPath("quilt", "early");
-		var late = ResourceLocation.fromNamespaceAndPath("quilt", "late");
-		var veryLate = ResourceLocation.fromNamespaceAndPath("quilt", "very_late");
+		var veryEarly = ResourceLocation.fromNamespaceAndPath("gluon", "very_early");
+		var early = ResourceLocation.fromNamespaceAndPath("gluon", "early");
+		var late = ResourceLocation.fromNamespaceAndPath("gluon", "late");
+		var veryLate = ResourceLocation.fromNamespaceAndPath("gluon", "very_late");
 
 		event.addPhaseOrdering(veryEarly, early);
 		event.addPhaseOrdering(early, Event.DEFAULT_PHASE);
@@ -132,10 +132,10 @@ public final class EventTests implements Runnable {
 	private static void testCycle() {
 		var event = createEvent();
 
-		var a = ResourceLocation.fromNamespaceAndPath("quilt", "a");
-		var b1 = ResourceLocation.fromNamespaceAndPath("quilt", "b1");
-		var b2 = ResourceLocation.fromNamespaceAndPath("quilt", "b2");
-		var b3 = ResourceLocation.fromNamespaceAndPath("quilt", "b3");
+		var a = ResourceLocation.fromNamespaceAndPath("gluon", "a");
+		var b1 = ResourceLocation.fromNamespaceAndPath("gluon", "b1");
+		var b2 = ResourceLocation.fromNamespaceAndPath("gluon", "b2");
+		var b3 = ResourceLocation.fromNamespaceAndPath("gluon", "b3");
 		var c = Event.DEFAULT_PHASE;
 
 		// A always first and C always last.
@@ -185,13 +185,13 @@ public final class EventTests implements Runnable {
 	 * We get for the final order: [a, d, e, cycle [b, y, z], f].
 	 */
 	private static void testDeterministicOrdering() {
-		var a = ResourceLocation.fromNamespaceAndPath("quilt", "a");
-		var b = ResourceLocation.fromNamespaceAndPath("quilt", "b");
-		var d = ResourceLocation.fromNamespaceAndPath("quilt", "d");
-		var e = ResourceLocation.fromNamespaceAndPath("quilt", "e");
-		var f = ResourceLocation.fromNamespaceAndPath("quilt", "f");
-		var y = ResourceLocation.fromNamespaceAndPath("quilt", "y");
-		var z = ResourceLocation.fromNamespaceAndPath("quilt", "z");
+		var a = ResourceLocation.fromNamespaceAndPath("gluon", "a");
+		var b = ResourceLocation.fromNamespaceAndPath("gluon", "b");
+		var d = ResourceLocation.fromNamespaceAndPath("gluon", "d");
+		var e = ResourceLocation.fromNamespaceAndPath("gluon", "e");
+		var f = ResourceLocation.fromNamespaceAndPath("gluon", "f");
+		var y = ResourceLocation.fromNamespaceAndPath("gluon", "y");
+		var z = ResourceLocation.fromNamespaceAndPath("gluon", "z");
 
 		List<Consumer<Event<TestCallback>>> dependencies = List.of(
 				ev -> ev.addPhaseOrdering(a, z),
@@ -230,11 +230,11 @@ public final class EventTests implements Runnable {
 	 * </pre>
 	 */
 	private static void testTwoCycles() {
-		ResourceLocation a = ResourceLocation.fromNamespaceAndPath("quilt", "a");
-		ResourceLocation b = ResourceLocation.fromNamespaceAndPath("quilt", "b");
-		ResourceLocation c = ResourceLocation.fromNamespaceAndPath("quilt", "c");
-		ResourceLocation d = ResourceLocation.fromNamespaceAndPath("quilt", "d");
-		ResourceLocation e = ResourceLocation.fromNamespaceAndPath("quilt", "e");
+		ResourceLocation a = ResourceLocation.fromNamespaceAndPath("gluon", "a");
+		ResourceLocation b = ResourceLocation.fromNamespaceAndPath("gluon", "b");
+		ResourceLocation c = ResourceLocation.fromNamespaceAndPath("gluon", "c");
+		ResourceLocation d = ResourceLocation.fromNamespaceAndPath("gluon", "d");
+		ResourceLocation e = ResourceLocation.fromNamespaceAndPath("gluon", "e");
 
 		List<Consumer<Event<TestCallback>>> dependencies = List.of(
 				ev -> ev.addPhaseOrdering(e, a),

@@ -121,7 +121,7 @@ public final class Event<T> {
 	 * The identifier of the default phase.
 	 * Have a look at {@link Event#createWithPhases} for an explanation of event phases.
 	 */
-	public static final ResourceLocation DEFAULT_PHASE = ResourceLocation.fromNamespaceAndPath("quilt", "default");
+	public static final ResourceLocation DEFAULT_PHASE = ResourceLocation.fromNamespaceAndPath("gluon", "default");
 
 	/**
 	 * Creates a new instance of {@link Event}.
