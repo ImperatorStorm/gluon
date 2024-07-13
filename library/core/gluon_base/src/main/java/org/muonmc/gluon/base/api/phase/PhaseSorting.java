@@ -97,7 +97,7 @@ public final class PhaseSorting {
 
 		// Order SCCs according to priorities. When there is a choice, use the SCC with the lowest id.
 		// The priority queue contains all SCCs that currently have 0 in-degree.
-		var pq = new PriorityQueue<PhaseScc<T, P>>(Comparator.comparing(scc -> scc.phases.get(0).id));
+		var pq = new PriorityQueue<PhaseScc<T, P>>(Comparator.comparing(scc -> scc.phases.getFirst().id));
 		sortedPhases.clear();
 
 		for (var scc : phaseToScc.values()) {
