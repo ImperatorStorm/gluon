@@ -11,11 +11,6 @@ repositories {
 		name "MuonMC"
 		url "https://maven.muonmc.org/releases"
 	}
-	// Note: It's temporarily here until Parchment dependencies are completely replaced /s
-	maven {
-		name = 'ParchmentMC'
-		url = 'https://maven.parchmentmc.org'
-	}
 	// Note: It's temporarily here until Quilt dependencies are completely replaced
 	maven {
 		name "Quilt"
