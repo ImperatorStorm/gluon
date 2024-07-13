@@ -350,7 +350,7 @@ public final class Event<T> {
 		// Rebuild handlers.
 		if (this.sortedPhases.size() == 1) {
 			// Special case with a single phase: use the array of the phase directly.
-			this.callbacks = this.sortedPhases.get(0).getData();
+			this.callbacks = this.sortedPhases.getFirst().getData();
 		} else {
 			@SuppressWarnings("unchecked")
 			var newCallbacks = (T[]) Array.newInstance(this.callbacks.getClass().getComponentType(), newLength);

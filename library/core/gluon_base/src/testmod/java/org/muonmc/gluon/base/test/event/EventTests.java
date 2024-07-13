@@ -266,7 +266,7 @@ public final class EventTests implements Runnable {
 
 	@SuppressWarnings("SuspiciousListRemoveInLoop")
 	private static <T> void testAllPermutations(List<T> selected, List<T> toSelect, Consumer<List<T>> action) {
-		if (toSelect.size() == 0) {
+		if (toSelect.isEmpty()) {
 			action.accept(selected);
 		} else {
 			for (int i = 0; i < toSelect.size(); ++i) {
@@ -274,7 +274,7 @@ public final class EventTests implements Runnable {
 				var remaining = new ArrayList<>(toSelect);
 				remaining.remove(i);
 				testAllPermutations(selected, remaining, action);
-				selected.remove(selected.size() - 1);
+				selected.removeLast();
 			}
 		}
 	}
