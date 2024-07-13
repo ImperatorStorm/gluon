@@ -23,7 +23,7 @@ public final class Versions {
 	/**
 	 * The Gluon version
 	 */
-	public static final String GLUON_VERSION = "9.0.0-alpha.0";
+	public static final String GLUON_VERSION = "0.1.0";
 
 	/**
 	 * The target Minecraft version.
