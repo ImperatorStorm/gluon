@@ -50,9 +50,9 @@ abstract class ClientLoginNetworkHandlerMixin implements NetworkHandlerExtension
 	}
 
 	@Inject(
-			method = "onLoginQueryRequest",
-			at = @At(value = "INVOKE", target = "Ljava/util/function/Consumer;accept(Ljava/lang/Object;)V", remap = false, shift = At.Shift.AFTER),
-			cancellable = true
+		method = "onLoginQueryRequest",
+		at = @At(value = "INVOKE", target = "Ljava/util/function/Consumer;accept(Ljava/lang/Object;)V", remap = false, shift = At.Shift.AFTER),
+		cancellable = true
 	)
 	private void handleQueryRequest(LoginQueryRequestS2CPacket packet, CallbackInfo ci) {
 		if (packet.payload() instanceof PacketByteBufLoginQueryRequestPayload payload) {

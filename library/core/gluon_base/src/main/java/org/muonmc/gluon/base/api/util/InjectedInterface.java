@@ -1,5 +1,6 @@
 /*
- * Copyright 2022 The Quilt Project
+ * Copyright 2021, 2022, 2023, 2024 The Quilt Project
+ * Copyright 2024 MuonMC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,11 +17,7 @@
 
 package org.muonmc.gluon.base.api.util;
 
-import java.lang.annotation.Documented;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.lang.annotation.*;
 
 /**
  * States that the annotated interface is injected into some of the game's classes.

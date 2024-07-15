@@ -1,6 +1,7 @@
 /*
  * Copyright 2016, 2017, 2018, 2019 FabricMC
- * Copyright 2022 The Quilt Project
+ * Copyright 2021, 2022, 2023, 2024 The Quilt Project
+ * Copyright 2024 MuonMC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -75,7 +76,7 @@ public final class QuiltGameTestImpl implements ModInitializer {
 		LOGGER.info("By starting a Minecraft server you agree to its EULA.");
 
 		try (var server = TestServer.startServer(
-				thread -> TestServer.create(thread, storageSession, resourcePackManager, getTestFunctions(), BlockPos.ORIGIN)
+			thread -> TestServer.create(thread, storageSession, resourcePackManager, getTestFunctions(), BlockPos.ORIGIN)
 		)) {
 			// Server runs.
 			server.getThread().join();
@@ -117,19 +118,19 @@ public final class QuiltGameTestImpl implements ModInitializer {
 		}
 
 		return new QuiltTestFunction(
-				gameTest.batchId(),
-				testCaseName,
-				structureName,
-				StructureTestUtil.getRotation(gameTest.rotation()),
-				gameTest.timeout(),
-				gameTest.startDelay(),
-				gameTest.required(),
-				gameTest.method_57962(),
-				gameTest.requiredSuccesses(),
-				gameTest.maxAttempts(),
-				gameTest.method_57098(),
-				QuiltGameTestImpl.getTestMethodInvoker(data, method),
-				method.getDeclaringClass()
+			gameTest.batchId(),
+			testCaseName,
+			structureName,
+			StructureTestUtil.getRotation(gameTest.rotation()),
+			gameTest.timeout(),
+			gameTest.startDelay(),
+			gameTest.required(),
+			gameTest.method_57962(),
+			gameTest.requiredSuccesses(),
+			gameTest.maxAttempts(),
+			gameTest.method_57098(),
+			QuiltGameTestImpl.getTestMethodInvoker(data, method),
+			method.getDeclaringClass()
 		);
 	}
 
@@ -160,7 +161,7 @@ public final class QuiltGameTestImpl implements ModInitializer {
 						constructor = testClass.getConstructor();
 					} catch (NoSuchMethodException e) {
 						throw new RuntimeException("Test class (%s) provided by (%s) must have a public default or no args constructor"
-								.formatted(testClass.getSimpleName(), data.namespace())
+							.formatted(testClass.getSimpleName(), data.namespace())
 						);
 					}
 
@@ -196,7 +197,7 @@ public final class QuiltGameTestImpl implements ModInitializer {
 
 		if (GAME_TESTS.containsKey(testClass)) {
 			throw new UnsupportedOperationException("Test class (%s) has already been registered with mod (%s)"
-					.formatted(testClass.getCanonicalName(), modId)
+				.formatted(testClass.getCanonicalName(), modId)
 			);
 		}
 
@@ -223,7 +224,7 @@ public final class QuiltGameTestImpl implements ModInitializer {
 		}
 
 		var entrypointContainers = QuiltLoader.getEntrypointContainers(
-				QuiltGameTest.ENTRYPOINT_KEY, Object.class
+			QuiltGameTest.ENTRYPOINT_KEY, Object.class
 		);
 
 		for (var container : entrypointContainers) {

@@ -7,7 +7,7 @@ gluonModule {
 	moduleName = "crash_info"
 	id = "quilt_crash_info"
 	description = "Adds information about the Quilt environment to crash reports," +
-			" and allows other mods to do the same."
+		" and allows other mods to do the same."
 	moduleDependencies {
 		core {
 			api("gluon_base")

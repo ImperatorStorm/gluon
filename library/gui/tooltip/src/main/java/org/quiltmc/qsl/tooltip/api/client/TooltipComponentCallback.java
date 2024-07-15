@@ -57,5 +57,6 @@ public interface TooltipComponentCallback extends ClientEventAwareListener {
 	 *
 	 * @param data the tooltip data for which a tooltip component equivalent is being searched for
 	 */
-	@Nullable TooltipComponent getComponent(TooltipData data);
+	@Nullable
+	TooltipComponent getComponent(TooltipData data);
 }

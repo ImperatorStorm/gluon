@@ -1,5 +1,6 @@
 /*
- * Copyright 2022 The Quilt Project
+ * Copyright 2021, 2022, 2023, 2024 The Quilt Project
+ * Copyright 2024 MuonMC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,15 +17,13 @@
 
 package org.muonmc.gluon.base.test.event;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
-
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import org.muonmc.gluon.base.api.event.Event;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public final class EventListenAllTests implements Runnable, TestCallback, GenericTestCallback<Item> {
 	private static final Logger LOGGER = LoggerFactory.getLogger(EventListenAllTests.class);

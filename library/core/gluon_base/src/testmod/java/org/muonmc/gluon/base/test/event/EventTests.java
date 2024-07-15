@@ -1,6 +1,7 @@
 /*
  * Copyright 2016, 2017, 2018, 2019 FabricMC
- * Copyright 2021 The Quilt Project
+ * Copyright 2021, 2022, 2023, 2024 The Quilt Project
+ * Copyright 2024 MuonMC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,19 +18,17 @@
 
 package org.muonmc.gluon.base.test.event;
 
+import com.mojang.logging.LogUtils;
+import net.minecraft.resources.ResourceLocation;
+import org.muonmc.gluon.base.api.event.Event;
+import org.muonmc.gluon.base.api.phase.PhaseSorting;
+import org.slf4j.Logger;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.function.Function;
-
-import com.mojang.logging.LogUtils;
-import org.slf4j.Logger;
-
-import net.minecraft.resources.ResourceLocation;
-
-import org.muonmc.gluon.base.api.event.Event;
-import org.muonmc.gluon.base.api.phase.PhaseSorting;
 
 public final class EventTests implements Runnable {
 	private static final Logger LOGGER = LogUtils.getLogger();
@@ -194,12 +193,12 @@ public final class EventTests implements Runnable {
 		var z = ResourceLocation.fromNamespaceAndPath("gluon", "z");
 
 		List<Consumer<Event<TestCallback>>> dependencies = List.of(
-				ev -> ev.addPhaseOrdering(a, z),
-				ev -> ev.addPhaseOrdering(d, e),
-				ev -> ev.addPhaseOrdering(e, z),
-				ev -> ev.addPhaseOrdering(z, b),
-				ev -> ev.addPhaseOrdering(b, y),
-				ev -> ev.addPhaseOrdering(y, z)
+			ev -> ev.addPhaseOrdering(a, z),
+			ev -> ev.addPhaseOrdering(d, e),
+			ev -> ev.addPhaseOrdering(e, z),
+			ev -> ev.addPhaseOrdering(z, b),
+			ev -> ev.addPhaseOrdering(b, y),
+			ev -> ev.addPhaseOrdering(y, z)
 		);
 
 		testAllPermutations(new ArrayList<>(), dependencies, selectedDependencies -> {
@@ -237,12 +236,12 @@ public final class EventTests implements Runnable {
 		ResourceLocation e = ResourceLocation.fromNamespaceAndPath("gluon", "e");
 
 		List<Consumer<Event<TestCallback>>> dependencies = List.of(
-				ev -> ev.addPhaseOrdering(e, a),
-				ev -> ev.addPhaseOrdering(a, b),
-				ev -> ev.addPhaseOrdering(b, a),
-				ev -> ev.addPhaseOrdering(d, b),
-				ev -> ev.addPhaseOrdering(d, c),
-				ev -> ev.addPhaseOrdering(c, d)
+			ev -> ev.addPhaseOrdering(e, a),
+			ev -> ev.addPhaseOrdering(a, b),
+			ev -> ev.addPhaseOrdering(b, a),
+			ev -> ev.addPhaseOrdering(d, b),
+			ev -> ev.addPhaseOrdering(d, c),
+			ev -> ev.addPhaseOrdering(c, d)
 		);
 
 		testAllPermutations(new ArrayList<>(), dependencies, selectedDependencies -> {

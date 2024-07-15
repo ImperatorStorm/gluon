@@ -48,8 +48,8 @@ public final class ClientConfigurationNetworkAddon extends AbstractChanneledNetw
 
 	public ClientConfigurationNetworkAddon(ClientConfigurationNetworkHandler handler, MinecraftClient client) {
 		super(ClientNetworkingImpl.CONFIGURATION,
-				((ClientConfigurationNetworkHandlerAccessor) handler).getConnection(),
-				"ClientConfigurationNetworkAddon for " + ((ClientConfigurationNetworkHandlerAccessor) handler).getProfile().getName());
+			((ClientConfigurationNetworkHandlerAccessor) handler).getConnection(),
+			"ClientConfigurationNetworkAddon for " + ((ClientConfigurationNetworkHandlerAccessor) handler).getProfile().getName());
 		this.handler = handler;
 		this.client = client;
 

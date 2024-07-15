@@ -1,5 +1,6 @@
 /*
- * Copyright 2021 The Quilt Project
+ * Copyright 2021, 2022, 2023, 2024 The Quilt Project
+ * Copyright 2024 MuonMC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,15 +17,14 @@
 
 package org.muonmc.gluon.base.test;
 
-import java.util.List;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import org.quiltmc.loader.api.ModContainer;
 import org.muonmc.gluon.base.api.entrypoint.ModInitializer;
 import org.muonmc.gluon.base.test.event.EventListenAllTests;
 import org.muonmc.gluon.base.test.event.EventTests;
+import org.quiltmc.loader.api.ModContainer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.List;
 
 public final class GluonBaseTestMod implements ModInitializer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(GluonBaseTestMod.class);
@@ -32,9 +32,9 @@ public final class GluonBaseTestMod implements ModInitializer {
 	@Override
 	public void onInitialize(ModContainer mod) {
 		List.of(new EventTests(), new EventListenAllTests())
-				.forEach(test -> {
-					LOGGER.info("Testing " + test.getClass().getSimpleName() + "...");
-					test.run();
-				});
+			.forEach(test -> {
+				LOGGER.info("Testing " + test.getClass().getSimpleName() + "...");
+				test.run();
+			});
 	}
 }

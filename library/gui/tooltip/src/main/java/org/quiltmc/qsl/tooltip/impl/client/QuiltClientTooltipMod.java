@@ -31,8 +31,8 @@ import org.quiltmc.qsl.tooltip.api.ConvertibleTooltipData;
 import org.quiltmc.qsl.tooltip.api.client.TooltipComponentCallback;
 
 @ListenerPhase(
-		callbackTarget = TooltipComponentCallback.class,
-		namespace = QuiltClientTooltipMod.NAMESPACE, path = QuiltClientTooltipMod.CONVERTIBLE_TOOLTIP_DATA_PHASE
+	callbackTarget = TooltipComponentCallback.class,
+	namespace = QuiltClientTooltipMod.NAMESPACE, path = QuiltClientTooltipMod.CONVERTIBLE_TOOLTIP_DATA_PHASE
 )
 @ApiStatus.Internal
 @ClientOnly

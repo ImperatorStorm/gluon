@@ -1,5 +1,6 @@
 /*
- * Copyright 2023 The Quilt Project
+ * Copyright 2021, 2022, 2023, 2024 The Quilt Project
+ * Copyright 2024 MuonMC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,8 +29,8 @@ import net.minecraft.util.Identifier;
 @Mixin(TestFunctionArgumentType.class)
 public class TestFunctionArgumentTypeMixin {
 	@Redirect(
-			method = "parse(Lcom/mojang/brigadier/StringReader;)Lnet/minecraft/test/TestFunction;",
-			at = @At(value = "INVOKE", target = "Lcom/mojang/brigadier/StringReader;readUnquotedString()Ljava/lang/String;", remap = false)
+		method = "parse(Lcom/mojang/brigadier/StringReader;)Lnet/minecraft/test/TestFunction;",
+		at = @At(value = "INVOKE", target = "Lcom/mojang/brigadier/StringReader;readUnquotedString()Ljava/lang/String;", remap = false)
 	)
 	private String quiltGameTest$readTestIdentifier(StringReader reader) throws CommandSyntaxException {
 		return Identifier.fromCommandInput(reader).toString();

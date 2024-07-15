@@ -39,16 +39,16 @@ final class ChannelScreen extends Screen {
 	@Override
 	protected void init() {
 		this.s2cButton = this.addDrawableSelectableElement(ButtonWidget.builder(Text.literal("S2C"), this::toS2C)
-				.positionAndSize(this.width / 2 - 55, 5, 50, 20)
-				.tooltip(Tooltip.create(Text.literal("Packets this client can receive")))
-				.build());
+			.positionAndSize(this.width / 2 - 55, 5, 50, 20)
+			.tooltip(Tooltip.create(Text.literal("Packets this client can receive")))
+			.build());
 		this.c2sButton = this.addDrawableSelectableElement(ButtonWidget.builder(Text.literal("C2S"), this::toC2S)
-				.positionAndSize(this.width / 2 + 5, 5, 50, 20)
-				.tooltip(Tooltip.create(Text.literal("Packets the server can receive")))
-				.build());
+			.positionAndSize(this.width / 2 + 5, 5, 50, 20)
+			.tooltip(Tooltip.create(Text.literal("Packets the server can receive")))
+			.build());
 		this.addDrawableSelectableElement(ButtonWidget.builder(Text.literal("Close"), button -> this.closeScreen())
-				.positionAndSize(this.width / 2 - 60, this.height - 25, 120, 20)
-				.build());
+			.positionAndSize(this.width / 2 - 60, this.height - 25, 120, 20)
+			.build());
 		this.channelList = this.addDrawable(new ChannelList(this.client, this.width, this.height - 60, 30, this.height - 30, this.textRenderer.fontHeight + 2));
 	}
 
@@ -64,12 +64,12 @@ final class ChannelScreen extends Screen {
 			final int textWidth = this.textRenderer.getWidth(clickMe);
 			//noinspection ConstantConditions
 			graphics.drawText(
-					this.textRenderer,
-					clickMe,
-					(int) (this.width / 2.0F - (textWidth / 2.0F)),
-					60,
-					Formatting.YELLOW.getColorValue(),
-					false
+				this.textRenderer,
+				clickMe,
+				(int) (this.width / 2.0F - (textWidth / 2.0F)),
+				60,
+				Formatting.YELLOW.getColorValue(),
+				false
 			);
 		}
 	}

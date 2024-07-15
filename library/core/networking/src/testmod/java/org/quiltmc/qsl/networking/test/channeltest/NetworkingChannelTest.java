@@ -55,12 +55,12 @@ public final class NetworkingChannelTest implements CommandRegistrationCallback 
 		// Info
 		{
 			final LiteralCommandNode<ServerCommandSource> info = literal("info")
-					.executes(context -> infoCommand(context, context.getSource().getPlayer()))
-					.build();
+				.executes(context -> infoCommand(context, context.getSource().getPlayer()))
+				.build();
 
 			final ArgumentCommandNode<ServerCommandSource, EntitySelector> player = argument("player", player())
-					.executes(context -> infoCommand(context, getPlayer(context, "player")))
-					.build();
+				.executes(context -> infoCommand(context, getPlayer(context, "player")))
+				.build();
 
 			info.addChild(player);
 			channelTestCommand.addChild(info);
@@ -69,9 +69,9 @@ public final class NetworkingChannelTest implements CommandRegistrationCallback 
 		// Register
 		{
 			final LiteralCommandNode<ServerCommandSource> register = literal("register")
-					.then(argument("channel", identifier())
-							.executes(context -> registerChannel(context, context.getSource().getPlayer())))
-					.build();
+				.then(argument("channel", identifier())
+					.executes(context -> registerChannel(context, context.getSource().getPlayer())))
+				.build();
 
 			channelTestCommand.addChild(register);
 		}
@@ -79,9 +79,9 @@ public final class NetworkingChannelTest implements CommandRegistrationCallback 
 		// Unregister
 		{
 			final LiteralCommandNode<ServerCommandSource> unregister = literal("unregister")
-					.then(argument("channel", identifier()).suggests(NetworkingChannelTest::suggestReceivableChannels)
-							.executes(context -> unregisterChannel(context, context.getSource().getPlayer())))
-					.build();
+				.then(argument("channel", identifier()).suggests(NetworkingChannelTest::suggestReceivableChannels)
+					.executes(context -> unregisterChannel(context, context.getSource().getPlayer())))
+				.build();
 
 			channelTestCommand.addChild(unregister);
 		}

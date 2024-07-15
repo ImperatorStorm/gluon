@@ -1,5 +1,6 @@
 /*
- * Copyright 2023 The Quilt Project
+ * Copyright 2021, 2022, 2023, 2024 The Quilt Project
+ * Copyright 2024 MuonMC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,4 +23,5 @@ import org.jetbrains.annotations.Nullable;
 import org.quiltmc.qsl.testing.api.game.QuiltGameTest;
 
 @ApiStatus.Internal
-public record GameTestData(String namespace, @Nullable QuiltGameTest instance) {}
+public record GameTestData(String namespace, @Nullable QuiltGameTest instance) {
+}

@@ -201,7 +201,7 @@ abstract class ServerConfigurationNetworkHandlerMixin extends AbstractServerPack
 		if (this.immediateTask != null) {
 			throw new RuntimeException(
 				"Cannot add an immediate task of type: \"" + task.getType()
-				+ "\" when there is already an immediate task of type: \"" + this.immediateTask.getType() + "\"."
+					+ "\" when there is already an immediate task of type: \"" + this.immediateTask.getType() + "\"."
 			);
 		}
 

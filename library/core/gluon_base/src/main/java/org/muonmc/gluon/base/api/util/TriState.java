@@ -1,6 +1,7 @@
 /*
  * Copyright 2016, 2017, 2018, 2019 FabricMC
- * Copyright 2022 The Quilt Project
+ * Copyright 2021, 2022, 2023, 2024 The Quilt Project
+ * Copyright 2024 MuonMC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,10 +18,10 @@
 
 package org.muonmc.gluon.base.api.util;
 
+import org.jetbrains.annotations.Nullable;
+
 import java.util.Objects;
 import java.util.function.BooleanSupplier;
-
-import org.jetbrains.annotations.Nullable;
 
 /**
  * A enum that represents either {@code true}, {@code false} or a default/unset value.

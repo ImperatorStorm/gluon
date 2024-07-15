@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 The Quilt Project
+ * Copyright 2021, 2022, 2023, 2024 The Quilt Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -70,5 +70,6 @@ public interface ServerConfigurationTaskManager {
 	 *
 	 * @return the current task
 	 */
-	@Nullable ConfigurationTask getCurrentTask();
+	@Nullable
+	ConfigurationTask getCurrentTask();
 }

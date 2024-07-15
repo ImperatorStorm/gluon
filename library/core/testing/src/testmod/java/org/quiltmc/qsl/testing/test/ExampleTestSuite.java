@@ -1,6 +1,7 @@
 /*
  * Copyright 2016, 2017, 2018, 2019 FabricMC
- * Copyright 2022 The Quilt Project
+ * Copyright 2021, 2022, 2023, 2024 The Quilt Project
+ * Copyright 2024 MuonMC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,11 +33,11 @@ public class ExampleTestSuite implements QuiltGameTest {
 		context.setBlockState(0, 2, 0, Blocks.DIAMOND_BLOCK);
 
 		context.succeedWhen(() ->
-				context.checkBlock(
-					new BlockPos(0, 2, 0),
-					(block) -> block == Blocks.DIAMOND_BLOCK,
-					"Expected block to be diamond"
-				)
+			context.checkBlock(
+				new BlockPos(0, 2, 0),
+				(block) -> block == Blocks.DIAMOND_BLOCK,
+				"Expected block to be diamond"
+			)
 		);
 	}
 }

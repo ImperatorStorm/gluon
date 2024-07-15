@@ -70,23 +70,23 @@ abstract class ScreenMixin implements QuiltScreen {
 	private ButtonList quilt$quiltButtons = null;
 
 	@Inject(
-			method = {"init(Lnet/minecraft/client/MinecraftClient;II)V", "clearAndInit()V"},
-			at = @At(
-					value = "INVOKE",
-					target = "Lnet/minecraft/client/gui/screen/Screen;init()V"
-			)
+		method = {"init(Lnet/minecraft/client/MinecraftClient;II)V", "clearAndInit()V"},
+		at = @At(
+			value = "INVOKE",
+			target = "Lnet/minecraft/client/gui/screen/Screen;init()V"
+		)
 	)
 	private void quilt$beforeInitScreen(CallbackInfo ci) {
 		ScreenEvents.BEFORE_INIT.invoker().beforeInit((Screen) (Object) this, this.client, !this.initialized);
 	}
 
 	@Inject(
-			method = {"init(Lnet/minecraft/client/MinecraftClient;II)V", "clearAndInit()V"},
-			at = @At(
-					value = "INVOKE",
-					target = "Lnet/minecraft/client/gui/screen/Screen;init()V",
-					shift = At.Shift.AFTER
-			)
+		method = {"init(Lnet/minecraft/client/MinecraftClient;II)V", "clearAndInit()V"},
+		at = @At(
+			value = "INVOKE",
+			target = "Lnet/minecraft/client/gui/screen/Screen;init()V",
+			shift = At.Shift.AFTER
+		)
 	)
 	private void quilt$afterInitScreen(CallbackInfo ci) {
 		ScreenEvents.AFTER_INIT.invoker().afterInit((Screen) (Object) this, this.client, !this.initialized);

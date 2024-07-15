@@ -1,6 +1,7 @@
 /*
  * Copyright 2016, 2017, 2018, 2019 FabricMC
- * Copyright 2022 The Quilt Project
+ * Copyright 2021, 2022, 2023, 2024 The Quilt Project
+ * Copyright 2024 MuonMC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,8 +41,8 @@ public abstract class CommandManagerMixin {
 	private CommandDispatcher<ServerCommandSource> dispatcher;
 
 	@Inject(
-			method = "<init>",
-			at = @At(value = "INVOKE", target = "Lnet/minecraft/server/command/WorldBorderCommand;register(Lcom/mojang/brigadier/CommandDispatcher;)V", shift = At.Shift.AFTER)
+		method = "<init>",
+		at = @At(value = "INVOKE", target = "Lnet/minecraft/server/command/WorldBorderCommand;register(Lcom/mojang/brigadier/CommandDispatcher;)V", shift = At.Shift.AFTER)
 	)
 	private void construct(CommandManager.RegistrationEnvironment environment, CommandBuildContext context, CallbackInfo info) {
 		// Registered by vanilla when isDevelopment is enabled.

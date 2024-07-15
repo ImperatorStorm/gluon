@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 The Quilt Project
+ * Copyright 2021, 2022, 2023, 2024 The Quilt Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -118,7 +118,7 @@ public final class PlayerLookup {
 			// return an immutable collection to guard against accidental removals.
 			if (tracker != null) {
 				return tracker.getListeners()
-                        .stream().map(ServerPlayerConnection::getPlayer).collect(Collectors.toUnmodifiableSet());
+					.stream().map(ServerPlayerConnection::getPlayer).collect(Collectors.toUnmodifiableSet());
 			}
 
 			return Collections.emptySet();
@@ -172,9 +172,9 @@ public final class PlayerLookup {
 		double radiusSq = radius * radius;
 
 		return world(world)
-				.stream()
-				.filter((p) -> p.squaredDistanceTo(pos) <= radiusSq)
-				.collect(Collectors.toList());
+			.stream()
+			.filter((p) -> p.squaredDistanceTo(pos) <= radiusSq)
+			.collect(Collectors.toList());
 	}
 
 	/**
@@ -191,9 +191,9 @@ public final class PlayerLookup {
 		double radiusSq = radius * radius;
 
 		return world(world)
-				.stream()
-				.filter((p) -> p.squaredDistanceTo(pos.getX(), pos.getY(), pos.getZ()) <= radiusSq)
-				.collect(Collectors.toList());
+			.stream()
+			.filter((p) -> p.squaredDistanceTo(pos.getX(), pos.getY(), pos.getZ()) <= radiusSq)
+			.collect(Collectors.toList());
 	}
 
 	private PlayerLookup() {

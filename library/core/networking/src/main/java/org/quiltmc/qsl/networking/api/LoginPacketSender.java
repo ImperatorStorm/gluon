@@ -30,6 +30,7 @@ import org.quiltmc.qsl.networking.impl.payload.PacketByteBufLoginQueryRequestPay
 
 /**
  * Represents something that supports sending packets to login channels.
+ *
  * @see PacketSender
  */
 @ApiStatus.NonExtendable
@@ -38,7 +39,7 @@ public interface LoginPacketSender extends PacketSender<CustomQueryPayload> {
 	 * Creates a packet for sending to a login channel.
 	 *
 	 * @param channelName the id of the channel
-	 * @param buf the content of the packet
+	 * @param buf         the content of the packet
 	 * @return the created packet
 	 */
 	default Packet<?> createPacket(Identifier channelName, PacketByteBuf buf) {
@@ -49,7 +50,7 @@ public interface LoginPacketSender extends PacketSender<CustomQueryPayload> {
 	 * Sends a packet to a channel.
 	 *
 	 * @param channel the id of the channel
-	 * @param buf the content of the packet
+	 * @param buf     the content of the packet
 	 */
 	default void sendPacket(Identifier channel, PacketByteBuf buf) {
 		Objects.requireNonNull(channel, "Channel cannot be null");
@@ -62,7 +63,7 @@ public interface LoginPacketSender extends PacketSender<CustomQueryPayload> {
 	 * Sends a packet to a channel.
 	 *
 	 * @param channel  the id of the channel
-	 * @param buf the content of the packet
+	 * @param buf      the content of the packet
 	 * @param listener an optional listener containing callbacks to execute after the packet is sent, may be {@code null}
 	 */
 	default void sendPacket(Identifier channel, PacketByteBuf buf, @Nullable PacketSendListener listener) {

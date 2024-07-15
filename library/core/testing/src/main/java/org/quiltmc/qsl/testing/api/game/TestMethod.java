@@ -1,5 +1,6 @@
 /*
- * Copyright 2022 The Quilt Project
+ * Copyright 2021, 2022, 2023, 2024 The Quilt Project
+ * Copyright 2024 MuonMC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -58,12 +59,12 @@ public record TestMethod(@NotNull Method method) {
 			this.method.invoke(instance, params);
 		} catch (IllegalAccessException e) {
 			throw new RuntimeException("Failed to invoke test method (%s) in (%s) because %s"
-					.formatted(this.method.getName(), this.method.getDeclaringClass().getCanonicalName(), e.getMessage()),
-					e
+				.formatted(this.method.getName(), this.method.getDeclaringClass().getCanonicalName(), e.getMessage()),
+				e
 			);
 		} catch (InvocationTargetException e) {
 			QuiltGameTestImpl.LOGGER.error("Exception occurred when invoking test method {} in ({})",
-					this.method.getName(), this.method.getDeclaringClass().getCanonicalName(), e
+				this.method.getName(), this.method.getDeclaringClass().getCanonicalName(), e
 			);
 
 			if (e.getCause() instanceof RuntimeException runtimeException) {

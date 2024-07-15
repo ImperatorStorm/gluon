@@ -1,5 +1,6 @@
 /*
- * Copyright 2023 The Quilt Project
+ * Copyright 2021, 2022, 2023, 2024 The Quilt Project
+ * Copyright 2024 MuonMC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,10 +17,10 @@
 
 /**
  * <h2>The Quilt Testing API</h2>
- *
+ * <p>
  * The Quilt Testing API is a set of testing utilities to allow modders to test the game and their mods
  * to ensure that everything is working up to specs.
- *
+ * <p>
  * The utilities present in this API are:
  * <ul>
  *     <li>{@link org.quiltmc.qsl.testing.api.game Game Test API} which allows the usage of the Minecraft's custom automated testing framework.</li>

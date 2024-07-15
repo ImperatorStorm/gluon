@@ -1,5 +1,6 @@
 /*
- * Copyright 2023 The Quilt Project
+ * Copyright 2021, 2022, 2023, 2024 The Quilt Project
+ * Copyright 2024 MuonMC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,33 +38,34 @@ public final class QuiltGameTestStructureLoader {
 
 	public static Stream<Identifier> streamTemplatesFromResource(ResourceManager resourceManager) {
 		return GAME_TEST_STRUCTURE_NAMESPACE.findMatchingResources(resourceManager)
-				.keySet().stream()
-				.map(GAME_TEST_STRUCTURE_NAMESPACE::unwrapFilePath);
+			.keySet().stream()
+			.map(GAME_TEST_STRUCTURE_NAMESPACE::unwrapFilePath);
 	}
 
 	/**
 	 * Loads the game test structure NBT from the given identifier and resource manager.
+	 *
 	 * @param resourceManager the resource manager for resource access
-	 * @param id the identifier of the structure to load
+	 * @param id              the identifier of the structure to load
 	 * @return the NBT of the structure if present, or {@link Optional#empty()} otherwise
 	 */
 	public static Optional<NbtCompound> loadStructure(ResourceManager resourceManager, Identifier id) {
 		var structureId = GAME_TEST_STRUCTURE_NAMESPACE.wrapToFilePath(id);
 
 		return resourceManager.getResource(structureId)
-				.map(resource -> {
-					try {
-						String snbt;
+			.map(resource -> {
+				try {
+					String snbt;
 
-						try (var inputStream = resource.open()) {
-							snbt = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
-						}
-
-						return NbtHelper.fromSnbt(snbt);
-					} catch (IOException | CommandSyntaxException e) {
-						throw new RuntimeException("Error while trying to load structure: " + structureId, e);
+					try (var inputStream = resource.open()) {
+						snbt = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
 					}
-				});
+
+					return NbtHelper.fromSnbt(snbt);
+				} catch (IOException | CommandSyntaxException e) {
+					throw new RuntimeException("Error while trying to load structure: " + structureId, e);
+				}
+			});
 	}
 
 	private QuiltGameTestStructureLoader() {

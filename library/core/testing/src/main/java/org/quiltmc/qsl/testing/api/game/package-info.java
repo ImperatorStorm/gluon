@@ -1,5 +1,6 @@
 /*
- * Copyright 2023 The Quilt Project
+ * Copyright 2021, 2022, 2023, 2024 The Quilt Project
+ * Copyright 2024 MuonMC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -57,7 +58,7 @@
  * 		context.addInstantFinalTask(() ->
  * 				context.checkBlock(new BlockPos(0, 2, 0), (block) -> block == Blocks.DIAMOND_BLOCK, "Expected block to be diamond")
  * 		);
- * 	}
+ *    }
  * }
  * </code></pre>
  * <p>
@@ -78,12 +79,12 @@
  * 		testmodClient {
  * 			client()
  * 			source(sourceSets.testmod)
- * 		}
+ *        }
  *
  * 		testmodServer {
  * 			server()
  * 			source(sourceSets.testmod)
- * 		}
+ *        }
  *
  * 		gameTestServer {
  * 			inherit testmodServer
@@ -93,8 +94,8 @@
  * 			property("quilt.game_test", "true")
  * 			property("quilt.game_test.report_file", "${project.buildDir}/game_test/report.xml")
  * 			runDir("build/game_test")
- * 		}
- * 	}
+ *        }
+ *    }
  * }
  *
  * afterEvaluate {

@@ -35,12 +35,12 @@ abstract class KeyboardMixin {
 	// lambda in Screen.wrapScreenError in Keyboard.onKey
 	@SuppressWarnings("target")
 	@Inject(
-			method = "method_1454(ILnet/minecraft/client/gui/screen/Screen;[ZIII)V",
-			at = @At(
-					value = "INVOKE",
-					target = "Lnet/minecraft/client/gui/screen/Screen;keyPressed(III)Z"
-			),
-			cancellable = true
+		method = "method_1454(ILnet/minecraft/client/gui/screen/Screen;[ZIII)V",
+		at = @At(
+			value = "INVOKE",
+			target = "Lnet/minecraft/client/gui/screen/Screen;keyPressed(III)Z"
+		),
+		cancellable = true
 	)
 	private static void beforeKeyPressedEvent(int code, Screen screen, boolean[] resultHack, int key, int scancode, int modifiers, CallbackInfo ci) {
 		if (ScreenKeyboardEvents.ALLOW_KEY_PRESS.invoker().allowKeyPress(screen, key, scancode, modifiers) == TriState.FALSE) {
@@ -55,12 +55,12 @@ abstract class KeyboardMixin {
 	// lambda in Screen.wrapScreenError in Keyboard.onKey
 	@SuppressWarnings("target")
 	@Inject(
-			method = "method_1454(ILnet/minecraft/client/gui/screen/Screen;[ZIII)V",
-			at = @At(
-					value = "INVOKE",
-					target = "Lnet/minecraft/client/gui/screen/Screen;keyPressed(III)Z",
-					shift = At.Shift.AFTER
-			)
+		method = "method_1454(ILnet/minecraft/client/gui/screen/Screen;[ZIII)V",
+		at = @At(
+			value = "INVOKE",
+			target = "Lnet/minecraft/client/gui/screen/Screen;keyPressed(III)Z",
+			shift = At.Shift.AFTER
+		)
 	)
 	private static void afterKeyPressedEvent(int code, Screen screen, boolean[] resultHack, int key, int scancode, int modifiers, CallbackInfo ci) {
 		ScreenKeyboardEvents.AFTER_KEY_PRESS.invoker().afterKeyPress(screen, key, scancode, modifiers);
@@ -69,12 +69,12 @@ abstract class KeyboardMixin {
 	// lambda in Screen.wrapScreenError in Keyboard.onKey
 	@SuppressWarnings("target")
 	@Inject(
-			method = "method_1454(ILnet/minecraft/client/gui/screen/Screen;[ZIII)V",
-			at = @At(
-					value = "INVOKE",
-					target = "Lnet/minecraft/client/gui/screen/Screen;keyReleased(III)Z"
-			),
-			cancellable = true
+		method = "method_1454(ILnet/minecraft/client/gui/screen/Screen;[ZIII)V",
+		at = @At(
+			value = "INVOKE",
+			target = "Lnet/minecraft/client/gui/screen/Screen;keyReleased(III)Z"
+		),
+		cancellable = true
 	)
 	private static void beforeKeyReleasedEvent(int code, Screen screen, boolean[] resultHack, int key, int scancode, int modifiers, CallbackInfo ci) {
 		if (ScreenKeyboardEvents.ALLOW_KEY_RELEASE.invoker().allowKeyRelease(screen, key, scancode, modifiers) == TriState.FALSE) {
@@ -89,12 +89,12 @@ abstract class KeyboardMixin {
 	// lambda in Screen.wrapScreenError in Keyboard.onKey
 	@SuppressWarnings("target")
 	@Inject(
-			method = "method_1454(ILnet/minecraft/client/gui/screen/Screen;[ZIII)V",
-			at = @At(
-					value = "INVOKE",
-					target = "Lnet/minecraft/client/gui/screen/Screen;keyReleased(III)Z",
-					shift = At.Shift.AFTER
-			)
+		method = "method_1454(ILnet/minecraft/client/gui/screen/Screen;[ZIII)V",
+		at = @At(
+			value = "INVOKE",
+			target = "Lnet/minecraft/client/gui/screen/Screen;keyReleased(III)Z",
+			shift = At.Shift.AFTER
+		)
 	)
 	private static void afterKeyReleasedEvent(int code, Screen screen, boolean[] resultHack, int key, int scancode, int modifiers, CallbackInfo ci) {
 		ScreenKeyboardEvents.AFTER_KEY_RELEASE.invoker().afterKeyRelease(screen, key, scancode, modifiers);

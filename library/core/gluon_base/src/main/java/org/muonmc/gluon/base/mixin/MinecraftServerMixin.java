@@ -1,5 +1,6 @@
 /*
- * Copyright 2021 The Quilt Project
+ * Copyright 2021, 2022, 2023, 2024 The Quilt Project
+ * Copyright 2024 MuonMC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,8 +17,8 @@
 
 package org.muonmc.gluon.base.mixin;
 
-import java.util.function.BooleanSupplier;
-
+import net.minecraft.server.MinecraftServer;
+import org.muonmc.gluon.base.impl.GluonBaseImpl;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.MixinEnvironment;
 import org.spongepowered.asm.mixin.Shadow;
@@ -26,9 +27,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import net.minecraft.server.MinecraftServer;
-
-import org.muonmc.gluon.base.impl.GluonBaseImpl;
+import java.util.function.BooleanSupplier;
 
 @Mixin(MinecraftServer.class)
 public abstract class MinecraftServerMixin {

@@ -1,6 +1,7 @@
 /*
  * Copyright 2016, 2017, 2018, 2019 FabricMC
- * Copyright 2022 The Quilt Project
+ * Copyright 2021, 2022, 2023, 2024 The Quilt Project
+ * Copyright 2024 MuonMC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -50,17 +51,17 @@ public class MainMixin {
 	}
 
 	@Inject(
-			method = "main",
-			at = @At(
-					value = "INVOKE",
-					target = "Lnet/minecraft/resource/pack/VanillaDataPackProvider;createPackManager(Lnet/minecraft/world/storage/WorldSaveStorage$Session;)Lnet/minecraft/resource/pack/PackManager;",
-					shift = At.Shift.BY,
-					by = 2,
-					remap = true
-			),
-			cancellable = true,
-			locals = LocalCapture.CAPTURE_FAILHARD,
-			remap = false
+		method = "main",
+		at = @At(
+			value = "INVOKE",
+			target = "Lnet/minecraft/resource/pack/VanillaDataPackProvider;createPackManager(Lnet/minecraft/world/storage/WorldSaveStorage$Session;)Lnet/minecraft/resource/pack/PackManager;",
+			shift = At.Shift.BY,
+			by = 2,
+			remap = true
+		),
+		cancellable = true,
+		locals = LocalCapture.CAPTURE_FAILHARD,
+		remap = false
 	)
 	private static void onStart(String[] strings, CallbackInfo ci,
 								OptionParser optionParser, OptionSpec<?> optionSpec, OptionSpec<?> optionSpec2,
@@ -86,14 +87,14 @@ public class MainMixin {
 	 * @param ci the injection callback info
 	 */
 	@Inject(
-			method = "main",
-			at = @At(
-					value = "INVOKE",
-					target = "Lorg/slf4j/Logger;error(Lorg/slf4j/Marker;Ljava/lang/String;Ljava/lang/Throwable;)V",
-					shift = At.Shift.AFTER,
-					remap = false
-			),
+		method = "main",
+		at = @At(
+			value = "INVOKE",
+			target = "Lorg/slf4j/Logger;error(Lorg/slf4j/Marker;Ljava/lang/String;Ljava/lang/Throwable;)V",
+			shift = At.Shift.AFTER,
 			remap = false
+		),
+		remap = false
 	)
 	private static void exitOnError(CallbackInfo ci) {
 		if (QuiltGameTestImpl.ENABLED) {

@@ -57,24 +57,24 @@ public final class NetworkingPlayPacketTest implements ModInitializer {
 		NetworkingTestMods.LOGGER.info("Registering test command");
 
 		dispatcher.register(literal("network_test_command")
-				.then(argument("stuff", string()).executes(ctx -> {
-					String stuff = StringArgumentType.getString(ctx, "stuff");
-					sendToTestChannel(ctx.getSource().getPlayer(), stuff);
-					return Command.SINGLE_SUCCESS;
-				}))
-				.then(literal("bundled").executes(ctx -> {
-					PacketByteBuf bufA = PacketByteBufs.create();
-					bufA.writeString("Bundled #1");
-					PacketByteBuf bufB = PacketByteBufs.create();
-					bufB.writeString("Bundled #2");
+			.then(argument("stuff", string()).executes(ctx -> {
+				String stuff = StringArgumentType.getString(ctx, "stuff");
+				sendToTestChannel(ctx.getSource().getPlayer(), stuff);
+				return Command.SINGLE_SUCCESS;
+			}))
+			.then(literal("bundled").executes(ctx -> {
+				PacketByteBuf bufA = PacketByteBufs.create();
+				bufA.writeString("Bundled #1");
+				PacketByteBuf bufB = PacketByteBufs.create();
+				bufB.writeString("Bundled #2");
 
-					var packet = new PacketBundleS2CPacket(List.of(
-							(Packet<ClientPlayPacketListener>) (Object) ServerPlayNetworking.createS2CPacket(new TestPacket("Bundled #1")),
-							(Packet<ClientPlayPacketListener>) (Object) ServerPlayNetworking.createS2CPacket(new TestPacket("Bundled #2"))
-					));
-					ctx.getSource().getPlayer().networkHandler.send(packet);
-					return Command.SINGLE_SUCCESS;
-				})));
+				var packet = new PacketBundleS2CPacket(List.of(
+					(Packet<ClientPlayPacketListener>) (Object) ServerPlayNetworking.createS2CPacket(new TestPacket("Bundled #1")),
+					(Packet<ClientPlayPacketListener>) (Object) ServerPlayNetworking.createS2CPacket(new TestPacket("Bundled #2"))
+				));
+				ctx.getSource().getPlayer().networkHandler.send(packet);
+				return Command.SINGLE_SUCCESS;
+			})));
 	}
 
 	@Override

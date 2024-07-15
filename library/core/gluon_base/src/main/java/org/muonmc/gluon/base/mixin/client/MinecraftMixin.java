@@ -1,5 +1,6 @@
 /*
- * Copyright 2022 The Quilt Project
+ * Copyright 2021, 2022, 2023, 2024 The Quilt Project
+ * Copyright 2024 MuonMC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,24 +17,22 @@
 
 package org.muonmc.gluon.base.mixin.client;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.main.GameConfig;
 import org.muonmc.gluon.base.api.entrypoint.client.ClientModInitializer;
 import org.quiltmc.loader.api.entrypoint.EntrypointUtil;
+import org.quiltmc.loader.api.minecraft.ClientOnly;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.main.GameConfig;
-
-import org.quiltmc.loader.api.minecraft.ClientOnly;
-
 @ClientOnly
 @Mixin(Minecraft.class)
 public abstract class MinecraftMixin {
 	@Inject(
-			method = "<init>",
-			at = @At(value = "INVOKE", target = "Lnet/minecraft/client/Options;<init>(Lnet/minecraft/client/Minecraft;Ljava/io/File;)V")
+		method = "<init>",
+		at = @At(value = "INVOKE", target = "Lnet/minecraft/client/Options;<init>(Lnet/minecraft/client/Minecraft;Ljava/io/File;)V")
 	)
 	private void onInit(GameConfig gameConfig, CallbackInfo ci) {
 		EntrypointUtil.invoke(ClientModInitializer.ENTRYPOINT_KEY, ClientModInitializer.class, ClientModInitializer::onInitializeClient);

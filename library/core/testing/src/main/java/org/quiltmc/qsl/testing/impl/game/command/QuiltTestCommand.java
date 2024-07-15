@@ -1,5 +1,6 @@
 /*
- * Copyright 2023 The Quilt Project
+ * Copyright 2021, 2022, 2023, 2024 The Quilt Project
+ * Copyright 2024 MuonMC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -73,17 +74,17 @@ public final class QuiltTestCommand {
 			}
 
 			source.sendSystemMessage(Text.literal("Exported ")
-					.append(Text.literal(structure).formatted(Formatting.GOLD))
-					.append(" to ")
-					.append(Text.literal(exportedPath.toAbsolutePath().toString()).formatted(Formatting.GOLD))
-					.append(" [")
-					.append(Text.literal("Open Directory")
-							.styled(style -> style.withColor(Formatting.GREEN)
-									.withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_FILE, directoryPath.toAbsolutePath().toString()))
-									.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal("Click to open.")))
-							)
+				.append(Text.literal(structure).formatted(Formatting.GOLD))
+				.append(" to ")
+				.append(Text.literal(exportedPath.toAbsolutePath().toString()).formatted(Formatting.GOLD))
+				.append(" [")
+				.append(Text.literal("Open Directory")
+					.styled(style -> style.withColor(Formatting.GREEN)
+						.withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_FILE, directoryPath.toAbsolutePath().toString()))
+						.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal("Click to open.")))
 					)
-					.append("]")
+				)
+				.append("]")
 			);
 			return 0;
 		}

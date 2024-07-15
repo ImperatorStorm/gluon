@@ -1,5 +1,6 @@
 /*
- * Copyright 2022 The Quilt Project
+ * Copyright 2021, 2022, 2023, 2024 The Quilt Project
+ * Copyright 2024 MuonMC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,15 +17,13 @@
 
 package org.muonmc.gluon.base.impl.event;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
-
-import org.jetbrains.annotations.ApiStatus;
-
 import net.minecraft.resources.ResourceLocation;
-
+import org.jetbrains.annotations.ApiStatus;
 import org.muonmc.gluon.base.api.phase.PhaseData;
 import org.quiltmc.loader.api.ModInternal;
+
+import java.lang.reflect.Array;
+import java.util.Arrays;
 
 @ModInternal
 @ApiStatus.Internal

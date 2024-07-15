@@ -50,9 +50,9 @@ abstract class GameRendererMixin {
 
 	@SuppressWarnings("InvalidInjectorMethodSignature")
 	@Inject(
-			method = "render",
-			at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/Screen;renderWithTooltip(Lnet/minecraft/client/gui/GuiGraphics;IIF)V"),
-			locals = LocalCapture.CAPTURE_FAILHARD
+		method = "render",
+		at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/Screen;renderWithTooltip(Lnet/minecraft/client/gui/GuiGraphics;IIF)V"),
+		locals = LocalCapture.CAPTURE_FAILHARD
 	)
 	private void onBeforeRenderScreen(float originalDelta, long startTime, boolean tick, CallbackInfo ci,
 									  float tickDelta, boolean bl, int mouseX, int mouseY, Window window, Matrix4f projectionMatrix, Matrix4fStack matrices, GuiGraphics graphics) {
@@ -65,13 +65,13 @@ abstract class GameRendererMixin {
 	// This injection should end up in the try block so exceptions are caught
 	@SuppressWarnings("InvalidInjectorMethodSignature")
 	@Inject(
-			method = "render",
-			at = @At(
-					value = "INVOKE",
-					target = "Lnet/minecraft/client/gui/screen/Screen;renderWithTooltip(Lnet/minecraft/client/gui/GuiGraphics;IIF)V",
-					shift = At.Shift.AFTER
-			),
-			locals = LocalCapture.CAPTURE_FAILHARD
+		method = "render",
+		at = @At(
+			value = "INVOKE",
+			target = "Lnet/minecraft/client/gui/screen/Screen;renderWithTooltip(Lnet/minecraft/client/gui/GuiGraphics;IIF)V",
+			shift = At.Shift.AFTER
+		),
+		locals = LocalCapture.CAPTURE_FAILHARD
 	)
 	private void onAfterRenderScreen(float originalDelta, long startTime, boolean tick, CallbackInfo ci,
 									 float tickDelta, boolean bl, int mouseX, int mouseY, Window window, Matrix4f projectionMatrix, Matrix4fStack matrices, GuiGraphics graphics) {

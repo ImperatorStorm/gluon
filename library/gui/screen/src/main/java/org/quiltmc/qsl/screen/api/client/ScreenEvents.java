@@ -140,8 +140,8 @@ public final class ScreenEvents {
 		/**
 		 * An event that is called before a screen is initialized to its default state.
 		 *
-		 * @param screen the screen
-		 * @param client the screen's {@link MinecraftClient client} instance
+		 * @param screen    the screen
+		 * @param client    the screen's {@link MinecraftClient client} instance
 		 * @param firstInit {@code true} if the screen has been initialized for the first time, or {@code false} otherwise
 		 */
 		void beforeInit(Screen screen, MinecraftClient client, boolean firstInit);
@@ -153,8 +153,8 @@ public final class ScreenEvents {
 		/**
 		 * An event that is called after a screen is initialized to its default state.
 		 *
-		 * @param screen the screen
-		 * @param client the screen's client instance
+		 * @param screen    the screen
+		 * @param client    the screen's client instance
 		 * @param firstInit {@code true} if the screen has been initialized for the first time, or {@code false} otherwise
 		 */
 		void afterInit(Screen screen, MinecraftClient client, boolean firstInit);
@@ -190,5 +190,6 @@ public final class ScreenEvents {
 		void afterTick(Screen screen);
 	}
 
-	private ScreenEvents() {}
+	private ScreenEvents() {
+	}
 }

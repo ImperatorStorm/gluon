@@ -1,5 +1,6 @@
 /*
- * Copyright 2021 The Quilt Project
+ * Copyright 2021, 2022, 2023, 2024 The Quilt Project
+ * Copyright 2024 MuonMC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,11 +17,7 @@
 
 package org.muonmc.gluon.base.api.event;
 
-import java.lang.annotation.Documented;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.lang.annotation.*;
 
 /**
  * A marker interface that indicates an event stored in a field or returned by a method may invoke the event callback on
@@ -91,4 +88,5 @@ import java.lang.annotation.Target;
 @Documented // Documentation
 @Retention(RetentionPolicy.CLASS) // For static analysis
 @Target({ElementType.FIELD, ElementType.METHOD})
-public @interface ParameterInvokingEvent {}
+public @interface ParameterInvokingEvent {
+}

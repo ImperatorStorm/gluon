@@ -1,5 +1,6 @@
 /*
- * Copyright 2022 The Quilt Project
+ * Copyright 2021, 2022, 2023, 2024 The Quilt Project
+ * Copyright 2024 MuonMC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -47,76 +48,76 @@ import org.quiltmc.qsl.testing.impl.game.command.TestNameArgumentType;
 @Mixin(TestCommand.class)
 public class TestCommandMixin {
 	@ModifyArg(
-			method = "register",
-			slice = @Slice(
-					from = @At(value = "CONSTANT", args = "stringValue=export"),
-					to = @At(value = "CONSTANT", args = "stringValue=pos")
-			),
-			at = @At(
-					value = "INVOKE",
-					target = "Lnet/minecraft/server/command/CommandManager;argument(Ljava/lang/String;Lcom/mojang/brigadier/arguments/ArgumentType;)Lcom/mojang/brigadier/builder/RequiredArgumentBuilder;"
-			),
-			index = 1
+		method = "register",
+		slice = @Slice(
+			from = @At(value = "CONSTANT", args = "stringValue=export"),
+			to = @At(value = "CONSTANT", args = "stringValue=pos")
+		),
+		at = @At(
+			value = "INVOKE",
+			target = "Lnet/minecraft/server/command/CommandManager;argument(Ljava/lang/String;Lcom/mojang/brigadier/arguments/ArgumentType;)Lcom/mojang/brigadier/builder/RequiredArgumentBuilder;"
+		),
+		index = 1
 	)
 	private static ArgumentType<String> quiltGameTest$replaceExportImportTestNameArgumentType(ArgumentType<String> name) {
 		return new TestNameArgumentType();
 	}
 
 	@ModifyArg(
-			method = "register",
-			slice = @Slice(
-					from = @At(value = "CONSTANT", args = "stringValue=export"),
-					to = @At(value = "CONSTANT", args = "stringValue=exportthis")
-			),
-			at = @At(
-					value = "INVOKE",
-					target = "Lcom/mojang/brigadier/builder/RequiredArgumentBuilder;executes(Lcom/mojang/brigadier/Command;)Lcom/mojang/brigadier/builder/ArgumentBuilder;",
-					remap = false
-			)
+		method = "register",
+		slice = @Slice(
+			from = @At(value = "CONSTANT", args = "stringValue=export"),
+			to = @At(value = "CONSTANT", args = "stringValue=exportthis")
+		),
+		at = @At(
+			value = "INVOKE",
+			target = "Lcom/mojang/brigadier/builder/RequiredArgumentBuilder;executes(Lcom/mojang/brigadier/Command;)Lcom/mojang/brigadier/builder/ArgumentBuilder;",
+			remap = false
+		)
 	)
 	private static Command<ServerCommandSource> quiltGameTest$replaceExportCommand(Command<ServerCommandSource> original) {
 		return context -> QuiltTestCommand.executeExport(context.getSource(), StringArgumentType.getString(context, "testName"));
 	}
 
 	@ModifyArg(
-			method = "register",
-			slice = @Slice(
-					from = @At(value = "CONSTANT", args = "stringValue=exportthis"),
-					to = @At(value = "CONSTANT", args = "stringValue=import")
-			),
-			at = @At(
-					value = "INVOKE",
-					target = "Lcom/mojang/brigadier/builder/LiteralArgumentBuilder;executes(Lcom/mojang/brigadier/Command;)Lcom/mojang/brigadier/builder/ArgumentBuilder;",
-					remap = false
-			)
+		method = "register",
+		slice = @Slice(
+			from = @At(value = "CONSTANT", args = "stringValue=exportthis"),
+			to = @At(value = "CONSTANT", args = "stringValue=import")
+		),
+		at = @At(
+			value = "INVOKE",
+			target = "Lcom/mojang/brigadier/builder/LiteralArgumentBuilder;executes(Lcom/mojang/brigadier/Command;)Lcom/mojang/brigadier/builder/ArgumentBuilder;",
+			remap = false
+		)
 	)
 	private static Command<ServerCommandSource> quiltGameTest$replaceExportThisCommand(Command<ServerCommandSource> original) {
 		return context -> QuiltTestCommand.executeExport(context.getSource());
 	}
 
 	@ModifyArg(
-			method = "register",
-			slice = @Slice(
-					from = @At(value = "CONSTANT", args = "stringValue=create"),
-					to = @At(value = "CONSTANT", args = "stringValue=width")
-			),
-			at = @At(
-					value = "INVOKE",
-					target = "Lnet/minecraft/server/command/CommandManager;argument(Ljava/lang/String;Lcom/mojang/brigadier/arguments/ArgumentType;)Lcom/mojang/brigadier/builder/RequiredArgumentBuilder;"
-			),
-			index = 1
+		method = "register",
+		slice = @Slice(
+			from = @At(value = "CONSTANT", args = "stringValue=create"),
+			to = @At(value = "CONSTANT", args = "stringValue=width")
+		),
+		at = @At(
+			value = "INVOKE",
+			target = "Lnet/minecraft/server/command/CommandManager;argument(Ljava/lang/String;Lcom/mojang/brigadier/arguments/ArgumentType;)Lcom/mojang/brigadier/builder/RequiredArgumentBuilder;"
+		),
+		index = 1
 	)
 	private static ArgumentType<String> quiltGameTest$replaceCreateTestNameArgumentType(ArgumentType<String> name) {
 		return new TestNameArgumentType();
 	}
 
 	@Redirect(
-			method = "executeRun",
-			at = @At(
-					value = "INVOKE",
-					target = "Lnet/minecraft/test/TestUtil;startTest"
-							+"(Lnet/minecraft/test/GameTestState;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/test/TestManager;)V"
-			)
+		method = "executeRun",
+		at = @At(
+			value = "INVOKE",
+			target = "Lnet/minecraft/test/TestUtil;startTest"
+				+ "(Lnet/minecraft/test/GameTestState;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/test/TestManager;)V"
+		)
 	)
 	private static void quiltGameTest$exceptionWrapRun(GameTestState test, BlockPos pos, TestManager testManager, ServerCommandSource source) {
 		try {
@@ -128,18 +129,18 @@ public class TestCommandMixin {
 	}
 
 	@Redirect(
-			method = "run(Lnet/minecraft/server/command/ServerCommandSource;Ljava/util/Collection;II)V",
-			at = @At(
-					value = "INVOKE",
-					target = "Lnet/minecraft/test/TestUtil;runTestFunctions("
-							+ "Ljava/util/Collection;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/BlockRotation;"
-							+ "Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/test/TestManager;I"
-							+ ")Ljava/util/Collection;"
-			)
+		method = "run(Lnet/minecraft/server/command/ServerCommandSource;Ljava/util/Collection;II)V",
+		at = @At(
+			value = "INVOKE",
+			target = "Lnet/minecraft/test/TestUtil;runTestFunctions("
+				+ "Ljava/util/Collection;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/BlockRotation;"
+				+ "Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/test/TestManager;I"
+				+ ")Ljava/util/Collection;"
+		)
 	)
 	private static Collection<GameTestState> quiltGameTest$exceptionWrapRuns(
-			Collection<TestFunction> testFunctions, BlockPos pos, BlockRotation rotation, ServerWorld world, TestManager testManager, int sizeZ,
-			ServerCommandSource source
+		Collection<TestFunction> testFunctions, BlockPos pos, BlockRotation rotation, ServerWorld world, TestManager testManager, int sizeZ,
+		ServerCommandSource source
 	) {
 		try {
 			return TestUtil.runTestFunctions(testFunctions, pos, rotation, world, testManager, sizeZ);
@@ -151,18 +152,18 @@ public class TestCommandMixin {
 	}
 
 	@Redirect(
-			method = {"executeImport"},
-			at = @At(value = "NEW", target = "(Ljava/lang/String;)Lnet/minecraft/util/Identifier;"),
-			expect = 2
+		method = {"executeImport"},
+		at = @At(value = "NEW", target = "(Ljava/lang/String;)Lnet/minecraft/util/Identifier;"),
+		expect = 2
 	)
 	private static Identifier quiltGameTest$fixStructureIdentifierImport(String structure) {
 		return Identifier.of(structure);
 	}
 
 	@ModifyArg(
-			method = "executeImport",
-			at = @At(value = "INVOKE", target = "Ljava/nio/file/Paths;get(Ljava/lang/String;[Ljava/lang/String;)Ljava/nio/file/Path;"),
-			index = 1
+		method = "executeImport",
+		at = @At(value = "INVOKE", target = "Ljava/nio/file/Paths;get(Ljava/lang/String;[Ljava/lang/String;)Ljava/nio/file/Path;"),
+		index = 1
 	)
 	private static String[] quiltGameTest$fixImportPath(String[] more) {
 		more[0] = more[0].replace(':', '/');
@@ -170,8 +171,8 @@ public class TestCommandMixin {
 	}
 
 	@ModifyConstant(
-			method = "onCompletion",
-			constant = @Constant(stringValue = "All required tests passed :)")
+		method = "onCompletion",
+		constant = @Constant(stringValue = "All required tests passed :)")
 	)
 	private static String quiltGameTest$replaceSuccessMessage(String original) {
 		// You may ask why, it's simple.

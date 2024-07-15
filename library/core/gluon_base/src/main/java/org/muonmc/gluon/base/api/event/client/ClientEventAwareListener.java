@@ -1,5 +1,6 @@
 /*
- * Copyright 2021 The Quilt Project
+ * Copyright 2021, 2022, 2023, 2024 The Quilt Project
+ * Copyright 2024 MuonMC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,12 +22,15 @@ import org.muonmc.gluon.base.api.event.server.DedicatedServerEventAwareListener;
 
 /**
  * Represents a client-sided event callback aware of its uniquely associated event, may be used as an entrypoint.
+ *
  * <p>
  * In {@code quilt.mod.json}, the entrypoint is defined with {@code client_events} key.
+ *
  * <p>
  * Any event callback interface extending this interface can be listened using this entrypoint.
  *
  * @see EventAwareListener
  * @see DedicatedServerEventAwareListener
  */
-public interface ClientEventAwareListener {}
+public interface ClientEventAwareListener {
+}

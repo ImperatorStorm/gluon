@@ -1,6 +1,7 @@
 /*
  * Copyright 2016, 2017, 2018, 2019 FabricMC
- * Copyright 2022 The Quilt Project
+ * Copyright 2021, 2022, 2023, 2024 The Quilt Project
+ * Copyright 2024 MuonMC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,7 +40,7 @@ import org.quiltmc.qsl.testing.impl.game.command.TestNameArgumentType;
 public abstract class ArgumentTypeInfosMixin {
 	@Shadow
 	private static <A extends ArgumentType<?>, T extends ArgumentTypeInfo.Template<A>> ArgumentTypeInfo<A, T> register(
-			Registry<ArgumentTypeInfo<?, ?>> registry, String string, Class<? extends A> clazz, ArgumentTypeInfo<A, T> argumentTypeInfo) {
+		Registry<ArgumentTypeInfo<?, ?>> registry, String string, Class<? extends A> clazz, ArgumentTypeInfo<A, T> argumentTypeInfo) {
 		throw new IllegalStateException("Mixin injection failed.");
 	}
 
@@ -49,15 +50,15 @@ public abstract class ArgumentTypeInfosMixin {
 		if (QuiltGameTestImpl.COMMAND_ENABLED) {
 			if (!SharedConstants.isDevelopment) {
 				register(registry, "test_argument", TestFunctionArgumentType.class,
-						SingletonArgumentInfo.contextFree(TestFunctionArgumentType::testFunction)
+					SingletonArgumentInfo.contextFree(TestFunctionArgumentType::testFunction)
 				);
 				register(registry, "test_class", TestClassArgumentType.class,
-						SingletonArgumentInfo.contextFree(TestClassArgumentType::testClass)
+					SingletonArgumentInfo.contextFree(TestClassArgumentType::testClass)
 				);
 			}
 
 			register(registry, "quilt_game_test:test_name", TestNameArgumentType.class,
-					SingletonArgumentInfo.contextFree(TestNameArgumentType::new)
+				SingletonArgumentInfo.contextFree(TestNameArgumentType::new)
 			);
 		}
 	}

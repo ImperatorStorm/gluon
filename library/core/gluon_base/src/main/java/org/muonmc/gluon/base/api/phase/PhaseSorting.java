@@ -1,6 +1,7 @@
 /*
  * Copyright 2016, 2017, 2018, 2019 FabricMC
- * Copyright 2021 The Quilt Project
+ * Copyright 2021, 2022, 2023, 2024 The Quilt Project
+ * Copyright 2024 MuonMC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,16 +18,10 @@
 
 package org.muonmc.gluon.base.api.phase;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.IdentityHashMap;
-import java.util.List;
-import java.util.PriorityQueue;
-
 import com.google.common.annotations.VisibleForTesting;
-
 import org.muonmc.gluon.base.impl.GluonBaseImpl;
+
+import java.util.*;
 
 /**
  * Provides the phase-sorting logic of {@link PhaseData}.
@@ -136,9 +131,9 @@ public final class PhaseSorting {
 		} else if (phase.visitStatus == PhaseData.VisitStatus.VISITING && ENABLE_CYCLE_WARNING) {
 			// Already visiting, so we have found a cycle.
 			GluonBaseImpl.LOGGER.warn(String.format(
-					"Phase ordering conflict detected.%nPhase %s is ordered both before and after phase %s.",
-					phase.id,
-					parent.id
+				"Phase ordering conflict detected.%nPhase %s is ordered both before and after phase %s.",
+				phase.id,
+				parent.id
 			));
 		}
 	}

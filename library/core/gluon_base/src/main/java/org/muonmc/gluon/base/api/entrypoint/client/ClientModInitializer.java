@@ -1,5 +1,6 @@
 /*
- * Copyright 2022 The Quilt Project
+ * Copyright 2021, 2022, 2023, 2024 The Quilt Project
+ * Copyright 2024 MuonMC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,11 +23,14 @@ import org.quiltmc.loader.api.ModContainer;
 
 /**
  * A mod initializer which is run only on {@link net.fabricmc.api.EnvType#CLIENT}.
+ *
  * <p>
  * This entrypoint is suitable for setting up client-specific logic, such as rendering
  * or integrated server tweaks.
+ *
  * <p>
  * In {@code quilt.mod.json}, the entrypoint is defined with {@value #ENTRYPOINT_KEY} key.
+ *
  * <p>
  * Currently, it is executed in the {@link net.minecraft.client.Minecraft} constructor, just before the initialization of
  * the {@link net.minecraft.client.Options}.

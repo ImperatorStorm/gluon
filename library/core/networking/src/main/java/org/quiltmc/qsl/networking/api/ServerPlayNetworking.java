@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 The Quilt Project
+ * Copyright 2021, 2022, 2023, 2024 The Quilt Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -245,8 +245,8 @@ public final class ServerPlayNetworking {
 	/**
 	 * Sends a packet to a player.
 	 *
-	 * @param player      the player to send the packet to
-	 * @param payload     the packet to send
+	 * @param player  the player to send the packet to
+	 * @param payload the packet to send
 	 */
 	public static void send(ServerPlayerEntity player, CustomPayload payload) {
 		Objects.requireNonNull(player, "Server player entity cannot be null");
@@ -258,8 +258,8 @@ public final class ServerPlayNetworking {
 	/**
 	 * Sends a packet to a collection of players.
 	 *
-	 * @param players     the players to send the packet to
-	 * @param payload     the packet to send
+	 * @param players the players to send the packet to
+	 * @param payload the packet to send
 	 */
 	public static void send(Collection<ServerPlayerEntity> players, CustomPayload payload) {
 		Objects.requireNonNull(players, "Players collection cannot be null");
@@ -275,7 +275,6 @@ public final class ServerPlayNetworking {
 	 * @param handler the server play network handler
 	 */
 	// TODO: Possible future CHASM extension method.
-
 	public static MinecraftServer getServer(ServerPlayNetworkHandler handler) {
 		Objects.requireNonNull(handler, "Network handler cannot be null");
 

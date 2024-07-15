@@ -317,7 +317,7 @@ public final class ClientPlayNetworking {
 		 *
 		 * @param client         the client
 		 * @param handler        the network handler that received this packet
-		 * @param payload            the payload of the packet
+		 * @param payload        the payload of the packet
 		 * @param responseSender the packet sender
 		 */
 		void receive(MinecraftClient client, ClientPlayNetworkHandler handler, T payload, PacketSender<CustomPayload> responseSender);
@@ -325,6 +325,7 @@ public final class ClientPlayNetworking {
 
 	/**
 	 * This functional interface should only be used when sending a raw {@link PacketByteBuf} is necessary.
+	 *
 	 * @deprecated use {@link CustomChannelReceiver}
 	 */
 	@Deprecated

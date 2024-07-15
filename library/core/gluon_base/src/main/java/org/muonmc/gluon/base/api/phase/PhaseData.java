@@ -1,6 +1,7 @@
 /*
  * Copyright 2016, 2017, 2018, 2019 FabricMC
- * Copyright 2021 The Quilt Project
+ * Copyright 2021, 2022, 2023, 2024 The Quilt Project
+ * Copyright 2024 MuonMC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,14 +18,13 @@
 
 package org.muonmc.gluon.base.api.phase;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-
+import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
-import net.minecraft.resources.ResourceLocation;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * Data of a phase.

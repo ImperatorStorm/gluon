@@ -1,6 +1,7 @@
 /*
  * Copyright 2016, 2017, 2018, 2019 FabricMC
- * Copyright 2021 The Quilt Project
+ * Copyright 2021, 2022, 2023, 2024 The Quilt Project
+ * Copyright 2024 MuonMC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,28 +18,21 @@
 
 package org.muonmc.gluon.base.api.event;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
-import java.util.function.Function;
-
+import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
-
-import net.minecraft.resources.ResourceLocation;
-
 import org.muonmc.gluon.base.api.phase.PhaseData;
 import org.muonmc.gluon.base.api.phase.PhaseSorting;
 import org.muonmc.gluon.base.api.util.QuiltAssertions;
 import org.muonmc.gluon.base.impl.GluonBaseImpl;
 import org.muonmc.gluon.base.impl.event.EventPhaseData;
 import org.muonmc.gluon.base.impl.event.EventRegistry;
+
+import java.lang.reflect.Array;
+import java.util.*;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+import java.util.function.Function;
 
 /**
  * An object which stores event callbacks.
@@ -47,6 +41,7 @@ import org.muonmc.gluon.base.impl.event.EventRegistry;
  * execute the callbacks stored in this event instance. This allows a user to control how iteration works, whether an
  * event is cancelled after a specific callback is executed or to make an event
  * {@link ParameterInvokingEvent parameter invoking}.
+ *
  * <p>
  * Generally {@code T} should be a type which is a
  * <a href="https://docs.oracle.com/javase/specs/jls/se16/html/jls-9.html#jls-9.8">functional interface</a>
@@ -55,6 +50,7 @@ import org.muonmc.gluon.base.impl.event.EventRegistry;
  * annotation on the type. You can let T not be a functional interface, however it heavily complicates the process
  * of implementing an invoker and only allows callback implementations to be done by implementing an interface onto a
  * class or extending a class.
+ *
  * <p>
  * An Event can have phases, each callback is attributed to a phase ({@link Event#DEFAULT_PHASE} if unspecified),
  * and each phase can have a defined ordering. Each event phase is identified by a {@link ResourceLocation}, ordering is done
@@ -140,7 +136,7 @@ public final class Event<T> {
 	 * <p>
 	 * This method adds a {@code emptyImplementation} parameter which provides an implementation of the invoker
 	 * when no callbacks are registered. Generally this method should only be used when the code path is very hot, such
-	 * as the render or tick loops. Otherwise the other {@link #create(Class, Function)} method should work
+	 * as the render or tick loops. Otherwise, the other {@link #create(Class, Function)} method should work
 	 * in 99% of cases with little to no performance overhead.
 	 *
 	 * @param type                the class representing the type of the invoker that is executed by the event
@@ -180,7 +176,7 @@ public final class Event<T> {
 	 * @return a new event instance
 	 */
 	public static <T> @NotNull Event<T> createWithPhases(@NotNull Class<? super T> type, @NotNull Function<T[], T> implementation,
-			@NotNull ResourceLocation... defaultPhases) {
+														 @NotNull ResourceLocation... defaultPhases) {
 		GluonBaseImpl.ensureContainsDefaultPhase(defaultPhases);
 		QuiltAssertions.ensureNoDuplicates(defaultPhases, id -> new IllegalArgumentException("Duplicate event phase: " + id));
 
@@ -378,10 +374,10 @@ public final class Event<T> {
 	@Override
 	public String toString() {
 		return "Event{" +
-				"type=" + this.type +
-				", implementation=" + this.implementation +
-				", phases=" + this.phases +
-				", sortedPhases=" + this.sortedPhases +
-				'}';
+			"type=" + this.type +
+			", implementation=" + this.implementation +
+			", phases=" + this.phases +
+			", sortedPhases=" + this.sortedPhases +
+			'}';
 	}
 }

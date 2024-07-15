@@ -1,5 +1,6 @@
 /*
- * Copyright 2021 The Quilt Project
+ * Copyright 2021, 2022, 2023, 2024 The Quilt Project
+ * Copyright 2024 MuonMC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,14 +17,12 @@
 
 package org.muonmc.gluon.base.impl;
 
+import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.ApiStatus;
 import org.muonmc.gluon.base.api.event.Event;
+import org.quiltmc.loader.api.ModInternal;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import net.minecraft.resources.ResourceLocation;
-
-import org.quiltmc.loader.api.ModInternal;
 
 @ModInternal
 @ApiStatus.Internal

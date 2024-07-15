@@ -1,5 +1,6 @@
 /*
- * Copyright 2022 The Quilt Project
+ * Copyright 2021, 2022, 2023, 2024 The Quilt Project
+ * Copyright 2024 MuonMC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,15 +17,13 @@
 
 package org.muonmc.gluon.base.mixin;
 
+import net.minecraft.core.registries.BuiltInRegistries;
 import org.muonmc.gluon.base.api.entrypoint.ModInitializer;
+import org.quiltmc.loader.api.entrypoint.EntrypointUtil;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
-import net.minecraft.core.registries.BuiltInRegistries;
-
-import org.quiltmc.loader.api.entrypoint.EntrypointUtil;
 
 @Mixin(BuiltInRegistries.class)
 public abstract class BuiltInRegistriesMixin {

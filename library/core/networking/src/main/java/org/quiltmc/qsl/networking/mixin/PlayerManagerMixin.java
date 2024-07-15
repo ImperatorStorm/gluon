@@ -31,11 +31,11 @@ import org.quiltmc.qsl.networking.impl.server.ServerNetworkingImpl;
 @Mixin(PlayerManager.class)
 abstract class PlayerManagerMixin {
 	@Inject(
-			method = "onPlayerConnect",
-			at = @At(
-				value = "INVOKE",
-				target = "Lnet/minecraft/server/PlayerManager;sendToAll(Lnet/minecraft/network/packet/Packet;)V"
-			)
+		method = "onPlayerConnect",
+		at = @At(
+			value = "INVOKE",
+			target = "Lnet/minecraft/server/PlayerManager;sendToAll(Lnet/minecraft/network/packet/Packet;)V"
+		)
 	)
 	private void handlePlayerConnection(ClientConnection connection, ServerPlayerEntity player, ConnectedClientData connectedClientData, CallbackInfo ci) {
 		ServerNetworkingImpl.getAddon(player.networkHandler).onClientReady();

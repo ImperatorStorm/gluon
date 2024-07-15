@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 The Quilt Project
+ * Copyright 2021, 2022, 2023, 2024 The Quilt Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -314,6 +314,7 @@ public final class ServerConfigurationNetworking {
 	/**
 	 * This functional interface should only be used when sending a raw {@link PacketByteBuf} is necessary.
 	 * <p>
+	 *
 	 * @deprecated use {@link CustomChannelReceiver}
 	 */
 	@Deprecated

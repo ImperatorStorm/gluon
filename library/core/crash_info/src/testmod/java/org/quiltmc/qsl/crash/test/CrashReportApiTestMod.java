@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 The Quilt Project
+ * Copyright 2021, 2022, 2023, 2024 The Quilt Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -57,8 +57,8 @@ public class CrashReportApiTestMod implements ModInitializer {
 
 		CrashReportEvents.CRASH_REPORT_CREATION.register(report -> {
 			report.addElement("Test Section", 2)
-					.add("A thing?", "A thing.")
-					.add("A random number", new Random().nextInt());
+				.add("A thing?", "A thing.")
+				.add("A random number", new Random().nextInt());
 		});
 	}
 }

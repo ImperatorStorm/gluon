@@ -116,7 +116,7 @@ public final class ServerLoginNetworkAddon extends AbstractNetworkAddon<ServerLo
 		// Compression is not needed for local transport
 		if (this.server.getNetworkCompressionThreshold() >= 0 && !this.connection.isLocal()) {
 			this.connection.send(new LoginCompressionS2CPacket(this.server.getNetworkCompressionThreshold()), PacketSendListener.alwaysRun(() ->
-					this.connection.setCompressionThreshold(this.server.getNetworkCompressionThreshold(), true)
+				this.connection.setCompressionThreshold(this.server.getNetworkCompressionThreshold(), true)
 			));
 		}
 	}

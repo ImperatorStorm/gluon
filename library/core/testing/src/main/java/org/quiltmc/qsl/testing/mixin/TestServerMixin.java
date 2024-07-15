@@ -1,5 +1,6 @@
 /*
- * Copyright 2022 The Quilt Project
+ * Copyright 2021, 2022, 2023, 2024 The Quilt Project
+ * Copyright 2024 MuonMC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,8 +36,8 @@ public class TestServerMixin {
 	}
 
 	@ModifyConstant(
-			method = "tick",
-			constant = @Constant(stringValue = "All {} required tests passed :)")
+		method = "tick",
+		constant = @Constant(stringValue = "All {} required tests passed :)")
 	)
 	private static String replaceSuccessMessage(String original) {
 		// You may ask why, it's simple.

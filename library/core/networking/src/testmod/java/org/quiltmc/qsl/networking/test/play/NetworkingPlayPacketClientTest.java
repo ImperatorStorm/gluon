@@ -41,7 +41,7 @@ public final class NetworkingPlayPacketClientTest implements ClientModInitialize
 		PayloadTypeRegistry.playC2S().register(NetworkingPlayPacketTest.TEST_CHANNEL, NetworkingPlayPacketTest.TEST_CODEC);
 
 		ClientPlayConnectionEvents.INIT.register((handler, client) -> {
-			ClientPlayNetworking.registerReceiver(NetworkingPlayPacketTest.TEST_CHANNEL,  (client1, handler1, buf, sender1) -> this.receive(handler1, sender1, client1, buf));
+			ClientPlayNetworking.registerReceiver(NetworkingPlayPacketTest.TEST_CHANNEL, (client1, handler1, buf, sender1) -> this.receive(handler1, sender1, client1, buf));
 		});
 	}
 

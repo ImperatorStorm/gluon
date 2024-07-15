@@ -1,5 +1,6 @@
 /*
- * Copyright 2022 The Quilt Project
+ * Copyright 2021, 2022, 2023, 2024 The Quilt Project
+ * Copyright 2024 MuonMC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,28 +17,26 @@
 
 package org.muonmc.gluon.base.mixin.server;
 
+import net.minecraft.server.Main;
+import org.muonmc.gluon.base.api.entrypoint.server.DedicatedServerModInitializer;
+import org.quiltmc.loader.api.entrypoint.EntrypointUtil;
+import org.quiltmc.loader.api.minecraft.DedicatedServerOnly;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import net.minecraft.server.Main;
-
-import org.quiltmc.loader.api.entrypoint.EntrypointUtil;
-import org.quiltmc.loader.api.minecraft.DedicatedServerOnly;
-import org.muonmc.gluon.base.api.entrypoint.server.DedicatedServerModInitializer;
-
 @DedicatedServerOnly
 @Mixin(Main.class)
 public class MainMixin {
 	@Inject(
-			method = "main",
-			at = @At(value = "INVOKE", target = "Ljava/io/File;<init>(Ljava/lang/String;)V", ordinal = 0),
-			remap = false
+		method = "main",
+		at = @At(value = "INVOKE", target = "Ljava/io/File;<init>(Ljava/lang/String;)V", ordinal = 0),
+		remap = false
 	)
 	private static void onInit(String[] strings, CallbackInfo ci) {
 		EntrypointUtil.invoke(
-				DedicatedServerModInitializer.ENTRYPOINT_KEY, DedicatedServerModInitializer.class, DedicatedServerModInitializer::onInitializeServer
+			DedicatedServerModInitializer.ENTRYPOINT_KEY, DedicatedServerModInitializer.class, DedicatedServerModInitializer::onInitializeServer
 		);
 	}
 }

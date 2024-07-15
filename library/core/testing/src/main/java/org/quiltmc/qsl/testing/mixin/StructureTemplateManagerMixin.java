@@ -1,5 +1,6 @@
 /*
- * Copyright 2023 The Quilt Project
+ * Copyright 2021, 2022, 2023, 2024 The Quilt Project
+ * Copyright 2024 MuonMC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -69,17 +70,17 @@ public abstract class StructureTemplateManagerMixin {
 	 * @param builder         the structure source list builder
 	 */
 	@Inject(
-			method = "<init>",
-			at = @At(
-					value = "INVOKE",
-					target = "Lcom/google/common/collect/ImmutableList$Builder;build()Lcom/google/common/collect/ImmutableList;",
-					remap = false
-			),
-			locals = LocalCapture.CAPTURE_FAILHARD
+		method = "<init>",
+		at = @At(
+			value = "INVOKE",
+			target = "Lcom/google/common/collect/ImmutableList$Builder;build()Lcom/google/common/collect/ImmutableList;",
+			remap = false
+		),
+		locals = LocalCapture.CAPTURE_FAILHARD
 	)
 	private void quilt$addGameTestTemplateProvider(ResourceManager resourceManager, WorldSaveStorage.Session session, DataFixer dataFixer,
-			HolderProvider<Block> blockRegistry, CallbackInfo ci,
-			ImmutableList.Builder<StructureTemplateManager.Source> builder) {
+												   HolderProvider<Block> blockRegistry, CallbackInfo ci,
+												   ImmutableList.Builder<StructureTemplateManager.Source> builder) {
 		builder.add(new StructureTemplateManager.Source(this::quilt$createGameTestStructure, this::quilt$streamGameTestStructure));
 	}
 }

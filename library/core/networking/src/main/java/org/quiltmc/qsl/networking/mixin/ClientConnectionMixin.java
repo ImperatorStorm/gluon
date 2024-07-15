@@ -66,20 +66,20 @@ abstract class ClientConnectionMixin implements ChannelInfoHolder {
 
 	// Must be fully qualified due to mixin not working in production without it
 	@Redirect(
-			method = "exceptionCaught",
-			at = @At(
-					value = "INVOKE",
-					target = "Lnet/minecraft/network/ClientConnection;send(Lnet/minecraft/network/packet/Packet;Lnet/minecraft/network/PacketSendListener;)V"
-			)
+		method = "exceptionCaught",
+		at = @At(
+			value = "INVOKE",
+			target = "Lnet/minecraft/network/ClientConnection;send(Lnet/minecraft/network/packet/Packet;Lnet/minecraft/network/PacketSendListener;)V"
+		)
 	)
 	private void resendOnExceptionCaught(ClientConnection self, Packet<?> packet, PacketSendListener listener,
-			ChannelHandlerContext channelHandlerContext, Throwable throwable) {
+										 ChannelHandlerContext channelHandlerContext, Throwable throwable) {
 		if (this.packetListener instanceof DisconnectPacketSource dcSource) {
 			this.send(
-					dcSource.createDisconnectPacket(
-							Text.translatable("disconnect.genericReason", "Internal Exception: " + throwable)
-					),
-					listener
+				dcSource.createDisconnectPacket(
+					Text.translatable("disconnect.genericReason", "Internal Exception: " + throwable)
+				),
+				listener
 			);
 		} else {
 			// Don't send packet if we cannot send proper packets

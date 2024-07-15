@@ -31,9 +31,9 @@ import org.quiltmc.qsl.tooltip.api.client.TooltipComponentCallback;
 @Mixin(TooltipComponent.class)
 public interface TooltipComponentMixin {
 	@Inject(
-			method = "of(Lnet/minecraft/client/item/TooltipData;)Lnet/minecraft/client/gui/tooltip/TooltipComponent;",
-			at = @At("HEAD"),
-			cancellable = true
+		method = "of(Lnet/minecraft/client/item/TooltipData;)Lnet/minecraft/client/gui/tooltip/TooltipComponent;",
+		at = @At("HEAD"),
+		cancellable = true
 	)
 	private static void onConversion(TooltipData data, CallbackInfoReturnable<TooltipComponent> cir) {
 		var component = TooltipComponentCallback.EVENT.invoker().getComponent(data);

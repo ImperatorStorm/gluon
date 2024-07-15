@@ -4,7 +4,10 @@ Copyright 2016, 2017, 2018, 2019 FabricMC
 #optional
 Copyright 2016, 2017, 2018, 2019, 2020 zml and Colonel contributors
 #end
-Copyright ${CREATION_YEAR} The Quilt Project
+#optional
+Copyright 2021, 2022, 2023, 2024 The Quilt Project
+#end
+Copyright ${CREATION_YEAR} MuonMC
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

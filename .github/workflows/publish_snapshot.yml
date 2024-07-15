@@ -1,11 +1,11 @@
 name: Publish Snapshot
-on: [push]
+on: [ push ]
 
 jobs:
   build:
     strategy:
       matrix:
-        java: [21]
+        java: [ 21 ]
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3

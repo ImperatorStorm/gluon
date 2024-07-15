@@ -1,5 +1,6 @@
 /*
- * Copyright 2021 The Quilt Project
+ * Copyright 2021, 2022, 2023, 2024 The Quilt Project
+ * Copyright 2024 MuonMC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,24 +17,22 @@
 
 package org.muonmc.gluon.base.impl.event;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
-import org.jetbrains.annotations.ApiStatus;
-
 import net.minecraft.resources.ResourceLocation;
-
+import org.jetbrains.annotations.ApiStatus;
 import org.muonmc.gluon.base.api.entrypoint.ModInitializer;
 import org.muonmc.gluon.base.api.event.Event;
 import org.muonmc.gluon.base.api.event.EventAwareListener;
 import org.muonmc.gluon.base.api.event.ListenerPhase;
+import org.muonmc.gluon.base.api.event.client.ClientEventAwareListener;
 import org.muonmc.gluon.base.api.event.server.DedicatedServerEventAwareListener;
 import org.quiltmc.loader.api.ModContainer;
 import org.quiltmc.loader.api.ModInternal;
 import org.quiltmc.loader.api.QuiltLoader;
-import org.muonmc.gluon.base.api.event.client.ClientEventAwareListener;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 @ModInternal
 @ApiStatus.Internal

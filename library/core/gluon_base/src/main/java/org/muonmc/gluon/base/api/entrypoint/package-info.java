@@ -1,5 +1,6 @@
 /*
- * Copyright 2022 The Quilt Project
+ * Copyright 2021, 2022, 2023, 2024 The Quilt Project
+ * Copyright 2024 MuonMC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,6 +26,7 @@
  *     <li>{@linkplain org.muonmc.gluon.base.api.entrypoint.server.DedicatedServerModInitializer DedicatedServerModInitializer},
  *     a dedicated-server only mod initializer.</li>
  * </ul>
+ *
  * <p>
  * The Quilt Base API module also provides three event-based entrypoints for mods,
  * which some events may support by implementing any of the following interfaces:
@@ -35,6 +37,7 @@
  *     <li>{@linkplain org.muonmc.gluon.base.api.event.server.DedicatedServerEventAwareListener DedicatedServerEventAwareListener},
  *     marks an event callback as usable as a dedicated-server only entrypoint.</li>
  * </ul>
+ *
  * <p>
  * More entrypoints may be defined by other Gluon modules.
  *

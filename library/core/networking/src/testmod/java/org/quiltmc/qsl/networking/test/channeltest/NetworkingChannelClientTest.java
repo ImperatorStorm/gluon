@@ -32,8 +32,8 @@ import org.quiltmc.qsl.networking.api.client.ClientLoginConnectionEvents;
 import org.quiltmc.qsl.networking.api.client.ClientPlayConnectionEvents;
 
 public final class NetworkingChannelClientTest implements ClientTickEvents.End,
-		C2SPlayChannelEvents.Register, C2SPlayChannelEvents.Unregister,
-		ClientLoginConnectionEvents.Disconnect, ClientPlayConnectionEvents.Disconnect {
+	C2SPlayChannelEvents.Register, C2SPlayChannelEvents.Unregister,
+	ClientLoginConnectionEvents.Disconnect, ClientPlayConnectionEvents.Disconnect {
 	// public static final KeyBinding OPEN = KeyBindingHelper.registerKeyBinding(new KeyBinding("networking-v1-test", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_MENU, "fabric-networking-api-v1-testmod\""));
 	static final Set<CustomPayload.Id<?>> SUPPORTED_C2S_CHANNELS = new HashSet<>();
 

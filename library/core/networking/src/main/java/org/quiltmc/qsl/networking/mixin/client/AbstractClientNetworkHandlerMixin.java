@@ -54,7 +54,7 @@ abstract class AbstractClientNetworkHandlerMixin implements NetworkHandlerExtens
 			ci.cancel();
 		}
 	}
-	
+
 	@Inject(method = "onDisconnected", at = @At("HEAD"))
 	private void handleDisconnection(Text reason, CallbackInfo ci) {
 		this.getAddon().handleDisconnect();

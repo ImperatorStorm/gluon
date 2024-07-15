@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 The Quilt Project
+ * Copyright 2021, 2022, 2023, 2024 The Quilt Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,6 +38,7 @@ import org.quiltmc.qsl.networking.test.NetworkingTestMods;
 // Test cannot run on a server, so only run with a client
 public class C2SPayloadTest implements ClientModInitializer {
 	private static boolean received = false;
+
 	@Override
 	public void onInitializeClient(ModContainer mod) {
 		CustomPayloads.registerC2SPayload(TestC2SPayload.ID, TestC2SPayload::new);

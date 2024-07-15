@@ -43,7 +43,7 @@ public final class TooltipTestMod implements ModInitializer {
 	public void onInitialize(ModContainer mod) {
 		Registry.register(Registries.ITEM, Identifier.of(NAMESPACE, "custom_tooltip_item"), CUSTOM_TOOLTIP_ITEM);
 		Registry.register(Registries.ITEM, Identifier.of(NAMESPACE, "custom_convertible_tooltip_item"),
-				CUSTOM_CONVERTIBLE_TOOLTIP_ITEM);
+			CUSTOM_CONVERTIBLE_TOOLTIP_ITEM);
 	}
 
 	private static class SimpleCustomTooltipItem extends Item {
