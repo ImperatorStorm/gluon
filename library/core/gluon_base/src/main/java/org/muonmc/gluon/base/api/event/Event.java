@@ -23,7 +23,7 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.muonmc.gluon.base.api.phase.PhaseData;
 import org.muonmc.gluon.base.api.phase.PhaseSorting;
-import org.muonmc.gluon.base.api.util.QuiltAssertions;
+import org.muonmc.gluon.base.api.util.GluonAssertions;
 import org.muonmc.gluon.base.impl.GluonBaseImpl;
 import org.muonmc.gluon.base.impl.event.EventPhaseData;
 import org.muonmc.gluon.base.impl.event.EventRegistry;
@@ -178,7 +178,7 @@ public final class Event<T> {
 	public static <T> @NotNull Event<T> createWithPhases(@NotNull Class<? super T> type, @NotNull Function<T[], T> implementation,
 														 @NotNull ResourceLocation... defaultPhases) {
 		GluonBaseImpl.ensureContainsDefaultPhase(defaultPhases);
-		QuiltAssertions.ensureNoDuplicates(defaultPhases, id -> new IllegalArgumentException("Duplicate event phase: " + id));
+		GluonAssertions.ensureNoDuplicates(defaultPhases, id -> new IllegalArgumentException("Duplicate event phase: " + id));
 
 		var event = create(type, implementation);
 

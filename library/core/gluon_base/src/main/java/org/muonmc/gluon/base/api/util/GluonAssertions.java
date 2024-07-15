@@ -22,9 +22,9 @@ import java.util.function.Function;
 /**
  * A set of various assertion utilities.
  */
-public final class QuiltAssertions {
-	private QuiltAssertions() {
-		throw new UnsupportedOperationException("QuiltAssertions only contains static definitions.");
+public final class GluonAssertions {
+	private GluonAssertions() {
+		throw new UnsupportedOperationException("GluonAssertions only contains static definitions.");
 	}
 
 	/**
