@@ -43,7 +43,7 @@ rootProject.afterEvaluate {
 		throw new GradleException("Module $extension.moduleName has an invalid parent project that doesn't define its `libraryName` field.")
 	}
 
-	group = "org.quiltmc.qsl.${extension.library}"
+	group = "org.muonmc.gluon.${extension.library}"
 
 
 	publishing {
