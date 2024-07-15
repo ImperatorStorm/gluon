@@ -27,11 +27,7 @@ public final class TestsMain implements ModInitializer {
 
 	@Override
 	public void onInitialize(ModContainer mod) {
-		ServerLevelLoadEvents.LOAD.register((server, level) -> {
-			LOGGER.info("level {} loaded", level.dimension().location());
-		});
-		ServerLevelLoadEvents.UNLOAD.register((server, level) -> {
-			LOGGER.info("level {} unloaded", level.dimension().location());
-		});
+		ServerLevelLoadEvents.LOAD.register((server, level) -> LOGGER.info("level {} loaded", level.dimension().location()));
+		ServerLevelLoadEvents.UNLOAD.register((server, level) -> LOGGER.info("level {} unloaded", level.dimension().location()));
 	}
 }
