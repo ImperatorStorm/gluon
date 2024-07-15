@@ -15,6 +15,6 @@
  */
 
 /**
- * Client-side lifecycle events. These events apply to both dedicated and integrated servers.
+ * Client-side lifecycle events. These events apply to the logical client.
  */
 package org.muonmc.gluon.lifecycle.api.event.client;
