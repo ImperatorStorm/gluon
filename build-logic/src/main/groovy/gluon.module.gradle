@@ -53,7 +53,7 @@ rootProject.afterEvaluate {
 			boolean publish = true
 
 			try {
-				def xml = new URL("https://maven.quiltmc.org/repository/release/org/quiltmc/qsl/$library/$moduleName/$project.version/" +
+				def xml = new URL("https://maven.muonmc.org/releases/org/muonmc/gluon/$library/$moduleName/$project.version/" +
 						"$moduleName-$project.version" + ".pom").text
 				def metadata = new groovy.xml.XmlSlurper().parseText(xml)
 
