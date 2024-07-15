@@ -11,6 +11,8 @@ jobs:
         with:
           distribution: "temurin"
           java-version: 21
+      - name: Change wrapper permissions
+        run: chmod +x ./gradlew
       - run: ./gradlew checkLicenses generateQmj --parallel --stacktrace
         env:
           MAVEN_URL: ${{ secrets.MAVEN_URL }}
