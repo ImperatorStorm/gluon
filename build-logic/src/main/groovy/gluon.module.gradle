@@ -64,6 +64,10 @@ rootProject.afterEvaluate {
 				// No existing version was published.
 			}
 
+			if (Files.exists(extension.project.rootDir.toPath().resolve("DISABLE"))) {
+				publish = false
+			}
+
 			if (publish) {
 				mavenJava(MavenPublication) {
 					from components.java
