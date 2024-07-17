@@ -23,7 +23,7 @@ public final class Versions {
 	/**
 	 * The Gluon version
 	 */
-	public static final String GLUON_VERSION = "0.1.0-pre.1";
+	public static final String GLUON_VERSION = "0.1.0-pre.2";
 
 	/**
 	 * The target Minecraft version.
