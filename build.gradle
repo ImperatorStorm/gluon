@@ -27,6 +27,11 @@ if (version.contains("-pre.") && ENV.SNAPSHOTS_URL) {
 	version = version.replace(version.substring(version.indexOf("-pre.")), "")
 }
 
+// Same thing, but with release candidates
+if (version.contains("-rc.") && ENV.SNAPSHOTS_URL) {
+	version = version.replace(version.substring(version.indexOf("-rc.")), "")
+}
+
 version = version + "+" + Versions.MINECRAFT_VERSION.version() + (System.getenv("SNAPSHOTS_URL") ? "-SNAPSHOT" : "")
 println("Gluon: " + version)
 
