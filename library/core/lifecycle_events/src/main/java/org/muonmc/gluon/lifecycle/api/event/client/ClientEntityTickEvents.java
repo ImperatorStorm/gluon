@@ -23,10 +23,17 @@ import org.muonmc.gluon.base.api.event.client.ClientEventAwareListener;
 
 /**
  * Events related to a ticking Minecraft client's entities.
+ *
+ * <p>
+ * Note that entities are ticked before the level is ticked. If you need to increment anything time-related, see {@link ClientLevelTickEvents}. However, block
+ * entity rendering should be handled in these events.
+ *
  * <h2>A note of warning</h2>
  * <p>
  * Callbacks registered to any of these events should ensure as little time as possible is spent executing, since the tick
  * loop is a very hot code path.
+ *
+ * @see ClientLevelTickEvents
  */
 public final class ClientEntityTickEvents {
 	/**
@@ -42,7 +49,7 @@ public final class ClientEntityTickEvents {
 	 * This event is invoked at the end of a tick.
 	 *
 	 * <h2>Tick Count</h2>
-	 * Note that the tick count has increased since the beginning of the tick. That means that the current tick count is ahead by one.
+	 * The level tick count has not increased yet, so it should be accurate when this event is invoked.
 	 */
 	public static final Event<End> END = Event.create(End.class, callbacks -> (minecraft, level) -> {
 		for (var callback : callbacks) {

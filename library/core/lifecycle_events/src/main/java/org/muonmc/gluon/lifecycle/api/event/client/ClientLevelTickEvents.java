@@ -26,8 +26,8 @@ import org.muonmc.gluon.base.api.event.client.ClientEventAwareListener;
  *
  * <h2>Entity Ticking</h2>
  * <p>
- * Note that these events are only called in the method that handles time and world border ticking. For entity ticking events, see
- * {@link ClientEntityTickEvents}.
+ * Note that these events are only called in the method that handles time and world border ticking. Moreover, the level is ticked <b>after</b> entities are
+ * ticked. For entity ticking events, see {@link ClientEntityTickEvents}.
  *
  * <h2>A note of warning</h2>
  * <p>

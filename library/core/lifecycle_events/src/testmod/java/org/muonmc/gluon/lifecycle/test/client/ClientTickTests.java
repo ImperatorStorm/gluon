@@ -40,7 +40,7 @@ public class ClientTickTests implements ClientTickEvents.Begin, ClientTickEvents
 
 	@Override
 	public void onEntityTickEnd(Minecraft minecraft, ClientLevel level) {
-		long ticks = level.getGameTime() - 1;
+		long ticks = level.getGameTime();
 		if (ticks % 40 == 0) {
 			LOGGER.info("Entity tick end at {}t", ticks);
 		}
