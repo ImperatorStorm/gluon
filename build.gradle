@@ -23,7 +23,7 @@ if (version.contains("-alpha.") && !ENV.MAVEN_URL) {
 }
 
 // Takes "1.0.0-pre.1" and changes it to "1.0.0" if we're publishing a snapshot.
-if (version.contains("-pre.") && ENV.SNAPSHOT_URL) {
+if (version.contains("-pre.") && ENV.SNAPSHOTS_URL) {
 	version = version.replace(version.substring(version.indexOf("-pre.")), "")
 }
 
