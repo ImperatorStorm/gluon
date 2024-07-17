@@ -7,7 +7,7 @@ By contributing to the Gluon you agree with the [Developer Certificate of Origin
 ## Guide: Pull Requests
 
 1. ### Discuss your feature
-    Be sure to talk to us (either through an issue or on [Discord](https://discord.quiltmc.org/toolchain)) before working on your feature! We can help you with any questions you may have, and save some time during the review process.
+    Be sure to talk to us (either through an issue or on [Discord](https://discord.muonmc.org/)) before working on your feature! We can help you with any questions you may have, and save some time during the review process.
 2. ### Open your PR and wait for reviews
     Once you have forked Gluon and opened a pull request, you need to wait for people to review it. When you get reviews, try to thoughtfully address any concerns other people have. If you get confused, be sure to ask questions!
 3. ### Entering a Final Comment Period
@@ -90,8 +90,7 @@ browsing files.
 
 Use American English for consistency throughout Gluon.
 
-If there are two acceptable spellings of the same word, first check if one is already being used in Gluon, Quilt Mappings
-or by Mojang, and if not, use the most common spelling.
+If there are two acceptable spellings of the same word, first check if one is already being used in Gluon, by Mojang, or Quilt Mappings, and if not, use the most common spelling.
 
 ### Conciseness
 
@@ -235,11 +234,11 @@ Note that `.` from abbreviations, such as `i.e.`, count.
 The `$` character may be used in mixins to mark a semantic separation in the name, in other words it allows to separate
 the actual name of the variable and the namespace.
 
-All `@Unique` mixin fields and methods and all methods coming from duck interfaces must be prefixed with `quilt$` in order to aid with debugging as well as preventing issues.
+All `@Unique` mixin fields and methods and all methods coming from duck interfaces must be prefixed with `gluon$` in order to aid with debugging as well as preventing issues.
 
 In the case of a pseudo-local variable (a field used briefly to pass around a local variable of a method between 2
 injections of said method), the field should be named with the namespace first, then the name of the injected method,
-and finally the name of the local (`quilt$injectedMethod$localName`).
+and finally the name of the local (`gluon$injectedMethod$localName`).
 
 ## Gradle Conventions
 

@@ -4,6 +4,9 @@
 
 Whether it's bumping the Gluon version of porting Gluon to a new Minecraft version, the following steps should be taken:
 
+## Updating the Changelog
+Don't forget to update the [`CHANGELOG.md`](./CHANGELOG.md) with all additions, removals, changes, and fixes.
+
 ## New Minecraft/Loader version
 
 Change the constants in the [Versions] class. All modules and libraries will use the specified Minecraft and loader
