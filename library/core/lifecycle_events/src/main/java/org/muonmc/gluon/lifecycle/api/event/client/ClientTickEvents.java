@@ -14,70 +14,69 @@
  * limitations under the License.
  */
 
-package org.muonmc.gluon.lifecycle.api.event;
+package org.muonmc.gluon.lifecycle.api.event.client;
 
-import net.minecraft.server.MinecraftServer;
+import net.minecraft.client.Minecraft;
 import org.muonmc.gluon.base.api.event.Event;
-import org.muonmc.gluon.base.api.event.EventAwareListener;
+import org.muonmc.gluon.base.api.event.client.ClientEventAwareListener;
 
 /**
- * Server events that trigger during ticking.
+ * Events that trigger during the lifespan of a tick.
  *
  * <p>
- * These events are unrelated to {@link ServerLevelTickEvents}.
+ * These events are unrelated to {@link ClientLevelTickEvents}.
  *
- * @see ServerLevelTickEvents
+ * @see ClientLevelTickEvents
  */
-public final class ServerTickEvents {
+public final class ClientTickEvents {
 	/**
-	 * An event that triggers each time the server starts ticking.
+	 * An event that triggers each time the client starts ticking.
 	 *
 	 * <p>
-	 * This event triggers before level ticking occurs.
+	 * This event triggers before client ticking occurs.
 	 */
-	public static final Event<Begin> BEGIN = Event.create(Begin.class, callbacks -> server -> {
+	public static final Event<Begin> BEGIN = Event.create(Begin.class, callbacks -> minecraft -> {
 		for (var callback : callbacks) {
-			callback.onTickBegin(server);
+			callback.onTickBegin(minecraft);
 		}
 	});
 
 	/**
-	 * An event that triggers at the end of a server tick.
+	 * An event that triggers at the end of a client tick.
 	 *
 	 * <p>
-	 * This event triggers after level ticking occurs.
+	 * This event triggers after client ticking occurs.
 	 *
 	 * <h2>Tick Count</h2>
 	 * Note that the tick count has increased since the beginning of the tick. That means that the current tick count is ahead by one.
 	 */
-	public static final Event<End> END = Event.create(End.class, callbacks -> server -> {
+	public static final Event<End> END = Event.create(End.class, callbacks -> minecraft -> {
 		for (var callback : callbacks) {
-			callback.onTickEnd(server);
+			callback.onTickEnd(minecraft);
 		}
 	});
 
-	private ServerTickEvents() {
-	}
+	private ClientTickEvents() {}
 
 	/**
 	 * @see #BEGIN
 	 */
 	@FunctionalInterface
-	public interface Begin extends EventAwareListener {
+	public interface Begin extends ClientEventAwareListener {
 		/**
 		 * @see #BEGIN
 		 */
-		void onTickBegin(MinecraftServer server);
+	  void onTickBegin(Minecraft minecraft);
 	}
 
 	/**
 	 * @see #END
 	 */
 	@FunctionalInterface
-	public interface End extends EventAwareListener {
+	public interface End extends ClientEventAwareListener {
 		/**
 		 * @see #END
 		 */
-		void onTickEnd(MinecraftServer server);
+		void onTickEnd(Minecraft minecraft);
 	}
 }

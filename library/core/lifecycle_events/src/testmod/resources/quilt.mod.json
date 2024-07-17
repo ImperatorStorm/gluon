@@ -17,6 +17,10 @@
       "events": [
         "org.muonmc.gluon.lifecycle.test.ServerLifecycleTests",
         "org.muonmc.gluon.lifecycle.test.ServerTickTests"
+      ],
+      "client_events": [
+        "org.muonmc.gluon.lifecycle.test.client.ClientLifecycleTests",
+        "org.muonmc.gluon.lifecycle.test.client.ClientTickTests"
       ]
     },
     "depends": [

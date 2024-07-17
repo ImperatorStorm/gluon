@@ -14,27 +14,27 @@
  * limitations under the License.
  */
 
-package org.muonmc.gluon.lifecycle.api.event;
+package org.muonmc.gluon.lifecycle.api.event.client;
 
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.level.ServerLevel;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.ClientLevel;
 import org.muonmc.gluon.base.api.event.Event;
-import org.muonmc.gluon.base.api.event.EventAwareListener;
+import org.muonmc.gluon.base.api.event.client.ClientEventAwareListener;
 
 /**
- * Events related to a ticking Minecraft server's levels.
+ * Events related to a ticking Minecraft client's entities.
  * <h2>A note of warning</h2>
  * <p>
  * Callbacks registered to any of these events should ensure as little time as possible is spent executing, since the tick
  * loop is a very hot code path.
  */
-public final class ServerLevelTickEvents {
+public final class ClientEntityTickEvents {
 	/**
 	 * This event is invoked at the beginning of a tick.
 	 */
-	public static final Event<Begin> BEGIN = Event.create(Begin.class, callbacks -> (server, world) -> {
+	public static final Event<Begin> BEGIN = Event.create(Begin.class, callbacks -> (minecraft, level) -> {
 		for (var callback : callbacks) {
-			callback.onLevelTickBegin(server, world);
+			callback.onEntityTickBegin(minecraft, level);
 		}
 	});
 
@@ -44,34 +44,34 @@ public final class ServerLevelTickEvents {
 	 * <h2>Tick Count</h2>
 	 * Note that the tick count has increased since the beginning of the tick. That means that the current tick count is ahead by one.
 	 */
-	public static final Event<End> END = Event.create(End.class, callbacks -> (server, world) -> {
+	public static final Event<End> END = Event.create(End.class, callbacks -> (minecraft, level) -> {
 		for (var callback : callbacks) {
-			callback.onLevelTickEnd(server, world);
+			callback.onEntityTickEnd(minecraft, level);
 		}
 	});
 
-	private ServerLevelTickEvents() {
+	private ClientEntityTickEvents() {
 	}
 
 	/**
 	 * @see #BEGIN
 	 */
 	@FunctionalInterface
-	public interface Begin extends EventAwareListener {
+	public interface Begin extends ClientEventAwareListener {
 		/**
 		 * @see #BEGIN
 		 */
-		void onLevelTickBegin(MinecraftServer server, ServerLevel level);
+		void onEntityTickBegin(Minecraft minecraft, ClientLevel level);
 	}
 
 	/**
 	 * @see #END
 	 */
 	@FunctionalInterface
-	public interface End extends EventAwareListener {
+	public interface End extends ClientEventAwareListener {
 		/**
 		 * @see #END
 		 */
-		void onLevelTickEnd(MinecraftServer server, ServerLevel level);
+		void onEntityTickEnd(Minecraft minecraft, ClientLevel level);
 	}
 }
