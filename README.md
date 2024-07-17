@@ -1,4 +1,4 @@
-# Gluon (Gluon)
+# Gluon
 
 ![Java 21](https://img.shields.io/badge/language-Java%2021-9B599A.svg?style=plastic)
 [![GitHub License](https://img.shields.io/github/license/MuonMC/gluon?style=plastic)]()
