@@ -41,5 +41,5 @@ $RECYCLE.BIN/
 qfapi/quilt
 
 # Auto-generated nonsense?
-/library/core/networking/.cache/
-/library/core/networking/config/quilt-loader.txt
+.cache/
+**/config/quilt-loader.txt

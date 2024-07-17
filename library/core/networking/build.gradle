@@ -3,35 +3,35 @@ plugins {
 }
 
 gluonModule {
-	name = "Quilt Networking"
+	name = "Gluon Networking"
 	moduleName = "networking"
-	id = "quilt_networking"
-	description = "Utilites to assist with sending custom packets over the Minecraft protocol."
+	id = "gluon_networking"
+	description = "Utilities to assist with sending custom packets over the Minecraft protocol."
 	moduleDependencies {
 		core {
 			api("gluon_base")
 			api("lifecycle_events")
 		}
-		management {
-			testmodOnly("command")
-		}
-		gui {
-			testmodOnly("screen") // for resource loader
-		}
+//		management {
+//			testmodOnly("command")
+//		}
+//		gui {
+//			testmodOnly("screen") // for resource loader
+//		}
 	}
 	entrypoints {
-		init {
-			values = [
-				"org.quiltmc.qsl.networking.impl.NetworkingImpl::init",
-				"org.quiltmc.qsl.networking.impl.common.CommonPacketsImpl::init"
-			]
-		}
-		client_init {
-			values = ["org.quiltmc.qsl.networking.impl.client.ClientNetworkingImpl::clientInit"]
-		}
+//		init {
+//			values = [
+//				"org.quiltmc.qsl.networking.impl.NetworkingImpl::init",
+//				"org.quiltmc.qsl.networking.impl.common.CommonPacketsImpl::init"
+//			]
+//		}
+//		client_init {
+//			values = ["org.quiltmc.qsl.networking.impl.client.ClientNetworkingImpl::clientInit"]
+//		}
 	}
 
-	injectedInterface("net/minecraft/class_8610") {
-		values = ["org/quiltmc/qsl/networking/api/ServerConfigurationTaskManager"]
-	}
+//	injectedInterface("net/minecraft/class_8610") {
+//		values = ["org/quiltmc/qsl/networking/api/ServerConfigurationTaskManager"]
+//	}
 }
